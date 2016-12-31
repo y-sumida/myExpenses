@@ -87,6 +87,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YNl-ie-n5Y"/>
+                    <connections>
+                        <outlet property="email" destination="AdK-UL-u9l" id="WK9-t5-Gxc"/>
+                        <outlet property="password" destination="BIY-kI-Oc5" id="cHN-DZ-m2V"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jaf-bM-6uN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -20,6 +20,7 @@
 		A95593C91E17939A00882E58 /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A95593C31E17939A00882E58 /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A95593CA1E17939A00882E58 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95593C41E17939A00882E58 /* RxSwift.framework */; };
 		A95593CB1E17939A00882E58 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A95593C41E17939A00882E58 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A95593D01E17965A00882E58 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95593CF1E17965A00882E58 /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,6 +52,7 @@
 		A95593C21E17939A00882E58 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
 		A95593C31E17939A00882E58 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		A95593C41E17939A00882E58 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		A95593CF1E17965A00882E58 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			children = (
 				A955937C1E1768DF00882E58 /* AppDelegate.swift */,
 				A955937E1E1768DF00882E58 /* LoginViewController.swift */,
+				A95593CF1E17965A00882E58 /* LoginViewModel.swift */,
 				A95593921E177A8900882E58 /* RegisterViewController.swift */,
 				A95593801E1768DF00882E58 /* Login.storyboard */,
 				A95593901E1779CB00882E58 /* Register.storyboard */,
@@ -191,6 +194,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A95593D01E17965A00882E58 /* LoginViewModel.swift in Sources */,
 				A95593931E177A8900882E58 /* RegisterViewController.swift in Sources */,
 				A955937F1E1768DF00882E58 /* LoginViewController.swift in Sources */,
 				A955937D1E1768DF00882E58 /* AppDelegate.swift in Sources */,

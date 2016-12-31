@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class LoginViewController: UIViewController {
+    @IBOutlet weak var email: UITextField!
+    @IBOutlet weak var password: UITextField!
+
+    private let bag: DisposeBag = DisposeBag()
+    private let viewModel: LoginViewModel = LoginViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,11 +24,19 @@ class LoginViewController: UIViewController {
         if let navi = navigationController {
             navi.setNavigationBarHidden(true, animated: true)
         }
+
+        // bind
+        email.rx_text
+            .bindTo(viewModel.email)
+            .addDisposableTo(bag)
+
+        password.rx_text
+            .bindTo(viewModel.password)
+            .addDisposableTo(bag)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     @IBAction func tapRegisterButton(sender: AnyObject) {
