@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="X3z-RR-okQ">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="H1i-9v-6WE">
+            <objects>
+                <navigationController id="X3z-RR-okQ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lQS-Gf-bj3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="99w-Y2-Hdf" kind="relationship" relationship="rootViewController" id="8oh-Vg-H4V"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dsa-Rb-IIb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-113" y="384"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="nYb-UA-OAL">
+            <objects>
+                <viewController id="99w-Y2-Hdf" customClass="LoginViewController" customModule="myExpenses" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DRQ-4E-77n"/>
+                        <viewControllerLayoutGuide type="bottom" id="Uqw-vq-Fsb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="p5y-wX-kWG">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メールアドレス" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S61-FU-gbb">
+                                <rect key="frame" x="20" y="144" width="119" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AdK-UL-u9l">
+                                <rect key="frame" x="20" y="173" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b8r-ni-FCX">
+                                <rect key="frame" x="270" y="356" width="60" height="30"/>
+                                <state key="normal" title="新規登録"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="パスワード" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XoL-Py-igK">
+                                <rect key="frame" x="20" y="211" width="85" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BIY-kI-Oc5">
+                                <rect key="frame" x="20" y="240" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4X8-LI-sIj">
+                                <rect key="frame" x="270" y="294" width="60" height="30"/>
+                                <state key="normal" title="ログイン"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="XoL-Py-igK" firstAttribute="top" secondItem="AdK-UL-u9l" secondAttribute="bottom" constant="8" id="0JU-l1-waf"/>
+                            <constraint firstItem="S61-FU-gbb" firstAttribute="leading" secondItem="p5y-wX-kWG" secondAttribute="leading" constant="20" id="1U9-X5-nWZ"/>
+                            <constraint firstItem="XoL-Py-igK" firstAttribute="leading" secondItem="AdK-UL-u9l" secondAttribute="leading" id="4a6-is-jJq"/>
+                            <constraint firstItem="AdK-UL-u9l" firstAttribute="top" secondItem="S61-FU-gbb" secondAttribute="bottom" constant="8" id="65f-gl-Lf6"/>
+                            <constraint firstAttribute="trailing" secondItem="BIY-kI-Oc5" secondAttribute="trailing" constant="20" id="9UL-OP-sbQ"/>
+                            <constraint firstItem="S61-FU-gbb" firstAttribute="top" secondItem="DRQ-4E-77n" secondAttribute="bottom" constant="80" id="Jfm-Zr-PL6"/>
+                            <constraint firstItem="BIY-kI-Oc5" firstAttribute="top" secondItem="XoL-Py-igK" secondAttribute="bottom" constant="8" id="Oto-cD-KDh"/>
+                            <constraint firstAttribute="trailing" secondItem="AdK-UL-u9l" secondAttribute="trailing" constant="20" id="PkK-AM-O1b"/>
+                            <constraint firstItem="4X8-LI-sIj" firstAttribute="top" secondItem="BIY-kI-Oc5" secondAttribute="bottom" constant="24" id="SVk-U4-VCR"/>
+                            <constraint firstItem="AdK-UL-u9l" firstAttribute="leading" secondItem="S61-FU-gbb" secondAttribute="leading" id="T1z-I0-uEZ"/>
+                            <constraint firstItem="BIY-kI-Oc5" firstAttribute="leading" secondItem="XoL-Py-igK" secondAttribute="leading" id="TlT-tX-jSU"/>
+                            <constraint firstItem="b8r-ni-FCX" firstAttribute="centerX" secondItem="p5y-wX-kWG" secondAttribute="centerX" id="arC-It-ZzD"/>
+                            <constraint firstItem="b8r-ni-FCX" firstAttribute="top" secondItem="4X8-LI-sIj" secondAttribute="bottom" constant="32" id="cXt-OD-pVT"/>
+                            <constraint firstItem="AdK-UL-u9l" firstAttribute="top" secondItem="S61-FU-gbb" secondAttribute="bottom" constant="8" id="fNb-no-ilr"/>
+                            <constraint firstItem="4X8-LI-sIj" firstAttribute="centerX" secondItem="p5y-wX-kWG" secondAttribute="centerX" id="hzg-Mt-99e"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="YNl-ie-n5Y"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jaf-bM-6uN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="665" y="379"/>
+        </scene>
+    </scenes>
+</document>
