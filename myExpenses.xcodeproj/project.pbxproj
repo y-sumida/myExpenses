@@ -14,7 +14,29 @@
 		A95593871E1768DF00882E58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95593851E1768DF00882E58 /* LaunchScreen.storyboard */; };
 		A95593911E1779CB00882E58 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95593901E1779CB00882E58 /* Register.storyboard */; };
 		A95593931E177A8900882E58 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95593921E177A8900882E58 /* RegisterViewController.swift */; };
+		A95593C61E17939A00882E58 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95593C21E17939A00882E58 /* RxBlocking.framework */; };
+		A95593C71E17939A00882E58 /* RxBlocking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A95593C21E17939A00882E58 /* RxBlocking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A95593C81E17939A00882E58 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95593C31E17939A00882E58 /* RxCocoa.framework */; };
+		A95593C91E17939A00882E58 /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A95593C31E17939A00882E58 /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A95593CA1E17939A00882E58 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95593C41E17939A00882E58 /* RxSwift.framework */; };
+		A95593CB1E17939A00882E58 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A95593C41E17939A00882E58 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A95593CE1E17939B00882E58 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A95593C91E17939A00882E58 /* RxCocoa.framework in Embed Frameworks */,
+				A95593C71E17939A00882E58 /* RxBlocking.framework in Embed Frameworks */,
+				A95593CB1E17939A00882E58 /* RxSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A95593791E1768DF00882E58 /* myExpenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myExpenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -26,6 +48,9 @@
 		A95593881E1768DF00882E58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A95593901E1779CB00882E58 /* Register.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		A95593921E177A8900882E58 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		A95593C21E17939A00882E58 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
+		A95593C31E17939A00882E58 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		A95593C41E17939A00882E58 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +58,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A95593C81E17939A00882E58 /* RxCocoa.framework in Frameworks */,
+				A95593C61E17939A00882E58 /* RxBlocking.framework in Frameworks */,
+				A95593CA1E17939A00882E58 /* RxSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +70,9 @@
 		A95593701E1768DF00882E58 = {
 			isa = PBXGroup;
 			children = (
+				A95593C21E17939A00882E58 /* RxBlocking.framework */,
+				A95593C31E17939A00882E58 /* RxCocoa.framework */,
+				A95593C41E17939A00882E58 /* RxSwift.framework */,
 				A955937B1E1768DF00882E58 /* myExpenses */,
 				A955937A1E1768DF00882E58 /* Products */,
 			);
@@ -80,6 +111,8 @@
 				A95593751E1768DF00882E58 /* Sources */,
 				A95593761E1768DF00882E58 /* Frameworks */,
 				A95593771E1768DF00882E58 /* Resources */,
+				A95593BB1E17892600882E58 /* ShellScript */,
+				A95593CE1E17939B00882E58 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -135,6 +168,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A95593BB1E17892600882E58 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A95593751E1768DF00882E58 /* Sources */ = {
@@ -256,6 +306,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = myExpenses/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sample.myExpenses;
@@ -267,6 +321,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = myExpenses/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sample.myExpenses;
@@ -293,6 +351,7 @@
 				A955938D1E1768DF00882E58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
