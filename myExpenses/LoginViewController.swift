@@ -13,6 +13,7 @@ import RxCocoa
 class LoginViewController: UIViewController {
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
 
     private let bag: DisposeBag = DisposeBag()
     private let viewModel: LoginViewModel = LoginViewModel()
@@ -29,9 +30,12 @@ class LoginViewController: UIViewController {
         email.rx_text
             .bindTo(viewModel.email)
             .addDisposableTo(bag)
-
         password.rx_text
             .bindTo(viewModel.password)
+            .addDisposableTo(bag)
+        loginButton.rx_tap.subscribeNext {
+            self.viewModel.loginTrigger.onNext(())
+            }
             .addDisposableTo(bag)
     }
 
