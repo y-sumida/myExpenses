@@ -37,6 +37,18 @@ class LoginViewController: UIViewController {
             self.viewModel.loginTrigger.onNext(())
             }
             .addDisposableTo(bag)
+        viewModel.resultTrigger
+            .subscribe(
+                onNext: {
+                    print("ok")
+                    let vc:ExpensesViewController = UIStoryboard(name: "Expenses", bundle: nil).instantiateViewControllerWithIdentifier("ExpensesViewController") as! ExpensesViewController
+                    self.navigationController?.pushViewController(vc, animated: true)
+                },
+                onError: { (error: ErrorType) -> Void in
+                    print("ng")
+                }
+            )
+            .addDisposableTo(bag)
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,6 +59,5 @@ class LoginViewController: UIViewController {
         let vc:RegisterViewController = UIStoryboard(name: "Register", bundle: nil).instantiateViewControllerWithIdentifier("RegisterViewController") as! RegisterViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
-
 }
 

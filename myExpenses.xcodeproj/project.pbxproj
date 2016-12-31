@@ -21,6 +21,8 @@
 		A95593CA1E17939A00882E58 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95593C41E17939A00882E58 /* RxSwift.framework */; };
 		A95593CB1E17939A00882E58 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A95593C41E17939A00882E58 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A95593D01E17965A00882E58 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95593CF1E17965A00882E58 /* LoginViewModel.swift */; };
+		A95593D21E179E6200882E58 /* Expenses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95593D11E179E6200882E58 /* Expenses.storyboard */; };
+		A95593D41E179EB400882E58 /* ExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95593D31E179EB400882E58 /* ExpensesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +55,8 @@
 		A95593C31E17939A00882E58 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		A95593C41E17939A00882E58 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		A95593CF1E17965A00882E58 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		A95593D11E179E6200882E58 /* Expenses.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Expenses.storyboard; sourceTree = "<group>"; };
+		A95593D31E179EB400882E58 /* ExpensesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,8 @@
 				A955937E1E1768DF00882E58 /* LoginViewController.swift */,
 				A95593CF1E17965A00882E58 /* LoginViewModel.swift */,
 				A95593921E177A8900882E58 /* RegisterViewController.swift */,
+				A95593D31E179EB400882E58 /* ExpensesViewController.swift */,
+				A95593D11E179E6200882E58 /* Expenses.storyboard */,
 				A95593801E1768DF00882E58 /* Login.storyboard */,
 				A95593901E1779CB00882E58 /* Register.storyboard */,
 				A95593831E1768DF00882E58 /* Assets.xcassets */,
@@ -163,6 +169,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A95593D21E179E6200882E58 /* Expenses.storyboard in Resources */,
 				A95593871E1768DF00882E58 /* LaunchScreen.storyboard in Resources */,
 				A95593841E1768DF00882E58 /* Assets.xcassets in Resources */,
 				A95593821E1768DF00882E58 /* Login.storyboard in Resources */,
@@ -197,6 +204,7 @@
 				A95593D01E17965A00882E58 /* LoginViewModel.swift in Sources */,
 				A95593931E177A8900882E58 /* RegisterViewController.swift in Sources */,
 				A955937F1E1768DF00882E58 /* LoginViewController.swift in Sources */,
+				A95593D41E179EB400882E58 /* ExpensesViewController.swift in Sources */,
 				A955937D1E1768DF00882E58 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
