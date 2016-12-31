@@ -47,6 +47,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b8r-ni-FCX">
                                 <rect key="frame" x="270" y="356" width="60" height="30"/>
                                 <state key="normal" title="新規登録"/>
+                                <connections>
+                                    <action selector="tapRegisterButton:" destination="99w-Y2-Hdf" eventType="touchUpInside" id="Td2-xE-p76"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="パスワード" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XoL-Py-igK">
                                 <rect key="frame" x="20" y="211" width="85" height="21"/>

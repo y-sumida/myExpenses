@@ -24,6 +24,10 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func tapRegisterButton(sender: AnyObject) {
+        let vc:RegisterViewController = UIStoryboard(name: "Register", bundle: nil).instantiateViewControllerWithIdentifier("RegisterViewController") as! RegisterViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 
 }
 

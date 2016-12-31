@@ -12,6 +12,12 @@ class RegisterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // ナビゲーションバー表示
+        if let navi = navigationController {
+            navi.setNavigationBarHidden(false, animated: true)
+            navigationItem.title = "ユーザー登録"
+        }
     }
 
     override func didReceiveMemoryWarning() {

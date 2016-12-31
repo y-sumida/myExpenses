@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Login View Controller-->
+        <!--Register View Controller-->
         <scene sceneID="jxQ-5c-IBa">
             <objects>
-                <viewController id="k2n-ha-lrB" customClass="LoginViewController" customModule="myExpenses" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterViewController" id="k2n-ha-lrB" customClass="RegisterViewController" customModule="myExpenses" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gys-r6-R60"/>
                         <viewControllerLayoutGuide type="bottom" id="Pbq-zP-YB9"/>
@@ -53,7 +53,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f4C-ko-O2X">
                                 <rect key="frame" x="20" y="307" width="540" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -82,7 +82,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SFw-dx-YpZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="323" y="515"/>
+            <point key="canvasLocation" x="255" y="587"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IlK-FI-3rL">
