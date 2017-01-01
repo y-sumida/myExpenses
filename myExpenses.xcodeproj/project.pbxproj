@@ -23,6 +23,7 @@
 		A95593D01E17965A00882E58 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95593CF1E17965A00882E58 /* LoginViewModel.swift */; };
 		A95593D21E179E6200882E58 /* Expenses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95593D11E179E6200882E58 /* Expenses.storyboard */; };
 		A95593D41E179EB400882E58 /* ExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95593D31E179EB400882E58 /* ExpensesViewController.swift */; };
+		A95593D61E19023500882E58 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95593D51E19023500882E58 /* LoginModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -57,6 +58,7 @@
 		A95593CF1E17965A00882E58 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		A95593D11E179E6200882E58 /* Expenses.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Expenses.storyboard; sourceTree = "<group>"; };
 		A95593D31E179EB400882E58 /* ExpensesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesViewController.swift; sourceTree = "<group>"; };
+		A95593D51E19023500882E58 /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				A955937C1E1768DF00882E58 /* AppDelegate.swift */,
 				A955937E1E1768DF00882E58 /* LoginViewController.swift */,
 				A95593CF1E17965A00882E58 /* LoginViewModel.swift */,
+				A95593D51E19023500882E58 /* LoginModel.swift */,
 				A95593921E177A8900882E58 /* RegisterViewController.swift */,
 				A95593D31E179EB400882E58 /* ExpensesViewController.swift */,
 				A95593D11E179E6200882E58 /* Expenses.storyboard */,
@@ -202,6 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A95593D01E17965A00882E58 /* LoginViewModel.swift in Sources */,
+				A95593D61E19023500882E58 /* LoginModel.swift in Sources */,
 				A95593931E177A8900882E58 /* RegisterViewController.swift in Sources */,
 				A955937F1E1768DF00882E58 /* LoginViewController.swift in Sources */,
 				A95593D41E179EB400882E58 /* ExpensesViewController.swift in Sources */,

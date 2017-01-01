@@ -17,14 +17,25 @@ class LoginViewModel {
     var resultTrigger: PublishSubject<Void> = PublishSubject()
 
     init() {
-        loginTrigger.subscribeNext {
-            print("email:\(self.email.value)")
-            print("password:\(self.password.value)")
-            // TODO APIコール
-            // ログイン成功時
-            self.resultTrigger.onNext(())
-            // TODO 失敗時
-        }
-        .addDisposableTo(bag)
+        loginTrigger
+            .flatMap {
+                LoginModel.call(self.email.value, password: self.password.value)
+            }
+            .subscribe(
+                onNext: { (data, response) in
+                    // ログイン成功
+                    dump(data)
+                    dump(response)
+
+                    print("email:\(self.email.value)")
+                    print("password:\(self.password.value)")
+                    self.resultTrigger.onNext(())
+                },
+                onError: { (error: ErrorType) in
+                    // ログイン失敗
+                    self.resultTrigger.onError(error)
+                }
+            )
+            .addDisposableTo(bag)
     }
 }
