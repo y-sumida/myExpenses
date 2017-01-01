@@ -40,12 +40,14 @@ class LoginViewController: UIViewController {
         viewModel.resultTrigger
             .subscribe(
                 onNext: {
-                    print("ok")
                     let vc:ExpensesViewController = UIStoryboard(name: "Expenses", bundle: nil).instantiateViewControllerWithIdentifier("ExpensesViewController") as! ExpensesViewController
                     self.navigationController?.pushViewController(vc, animated: true)
                 },
                 onError: { (error: ErrorType) -> Void in
-                    print("ng")
+                    // TODO エラーコード、メッセージ
+                    let vc = UIAlertController(title: "ログインエラー", message: "ログインに失敗しました", preferredStyle: .Alert)
+                    vc.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                    self.presentViewController(vc, animated: true, completion: nil)
                 }
             )
             .addDisposableTo(bag)
