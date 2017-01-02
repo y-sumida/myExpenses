@@ -6,6 +6,7 @@
 //
 //
 
+import Foundation
 import RxSwift
 
 class LoginViewModel {
@@ -28,8 +29,8 @@ class LoginViewModel {
                     dump(data)
                     dump(response)
 
-                    print("email:\(self.email.value)")
-                    print("password:\(self.password.value)")
+                    let result = try? NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as! NSDictionary
+                    print(result)
                     self.resultTrigger.onNext(())
                 },
                 onError: { (error: ErrorType) in
