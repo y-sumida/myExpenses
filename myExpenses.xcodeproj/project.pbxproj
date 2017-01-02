@@ -24,6 +24,7 @@
 		A95593D21E179E6200882E58 /* Expenses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95593D11E179E6200882E58 /* Expenses.storyboard */; };
 		A95593D41E179EB400882E58 /* ExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95593D31E179EB400882E58 /* ExpensesViewController.swift */; };
 		A95593D61E19023500882E58 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95593D51E19023500882E58 /* LoginModel.swift */; };
+		A95593D81E1A5E6D00882E58 /* NSURLSessionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95593D71E1A5E6D00882E58 /* NSURLSessionExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -59,6 +60,7 @@
 		A95593D11E179E6200882E58 /* Expenses.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Expenses.storyboard; sourceTree = "<group>"; };
 		A95593D31E179EB400882E58 /* ExpensesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesViewController.swift; sourceTree = "<group>"; };
 		A95593D51E19023500882E58 /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		A95593D71E1A5E6D00882E58 /* NSURLSessionExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSURLSessionExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				A95593D51E19023500882E58 /* LoginModel.swift */,
 				A95593921E177A8900882E58 /* RegisterViewController.swift */,
 				A95593D31E179EB400882E58 /* ExpensesViewController.swift */,
+				A95593D71E1A5E6D00882E58 /* NSURLSessionExtension.swift */,
 				A95593D11E179E6200882E58 /* Expenses.storyboard */,
 				A95593801E1768DF00882E58 /* Login.storyboard */,
 				A95593901E1779CB00882E58 /* Register.storyboard */,
@@ -209,6 +212,7 @@
 				A95593931E177A8900882E58 /* RegisterViewController.swift in Sources */,
 				A955937F1E1768DF00882E58 /* LoginViewController.swift in Sources */,
 				A95593D41E179EB400882E58 /* ExpensesViewController.swift in Sources */,
+				A95593D81E1A5E6D00882E58 /* NSURLSessionExtension.swift in Sources */,
 				A955937D1E1768DF00882E58 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

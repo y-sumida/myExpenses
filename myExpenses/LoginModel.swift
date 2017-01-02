@@ -23,6 +23,6 @@ class LoginModel {
 
         let session: NSURLSession = NSURLSession.sharedSession()
 
-        return session.rx_response(request)
+        return session.rx_responseObject(request)
     }
 }
