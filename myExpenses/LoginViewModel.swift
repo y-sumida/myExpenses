@@ -21,6 +21,7 @@ class LoginViewModel {
             .flatMap {
                 LoginModel.call(self.email.value, password: self.password.value)
             }
+            .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: { (data, response) in
                     // ログイン成功
