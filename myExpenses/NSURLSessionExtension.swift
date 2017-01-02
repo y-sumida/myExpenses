@@ -11,9 +11,10 @@ import RxSwift
 import RxCocoa
 
 extension NSURLSession {
-    public func rx_responseObject(request: NSURLRequest) -> Observable<(NSData, NSHTTPURLResponse)> {
+    public func rx_responseObject(request: NSURLRequest) -> Observable<(NSDictionary, NSHTTPURLResponse)> {
         return Observable.create { observer in
 
+            //TODO NSDictionaryではなくモデルクラスを返したい
             let task = self.dataTaskWithRequest(request) { (data, response, error) in
 
                 guard let response = response, data = data else {
@@ -26,7 +27,13 @@ extension NSURLSession {
                     return
                 }
 
-                observer.on(.Next(data, httpResponse))
+                do {
+                    let object = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as! NSDictionary
+                    observer.on(.Next(object, httpResponse))
+                } catch {
+                    observer.on(.Next([:], httpResponse))
+                }
+
                 observer.on(.Completed)
             }
 

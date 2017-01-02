@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 class LoginModel {
-    static func call(email: String, password: String) -> Observable<(NSData, NSHTTPURLResponse)> {
+    static func call(email: String, password: String) -> Observable<(NSDictionary, NSHTTPURLResponse)> {
         let body = NSMutableDictionary()
         body.setValue(email, forKey: "email");
         body.setValue(password, forKey: "password");

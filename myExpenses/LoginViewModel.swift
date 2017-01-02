@@ -28,9 +28,8 @@ class LoginViewModel {
                     // ログイン成功
                     dump(data)
                     dump(response)
+                    print(data)
 
-                    let result = try? NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as! NSDictionary
-                    print(result)
                     self.resultTrigger.onNext(())
                 },
                 onError: { (error: ErrorType) in
