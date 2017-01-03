@@ -9,6 +9,11 @@
 import Foundation
 import RxSwift
 
+enum LoginError: ErrorType {
+    // TODO ログインエラーパターン
+    case Unmatch
+}
+
 class LoginViewModel {
     private let bag: DisposeBag = DisposeBag()
 
@@ -22,15 +27,17 @@ class LoginViewModel {
             .flatMap {
                 LoginModel.call(self.email.value, password: self.password.value)
             }
-            .observeOn(MainScheduler.instance)
+            .observeOn(MainScheduler.instance)//これ以降メインスレッドで実行
             .subscribe(
-                onNext: { (data, response) in
-                    // ログイン成功
-                    dump(data)
-                    dump(response)
-                    print(data)
-
-                    self.resultTrigger.onNext(())
+                onNext: { (model, response) in
+                    if model.success {
+                        // ログイン成功
+                        self.resultTrigger.onNext(())
+                    }
+                    else {
+                        // ログイン失敗
+                        self.resultTrigger.onError(LoginError.Unmatch)
+                    }
                 },
                 onError: { (error: ErrorType) in
                     // ログイン失敗

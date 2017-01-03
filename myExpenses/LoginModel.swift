@@ -27,11 +27,10 @@ class LoginModel: ResponseProtocol {
         }
     }
 
-    static func call(email: String, password: String) -> Observable<(NSDictionary, NSHTTPURLResponse)> {
+    static func call(email: String, password: String) -> Observable<(LoginModel, NSHTTPURLResponse)> {
 
         let session: NSURLSession = NSURLSession.sharedSession()
-        let request: LoginRequest = LoginRequest(email: email, password: password)
-        return session.rx_responseObject(request.request)
+        return session.rx_responseObject2(LoginRequest(email: email, password: password))
     }
 }
 
