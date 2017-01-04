@@ -18,7 +18,13 @@ public protocol ResponseProtocol {
     init(data: NSDictionary)
 }
 
+struct APIResult: ErrorType {
+    var code: String
+    var message: String
+}
+
 class LoginModel: ResponseProtocol {
+    var result:APIResult?
     var resultCode: String = ""
     var resultMessage: String = ""
     var sessionId: String = ""
@@ -40,6 +46,8 @@ class LoginModel: ResponseProtocol {
         if let success = data["success"] {
             self.isSuccess = success as! Bool
         }
+
+        result = APIResult(code: self.resultCode, message: self.resultMessage)
     }
 
     static func call(email: String, password: String) -> Observable<(LoginModel, NSHTTPURLResponse)> {
