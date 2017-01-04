@@ -19,11 +19,26 @@ public protocol ResponseProtocol {
 }
 
 class LoginModel: ResponseProtocol {
-    var success: Bool = false
+    var resultCode: String = ""
+    var resultMessage: String = ""
+    var sessionId: String = ""
+    var isSuccess: Bool = false
 
     required init(data: NSDictionary) {
+        if let resultCode = data["resultCode"] {
+            self.resultCode = resultCode as! String
+        }
+
+        if let resultMessage = data["resultMessage"] {
+            self.resultMessage = resultMessage as! String
+        }
+
+        if let sessionId = data["sessionId"] {
+            self.sessionId = sessionId as! String
+        }
+
         if let success = data["success"] {
-            self.success = success as! Bool
+            self.isSuccess = success as! Bool
         }
     }
 
@@ -44,7 +59,7 @@ class LoginRequest: RequestProtocol {
         body.setValue(email, forKey: "email");
         body.setValue(password, forKey: "password");
 
-        let url:NSURL = NSURL(string: "http://localhost/hoge.php")!
+        let url:NSURL = NSURL(string: "http://localhost/login.php")!
         let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

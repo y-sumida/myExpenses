@@ -30,7 +30,7 @@ class LoginViewModel {
             .observeOn(MainScheduler.instance)//これ以降メインスレッドで実行
             .subscribe(
                 onNext: { (model, response) in
-                    if model.success {
+                    if model.isSuccess {
                         // ログイン成功
                         self.resultTrigger.onNext(())
                     }
