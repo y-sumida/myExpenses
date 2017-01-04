@@ -25,6 +25,11 @@ extension NSURLSession {
                     return
                 }
 
+                if httpResponse.statusCode >= 400 {
+                    observer.onError(APIResult(code: "N" + httpResponse.statusCode.description, message: "サーバーエラーが発生しました"))
+                    return
+                }
+
                 let object = request.responseToObject(data)
                 observer.on(.Next(object, httpResponse))
                 observer.on(.Completed)

@@ -9,11 +9,6 @@
 import Foundation
 import RxSwift
 
-enum LoginError: ErrorType {
-    // TODO ログインエラーパターン
-    case Unmatch
-}
-
 class LoginViewModel {
     private let bag: DisposeBag = DisposeBag()
 
@@ -36,11 +31,11 @@ class LoginViewModel {
                     }
                     else {
                         // ログイン失敗
-                        self.resultTrigger.onError(LoginError.Unmatch)
+                        self.resultTrigger.onError(model.result!)
                     }
                 },
                 onError: { (error: ErrorType) in
-                    // ログイン失敗
+                    // APIエラー
                     self.resultTrigger.onError(error)
                 }
             )

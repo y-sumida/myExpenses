@@ -45,7 +45,8 @@ class LoginViewController: UIViewController {
                 },
                 onError: { (error: ErrorType) -> Void in
                     // TODO エラーコード、メッセージ
-                    let vc = UIAlertController(title: "ログインエラー", message: "ログインに失敗しました", preferredStyle: .Alert)
+                    let result = error as! APIResult
+                    let vc = UIAlertController(title: result.code, message: result.message, preferredStyle: .Alert)
                     vc.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
                     self.presentViewController(vc, animated: true, completion: nil)
                 }
