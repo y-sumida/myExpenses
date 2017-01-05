@@ -16,6 +16,7 @@ class LoginViewModel {
     var password: Variable<String> = Variable("")
     var loginTrigger: PublishSubject<Void> = PublishSubject()
     var resultTrigger: PublishSubject<Void> = PublishSubject()
+    var result: Variable<ErrorType?> = Variable(nil)
 
     init() {
         loginTrigger
@@ -25,18 +26,11 @@ class LoginViewModel {
             .observeOn(MainScheduler.instance)//これ以降メインスレッドで実行
             .subscribe(
                 onNext: { (model, response) in
-                    if model.isSuccess {
-                        // ログイン成功
-                        self.resultTrigger.onNext(())
-                    }
-                    else {
-                        // ログイン失敗
-                        self.resultTrigger.onError(model.result!)
-                    }
+                    self.result.value = model.result!
                 },
                 onError: { (error: ErrorType) in
                     // APIエラー
-                    self.resultTrigger.onError(error)
+                    self.result.value = error
                 }
             )
             .addDisposableTo(bag)

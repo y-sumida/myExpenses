@@ -37,18 +37,23 @@ class LoginViewController: UIViewController {
             self.viewModel.loginTrigger.onNext(())
             }
             .addDisposableTo(bag)
-        viewModel.resultTrigger
+        viewModel.result.asObservable()
+            .skip(1) //初期値読み飛ばし
             .subscribe(
-                onNext: {
-                    let vc:ExpensesViewController = UIStoryboard(name: "Expenses", bundle: nil).instantiateViewControllerWithIdentifier("ExpensesViewController") as! ExpensesViewController
-                    self.navigationController?.pushViewController(vc, animated: true)
+                onNext: {error in
+                    let result = error as! APIResult
+
+                    if result.code == APIResultCode.Success.rawValue {
+                        let vc:ExpensesViewController = UIStoryboard(name: "Expenses", bundle: nil).instantiateViewControllerWithIdentifier("ExpensesViewController") as! ExpensesViewController
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                    else {
+                        self.showErrorDialog(result)
+                    }
                 },
                 onError: { (error: ErrorType) -> Void in
-                    // TODO onError以降、川が流れなくなる
                     let result = error as! APIResult
-                    let vc = UIAlertController(title: result.code, message: result.message, preferredStyle: .Alert)
-                    vc.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                    self.presentViewController(vc, animated: true, completion: nil)
+                    self.showErrorDialog(result)
                 }
             )
             .addDisposableTo(bag)
@@ -61,6 +66,12 @@ class LoginViewController: UIViewController {
     @IBAction func tapRegisterButton(sender: AnyObject) {
         let vc:RegisterViewController = UIStoryboard(name: "Register", bundle: nil).instantiateViewControllerWithIdentifier("RegisterViewController") as! RegisterViewController
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+
+    private func showErrorDialog(error: APIResult) {
+        let vc = UIAlertController(title: error.code, message: error.message, preferredStyle: .Alert)
+        vc.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        self.presentViewController(vc, animated: true, completion: nil)
     }
 }
 

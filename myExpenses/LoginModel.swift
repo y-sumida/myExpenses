@@ -23,6 +23,11 @@ struct APIResult: ErrorType {
     var message: String
 }
 
+enum APIResultCode: String {
+    // TODO エラー時の結果コード
+    case Success = "E000"
+}
+
 class LoginModel: ResponseProtocol {
     var result:APIResult?
     var resultCode: String = ""
