@@ -15,7 +15,6 @@ class LoginViewModel {
     var email: Variable<String> = Variable("")
     var password: Variable<String> = Variable("")
     var loginTrigger: PublishSubject<Void> = PublishSubject()
-    var resultTrigger: PublishSubject<Void> = PublishSubject()
     var result: Variable<ErrorType?> = Variable(nil)
 
     init() {
