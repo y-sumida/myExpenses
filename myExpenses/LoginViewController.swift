@@ -44,7 +44,7 @@ class LoginViewController: UIViewController {
                     self.navigationController?.pushViewController(vc, animated: true)
                 },
                 onError: { (error: ErrorType) -> Void in
-                    // TODO エラーコード、メッセージ
+                    // TODO onError以降、川が流れなくなる
                     let result = error as! APIResult
                     let vc = UIAlertController(title: result.code, message: result.message, preferredStyle: .Alert)
                     vc.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
