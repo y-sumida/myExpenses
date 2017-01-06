@@ -9,9 +9,20 @@ import Foundation
 import RxSwift
 
 public protocol RequestProtocol {
-    associatedtype Response
+    associatedtype Response: ResponseProtocol
     var request: NSMutableURLRequest {get}
     func responseToObject(data: NSData) -> Response
+}
+
+extension RequestProtocol {
+    func responseToObject(data: NSData) -> Response {
+        do {
+            let object = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as! NSDictionary
+            return Response(data: object)
+        } catch {
+            return Response(data: [:])
+        }
+    }
 }
 
 public protocol ResponseProtocol {
@@ -84,14 +95,5 @@ class LoginRequest: RequestProtocol {
     init(email: String, password: String) {
         self.email = email
         self.password = password
-    }
-
-    func responseToObject(data: NSData) -> Response {
-        do {
-            let object = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as! NSDictionary
-            return Response(data: object)
-        } catch {
-            return Response(data: [:])
-        }
     }
 }
