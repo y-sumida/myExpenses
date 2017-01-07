@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import RxSwift
 
 class ExpensesViewController: UIViewController {
+    private let bag: DisposeBag = DisposeBag()
+    private var viewModel: ExpensesViewModel!
+
+    var sessionId: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +23,9 @@ class ExpensesViewController: UIViewController {
             navigationItem.title = "交通費"
             navigationItem.hidesBackButton = true
         }
+
+        viewModel = ExpensesViewModel(sessionId: sessionId)
+        viewModel.fetchTrigger.onNext(())
     }
 
     override func didReceiveMemoryWarning() {
