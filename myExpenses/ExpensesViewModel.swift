@@ -14,7 +14,9 @@ class ExpensesViewModel {
 
     var period: Variable<String> = Variable("")
     var fetchTrigger: PublishSubject<Void> = PublishSubject()
+    var reloadTrigger: PublishSubject<Void> = PublishSubject()
     var result: Variable<ErrorType?> = Variable(nil)
+    var desitations: [DestinationModel] = []
 
     init(sessionId: String) {
         fetchTrigger
@@ -25,7 +27,10 @@ class ExpensesViewModel {
             .subscribe(
                 onNext: { (model, response) in
                     self.result.value = model.result!
+                    self.desitations = model.destinations
                     // TODO その他の項目
+
+                    self.reloadTrigger.onNext(())
                 },
                 onError: { (error: ErrorType) in
                     // APIエラー
