@@ -79,6 +79,34 @@ class DestinationModel {
         if let useJR = data["jr"] {
             self.useJR = useJR as! Bool
         }
+
+        if let usePrivate = data["private"] {
+            self.usePrivate = usePrivate as! Bool
+        }
+
+        if let useBus = data["bus"] {
+            self.usePrivate = useBus as! Bool
+        }
+
+        if let useOther = data["other"] {
+            self.useOther = useOther as! Bool
+        }
+
+        if let from = data["from"] {
+            self.from = from as! String
+        }
+
+        if let to = data["to"] {
+            self.to = to as! String
+        }
+
+        if let fare = data["fare"] {
+            self.fare = fare as! Int
+        }
+
+        if let remarks = data["remarks"] {
+            self.remarks = remarks as! String
+        }
     }
 }
 
