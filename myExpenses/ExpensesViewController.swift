@@ -27,6 +27,8 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
 
         table.delegate = self
         table.dataSource = self
+        let nib = UINib(nibName: "ExpenseCell", bundle: nil)
+        table.registerNib(nib, forCellReuseIdentifier: "cell")
 
         viewModel = ExpensesViewModel(sessionId: sessionId)
 
@@ -51,8 +53,8 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         //TODO カスタムセル
         //TODO セルビューモデル
-        let cell: UITableViewCell = UITableViewCell()
-        cell.textLabel!.text = viewModel.desitations[indexPath.row].name
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! ExpenseCell
+        cell.destination.text = viewModel.desitations[indexPath.row].name
 
         return cell
     }
