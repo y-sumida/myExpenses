@@ -29,6 +29,7 @@
 		A95593E01E212E9E00882E58 /* ExpensesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95593DF1E212E9E00882E58 /* ExpensesViewModel.swift */; };
 		A95593E61E2294BA00882E58 /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95593E41E2294BA00882E58 /* ExpenseCell.swift */; };
 		A95593E71E2294BA00882E58 /* ExpenseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A95593E51E2294BA00882E58 /* ExpenseCell.xib */; };
+		A95593E91E23C88900882E58 /* ExpenseCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95593E81E23C88900882E58 /* ExpenseCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -69,6 +70,7 @@
 		A95593DF1E212E9E00882E58 /* ExpensesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesViewModel.swift; sourceTree = "<group>"; };
 		A95593E41E2294BA00882E58 /* ExpenseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
 		A95593E51E2294BA00882E58 /* ExpenseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpenseCell.xib; sourceTree = "<group>"; };
+		A95593E81E23C88900882E58 /* ExpenseCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				A95593D51E19023500882E58 /* LoginModel.swift */,
 				A95593DB1E2123ED00882E58 /* ExpensesModel.swift */,
 				A95593DF1E212E9E00882E58 /* ExpensesViewModel.swift */,
+				A95593E81E23C88900882E58 /* ExpenseCellViewModel.swift */,
 				A95593921E177A8900882E58 /* RegisterViewController.swift */,
 				A95593D31E179EB400882E58 /* ExpensesViewController.swift */,
 				A95593D71E1A5E6D00882E58 /* NSURLSessionExtension.swift */,
@@ -236,6 +239,7 @@
 				A955937F1E1768DF00882E58 /* LoginViewController.swift in Sources */,
 				A95593D41E179EB400882E58 /* ExpensesViewController.swift in Sources */,
 				A95593D81E1A5E6D00882E58 /* NSURLSessionExtension.swift in Sources */,
+				A95593E91E23C88900882E58 /* ExpenseCellViewModel.swift in Sources */,
 				A955937D1E1768DF00882E58 /* AppDelegate.swift in Sources */,
 				A95593E01E212E9E00882E58 /* ExpensesViewModel.swift in Sources */,
 			);

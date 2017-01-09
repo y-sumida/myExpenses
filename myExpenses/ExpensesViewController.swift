@@ -51,10 +51,8 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        //TODO カスタムセル
-        //TODO セルビューモデル
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! ExpenseCell
-        cell.destination.text = viewModel.desitations[indexPath.row].name
+        let cell: ExpenseCell = tableView.dequeueReusableCellWithIdentifier("cell") as! ExpenseCell
+        cell.viewModel = ExpenseCellViewModel(model: viewModel.desitations[indexPath.row])
 
         return cell
     }

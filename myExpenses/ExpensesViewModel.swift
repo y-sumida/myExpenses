@@ -28,7 +28,6 @@ class ExpensesViewModel {
                 onNext: { (model, response) in
                     self.result.value = model.result!
                     self.desitations = model.destinations
-                    // TODO その他の項目
 
                     self.reloadTrigger.onNext(())
                 },
