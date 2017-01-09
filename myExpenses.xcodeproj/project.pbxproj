@@ -30,6 +30,8 @@
 		A95593E61E2294BA00882E58 /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95593E41E2294BA00882E58 /* ExpenseCell.swift */; };
 		A95593E71E2294BA00882E58 /* ExpenseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A95593E51E2294BA00882E58 /* ExpenseCell.xib */; };
 		A95593E91E23C88900882E58 /* ExpenseCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95593E81E23C88900882E58 /* ExpenseCellViewModel.swift */; };
+		A95593EB1E23D48000882E58 /* ExpensesHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95593EA1E23D48000882E58 /* ExpensesHeaderView.swift */; };
+		A95593ED1E23D49200882E58 /* ExpensesHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A95593EC1E23D49200882E58 /* ExpensesHeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -71,6 +73,8 @@
 		A95593E41E2294BA00882E58 /* ExpenseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
 		A95593E51E2294BA00882E58 /* ExpenseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpenseCell.xib; sourceTree = "<group>"; };
 		A95593E81E23C88900882E58 /* ExpenseCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseCellViewModel.swift; sourceTree = "<group>"; };
+		A95593EA1E23D48000882E58 /* ExpensesHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesHeaderView.swift; sourceTree = "<group>"; };
+		A95593EC1E23D49200882E58 /* ExpensesHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpensesHeaderView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +139,8 @@
 			children = (
 				A95593E41E2294BA00882E58 /* ExpenseCell.swift */,
 				A95593E51E2294BA00882E58 /* ExpenseCell.xib */,
+				A95593EA1E23D48000882E58 /* ExpensesHeaderView.swift */,
+				A95593EC1E23D49200882E58 /* ExpensesHeaderView.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -204,6 +210,7 @@
 				A95593821E1768DF00882E58 /* Login.storyboard in Resources */,
 				A95593E71E2294BA00882E58 /* ExpenseCell.xib in Resources */,
 				A95593911E1779CB00882E58 /* Register.storyboard in Resources */,
+				A95593ED1E23D49200882E58 /* ExpensesHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +240,7 @@
 			files = (
 				A95593D01E17965A00882E58 /* LoginViewModel.swift in Sources */,
 				A95593D61E19023500882E58 /* LoginModel.swift in Sources */,
+				A95593EB1E23D48000882E58 /* ExpensesHeaderView.swift in Sources */,
 				A95593E61E2294BA00882E58 /* ExpenseCell.swift in Sources */,
 				A95593DC1E2123ED00882E58 /* ExpensesModel.swift in Sources */,
 				A95593931E177A8900882E58 /* RegisterViewController.swift in Sources */,

@@ -56,4 +56,13 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
 
         return cell
     }
+
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let width: CGFloat = UIScreen.mainScreen().bounds.size.width
+        return ExpensesHeaderView(frame: CGRectMake(0, 0, width, 40))
+    }
 }
