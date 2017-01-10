@@ -9,6 +9,8 @@
 import UIKit
 
 class ExpensesHeaderView: UIView {
+    @IBOutlet weak var fareTotal: UILabel!
+
     // コードから初期化はここから
     override init(frame: CGRect) {
         super.init(frame: frame)

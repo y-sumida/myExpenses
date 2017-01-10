@@ -63,6 +63,10 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
 
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let width: CGFloat = UIScreen.mainScreen().bounds.size.width
-        return ExpensesHeaderView(frame: CGRectMake(0, 0, width, 40))
+        let header: ExpensesHeaderView = ExpensesHeaderView(frame: CGRectMake(0, 0, width, 40))
+        viewModel.fareTotal.asObservable()
+            .bindTo(header.fareTotal.rx_text)
+            .addDisposableTo(bag)
+        return header
     }
 }
