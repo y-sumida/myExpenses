@@ -66,7 +66,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     }
 
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return header.frame.size.height
     }
 
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
