@@ -17,6 +17,7 @@ class ExpensesViewModel {
     var reloadTrigger: PublishSubject<Void> = PublishSubject()
     var result: Variable<ErrorType?> = Variable(nil)
     var desitations: [DestinationModel] = []
+    var fareTotal: Variable<String> = Variable("")
 
     init(sessionId: String) {
         fetchTrigger
@@ -29,6 +30,9 @@ class ExpensesViewModel {
                     self.result.value = model.result!
                     self.desitations = model.destinations
 
+                    self.fareTotal.value = model.destinations.reduce(0) {
+                        $0 + $1.fare
+                    }.description
                     self.reloadTrigger.onNext(())
                 },
                 onError: { (error: ErrorType) in
