@@ -13,6 +13,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     @IBOutlet weak var table: UITableView!
     private let bag: DisposeBag = DisposeBag()
     private var viewModel: ExpensesViewModel!
+    private var header: ExpensesHeaderView!
 
     var sessionId: String = ""
 
@@ -39,6 +40,13 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
             }
             .addDisposableTo(bag)
 
+        let width: CGFloat = UIScreen.mainScreen().bounds.size.width
+        header = ExpensesHeaderView(frame: CGRectMake(0, 0, width, 40))
+
+        viewModel.fareTotal.asObservable()
+            .bindTo(header.fareTotal.rx_text)
+            .addDisposableTo(bag)
+
         viewModel.fetchTrigger.onNext(())
     }
 
@@ -62,11 +70,6 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     }
 
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let width: CGFloat = UIScreen.mainScreen().bounds.size.width
-        let header: ExpensesHeaderView = ExpensesHeaderView(frame: CGRectMake(0, 0, width, 40))
-        viewModel.fareTotal.asObservable()
-            .bindTo(header.fareTotal.rx_text)
-            .addDisposableTo(bag)
         return header
     }
 }
