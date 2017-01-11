@@ -14,7 +14,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     private let bag: DisposeBag = DisposeBag()
     private var viewModel: ExpensesViewModel!
     @IBOutlet weak var header: ExpensesHeaderView!
-    private var footer: ExpensesFooterView!
+    @IBOutlet weak var footer: ExpensesFooterView!
 
     var sessionId: String = ""
 
@@ -64,14 +64,6 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         cell.viewModel = ExpenseCellViewModel(model: viewModel.desitations[indexPath.row])
 
         return cell
-    }
-
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return footer.frame.size.height
-    }
-
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return footer
     }
 
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

@@ -34,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vO1-Zz-h5a">
-                                <rect key="frame" x="0.0" y="40" width="600" height="496"/>
+                                <rect key="frame" x="0.0" y="40" width="600" height="434"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zH3-cp-V4o" customClass="ExpensesHeaderView" customModule="myExpenses" customModuleProvider="target">
@@ -44,21 +44,32 @@
                                     <constraint firstAttribute="height" constant="40" id="Kl5-J7-GiY"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="80L-y6-kJB" customClass="ExpensesFooterView" customModule="myExpenses" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="496" width="600" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="xxw-aW-hYe"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ne2-Bh-RbY" firstAttribute="top" secondItem="vO1-Zz-h5a" secondAttribute="bottom" id="445-p6-bRo"/>
+                            <constraint firstItem="80L-y6-kJB" firstAttribute="leading" secondItem="71m-pO-xUf" secondAttribute="leading" id="2RP-1J-da0"/>
                             <constraint firstAttribute="trailing" secondItem="vO1-Zz-h5a" secondAttribute="trailing" id="87t-l0-saH"/>
                             <constraint firstItem="zH3-cp-V4o" firstAttribute="top" secondItem="Rh2-Tn-6Wz" secondAttribute="bottom" id="TAJ-PZ-RPM"/>
+                            <constraint firstItem="ne2-Bh-RbY" firstAttribute="top" secondItem="80L-y6-kJB" secondAttribute="bottom" id="d9z-ra-u8o"/>
                             <constraint firstItem="zH3-cp-V4o" firstAttribute="leading" secondItem="71m-pO-xUf" secondAttribute="leading" id="etd-kr-he2"/>
+                            <constraint firstItem="80L-y6-kJB" firstAttribute="top" secondItem="vO1-Zz-h5a" secondAttribute="bottom" constant="22" id="rjy-d7-zeF"/>
                             <constraint firstAttribute="trailing" secondItem="zH3-cp-V4o" secondAttribute="trailing" id="sbF-2C-Hoc"/>
                             <constraint firstItem="vO1-Zz-h5a" firstAttribute="leading" secondItem="71m-pO-xUf" secondAttribute="leading" id="wtp-9S-dKW"/>
+                            <constraint firstAttribute="trailing" secondItem="80L-y6-kJB" secondAttribute="trailing" id="x5L-ev-lbH"/>
                             <constraint firstItem="vO1-Zz-h5a" firstAttribute="top" secondItem="zH3-cp-V4o" secondAttribute="bottom" id="yuZ-aH-KVe"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="1DH-Wh-2zO"/>
                     <connections>
+                        <outlet property="footer" destination="80L-y6-kJB" id="Hou-Iz-0mE"/>
                         <outlet property="header" destination="zH3-cp-V4o" id="ieV-u2-9CC"/>
                         <outlet property="table" destination="vO1-Zz-h5a" id="NpZ-NC-ar6"/>
                     </connections>
