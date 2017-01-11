@@ -48,4 +48,12 @@ class ExpensesViewModel {
             )
             .addDisposableTo(bag)
     }
+
+    func deleteDestination(index: Int) {
+        // TODO 削除APIコール
+        // TODO indexよりもキー項目指定のほうがいいかも
+        if index < _destinations.count {
+            _destinations.removeAtIndex(index)
+        }
+    }
 }
