@@ -34,21 +34,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vO1-Zz-h5a">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="40" width="600" height="496"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zH3-cp-V4o" customClass="ExpensesHeaderView" customModule="myExpenses" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Kl5-J7-GiY"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ne2-Bh-RbY" firstAttribute="top" secondItem="vO1-Zz-h5a" secondAttribute="bottom" id="445-p6-bRo"/>
                             <constraint firstAttribute="trailing" secondItem="vO1-Zz-h5a" secondAttribute="trailing" id="87t-l0-saH"/>
-                            <constraint firstItem="vO1-Zz-h5a" firstAttribute="top" secondItem="Rh2-Tn-6Wz" secondAttribute="bottom" id="t6c-mf-YEu"/>
+                            <constraint firstItem="zH3-cp-V4o" firstAttribute="top" secondItem="Rh2-Tn-6Wz" secondAttribute="bottom" id="TAJ-PZ-RPM"/>
+                            <constraint firstItem="zH3-cp-V4o" firstAttribute="leading" secondItem="71m-pO-xUf" secondAttribute="leading" id="etd-kr-he2"/>
+                            <constraint firstAttribute="trailing" secondItem="zH3-cp-V4o" secondAttribute="trailing" id="sbF-2C-Hoc"/>
                             <constraint firstItem="vO1-Zz-h5a" firstAttribute="leading" secondItem="71m-pO-xUf" secondAttribute="leading" id="wtp-9S-dKW"/>
+                            <constraint firstItem="vO1-Zz-h5a" firstAttribute="top" secondItem="zH3-cp-V4o" secondAttribute="bottom" id="yuZ-aH-KVe"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="1DH-Wh-2zO"/>
                     <connections>
+                        <outlet property="header" destination="zH3-cp-V4o" id="ieV-u2-9CC"/>
                         <outlet property="table" destination="vO1-Zz-h5a" id="NpZ-NC-ar6"/>
                     </connections>
                 </viewController>

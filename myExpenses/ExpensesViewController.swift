@@ -13,7 +13,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     @IBOutlet weak var table: UITableView!
     private let bag: DisposeBag = DisposeBag()
     private var viewModel: ExpensesViewModel!
-    private var header: ExpensesHeaderView!
+    @IBOutlet weak var header: ExpensesHeaderView!
     private var footer: ExpensesFooterView!
 
     var sessionId: String = ""
@@ -42,7 +42,6 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
             .addDisposableTo(bag)
 
         let width: CGFloat = UIScreen.mainScreen().bounds.size.width
-        header = ExpensesHeaderView(frame: CGRectMake(0, 0, width, 40))
         footer = ExpensesFooterView(frame: CGRectMake(0, 0, width, 40))
 
         viewModel.fareTotal.asObservable()
@@ -65,14 +64,6 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         cell.viewModel = ExpenseCellViewModel(model: viewModel.desitations[indexPath.row])
 
         return cell
-    }
-
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return header.frame.size.height
-    }
-
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return header
     }
 
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
