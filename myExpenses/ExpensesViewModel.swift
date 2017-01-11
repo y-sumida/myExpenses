@@ -35,10 +35,8 @@ class ExpensesViewModel {
                 onNext: { (model, response) in
                     self.result.value = model.result!
                     self._destinations = model.destinations
+                    self.calcFareTotal()
 
-                    self.fareTotal.value = model.destinations.reduce(0) {
-                        $0 + $1.fare
-                    }.description
                     self.reloadTrigger.onNext(())
                 },
                 onError: { (error: ErrorType) in
@@ -55,5 +53,11 @@ class ExpensesViewModel {
         if index < _destinations.count {
             _destinations.removeAtIndex(index)
         }
+    }
+
+    private func calcFareTotal() {
+        fareTotal.value = _destinations.reduce(0) {
+            $0 + $1.fare
+            }.description
     }
 }
