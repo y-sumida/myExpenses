@@ -82,4 +82,12 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return footer
     }
+
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        // TODO 削除処理の実装
+    }
 }
