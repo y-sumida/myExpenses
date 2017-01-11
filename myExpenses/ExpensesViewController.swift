@@ -56,12 +56,12 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return viewModel.desitations.count
+       return viewModel.destinations.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: ExpenseCell = tableView.dequeueReusableCellWithIdentifier("cell") as! ExpenseCell
-        cell.viewModel = ExpenseCellViewModel(model: viewModel.desitations[indexPath.row])
+        cell.viewModel = ExpenseCellViewModel(model: viewModel.destinations[indexPath.row])
 
         return cell
     }
@@ -72,7 +72,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
 
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
-            viewModel.desitations.removeAtIndex(indexPath.row)
+            viewModel.destinations.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
     }
