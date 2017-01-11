@@ -53,6 +53,7 @@ class ExpensesViewModel {
         if index < _destinations.count {
             _destinations.removeAtIndex(index)
         }
+        calcFareTotal()
     }
 
     private func calcFareTotal() {
