@@ -32,6 +32,8 @@
 		A95593E91E23C88900882E58 /* ExpenseCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95593E81E23C88900882E58 /* ExpenseCellViewModel.swift */; };
 		A95593EB1E23D48000882E58 /* ExpensesHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95593EA1E23D48000882E58 /* ExpensesHeaderView.swift */; };
 		A95593ED1E23D49200882E58 /* ExpensesHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A95593EC1E23D49200882E58 /* ExpensesHeaderView.xib */; };
+		A95593EF1E266DFB00882E58 /* ExpensesFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95593EE1E266DFB00882E58 /* ExpensesFooterView.swift */; };
+		A95593F11E266E0D00882E58 /* ExpensesFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A95593F01E266E0D00882E58 /* ExpensesFooterView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -75,6 +77,8 @@
 		A95593E81E23C88900882E58 /* ExpenseCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseCellViewModel.swift; sourceTree = "<group>"; };
 		A95593EA1E23D48000882E58 /* ExpensesHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesHeaderView.swift; sourceTree = "<group>"; };
 		A95593EC1E23D49200882E58 /* ExpensesHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpensesHeaderView.xib; sourceTree = "<group>"; };
+		A95593EE1E266DFB00882E58 /* ExpensesFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesFooterView.swift; sourceTree = "<group>"; };
+		A95593F01E266E0D00882E58 /* ExpensesFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpensesFooterView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +144,8 @@
 				A95593E41E2294BA00882E58 /* ExpenseCell.swift */,
 				A95593E51E2294BA00882E58 /* ExpenseCell.xib */,
 				A95593EA1E23D48000882E58 /* ExpensesHeaderView.swift */,
+				A95593EE1E266DFB00882E58 /* ExpensesFooterView.swift */,
+				A95593F01E266E0D00882E58 /* ExpensesFooterView.xib */,
 				A95593EC1E23D49200882E58 /* ExpensesHeaderView.xib */,
 			);
 			name = view;
@@ -208,6 +214,7 @@
 				A95593871E1768DF00882E58 /* LaunchScreen.storyboard in Resources */,
 				A95593841E1768DF00882E58 /* Assets.xcassets in Resources */,
 				A95593821E1768DF00882E58 /* Login.storyboard in Resources */,
+				A95593F11E266E0D00882E58 /* ExpensesFooterView.xib in Resources */,
 				A95593E71E2294BA00882E58 /* ExpenseCell.xib in Resources */,
 				A95593911E1779CB00882E58 /* Register.storyboard in Resources */,
 				A95593ED1E23D49200882E58 /* ExpensesHeaderView.xib in Resources */,
@@ -247,6 +254,7 @@
 				A955937F1E1768DF00882E58 /* LoginViewController.swift in Sources */,
 				A95593D41E179EB400882E58 /* ExpensesViewController.swift in Sources */,
 				A95593D81E1A5E6D00882E58 /* NSURLSessionExtension.swift in Sources */,
+				A95593EF1E266DFB00882E58 /* ExpensesFooterView.swift in Sources */,
 				A95593E91E23C88900882E58 /* ExpenseCellViewModel.swift in Sources */,
 				A955937D1E1768DF00882E58 /* AppDelegate.swift in Sources */,
 				A95593E01E212E9E00882E58 /* ExpensesViewModel.swift in Sources */,
