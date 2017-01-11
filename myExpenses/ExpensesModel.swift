@@ -116,11 +116,10 @@ class ExpensesRequest: RequestProtocol {
     var period: String = "" // TODO あとで型を作る
 
     var request: NSMutableURLRequest {
-        let url:NSURL = NSURL(string: "http://localhost/expenses.php?sessionId=\(sessionId)&period=\(period)")!
+        let url:NSURL = NSURL(string: baseURL + "expenses.php?sessionId=\(sessionId)&period=\(period)")!
         let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
         return request
     }
 
