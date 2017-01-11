@@ -45,6 +45,7 @@ class LoginViewController: UIViewController {
 
                     if result.code == APIResultCode.Success.rawValue {
                         let vc:ExpensesViewController = UIStoryboard(name: "Expenses", bundle: nil).instantiateViewControllerWithIdentifier("ExpensesViewController") as! ExpensesViewController
+                        vc.sessionId = result.sessionId
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
                     else {
