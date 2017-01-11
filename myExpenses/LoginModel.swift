@@ -32,6 +32,13 @@ public protocol ResponseProtocol {
 struct APIResult: ErrorType {
     var code: String
     var message: String
+    var sessionId: String
+
+    init(code: String, message: String, sessionId: String = "") {
+        self.code = code
+        self.message = message
+        self.sessionId = sessionId
+    }
 }
 
 enum APIResultCode: String {
@@ -63,7 +70,7 @@ class LoginModel: ResponseProtocol {
             self.isSuccess = success as! Bool
         }
 
-        result = APIResult(code: self.resultCode, message: self.resultMessage)
+        result = APIResult(code: self.resultCode, message: self.resultMessage, sessionId: self.sessionId)
     }
 
     static func call(email: String, password: String) -> Observable<(LoginModel, NSHTTPURLResponse)> {
