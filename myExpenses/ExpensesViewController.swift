@@ -88,6 +88,9 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     }
 
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        // TODO 削除処理の実装
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            viewModel.desitations.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
     }
 }
