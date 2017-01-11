@@ -16,8 +16,14 @@ class ExpensesViewModel {
     var fetchTrigger: PublishSubject<Void> = PublishSubject()
     var reloadTrigger: PublishSubject<Void> = PublishSubject()
     var result: Variable<ErrorType?> = Variable(nil)
-    var destinations: [DestinationModel] = []
     var fareTotal: Variable<String> = Variable("")
+
+    private var _destinations: [DestinationModel] = []
+    var destinations: [DestinationModel] {
+        get {
+            return _destinations
+        }
+    }
 
     init(sessionId: String) {
         fetchTrigger
@@ -28,7 +34,7 @@ class ExpensesViewModel {
             .subscribe(
                 onNext: { (model, response) in
                     self.result.value = model.result!
-                    self.destinations = model.destinations
+                    self._destinations = model.destinations
 
                     self.fareTotal.value = model.destinations.reduce(0) {
                         $0 + $1.fare
