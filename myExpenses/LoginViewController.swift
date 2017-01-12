@@ -44,6 +44,7 @@ class LoginViewController: UIViewController {
                     let result = error as! APIResult
 
                     if result.code == APIResultCode.Success.rawValue {
+                        //TODO ログイン成功時にID/パスワードの保存
                         let vc:ExpensesViewController = UIStoryboard(name: "Expenses", bundle: nil).instantiateViewControllerWithIdentifier("ExpensesViewController") as! ExpensesViewController
                         vc.sessionId = result.sessionId
                         self.navigationController?.pushViewController(vc, animated: true)
