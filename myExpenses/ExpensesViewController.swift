@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
+class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewDataSource, UIGestureRecognizerDelegate {
     @IBOutlet weak var table: UITableView!
     private let bag: DisposeBag = DisposeBag()
     private var viewModel: ExpensesViewModel!
@@ -32,6 +32,12 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         let nib = UINib(nibName: "ExpenseCell", bundle: nil)
         table.registerNib(nib, forCellReuseIdentifier: "cell")
 
+        // 長押し
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self,action: #selector(longPressAction(_:)))
+        longPressRecognizer.delegate = self
+        table.addGestureRecognizer(longPressRecognizer)
+
+        // Rx
         viewModel = ExpensesViewModel(sessionId: sessionId)
 
         viewModel.reloadTrigger
@@ -74,6 +80,17 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         if editingStyle == UITableViewCellEditingStyle.Delete {
             viewModel.deleteDestination(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+    }
+
+    func longPressAction(recognizer: UILongPressGestureRecognizer) {
+        let point = recognizer.locationInView(table)
+
+        if let index = table.indexPathForRowAtPoint(point) {
+            if recognizer.state == UIGestureRecognizerState.Began  {
+                // TODO 編集メニュー表示
+                print(index)
+            }
         }
     }
 }
