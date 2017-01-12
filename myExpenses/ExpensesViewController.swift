@@ -88,8 +88,36 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
 
         if let index = table.indexPathForRowAtPoint(point) {
             if recognizer.state == UIGestureRecognizerState.Began  {
-                // TODO 編集メニュー表示
+                // TODO 各メニューの実装
                 print(index)
+                let alert: UIAlertController = UIAlertController(title: "編集メニュー", message: "選択してください", preferredStyle:  UIAlertControllerStyle.ActionSheet)
+                let editAction: UIAlertAction = UIAlertAction(title: "編集", style: UIAlertActionStyle.Default, handler:{
+                    (action: UIAlertAction!) -> Void in
+                    print("edit")
+                })
+                let copyAction: UIAlertAction = UIAlertAction(title: "複製", style: UIAlertActionStyle.Default, handler:{
+                    (action: UIAlertAction!) -> Void in
+                    print("copy")
+                })
+                let bookmarkAction: UIAlertAction = UIAlertAction(title: "お気に入りから", style: UIAlertActionStyle.Default, handler:{
+                    (action: UIAlertAction!) -> Void in
+                    print("bookmark")
+                })
+                let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:{
+                    (action: UIAlertAction!) -> Void in
+                    print("cancelAction")
+                })
+                let deleteAction: UIAlertAction = UIAlertAction(title: "削除", style: UIAlertActionStyle.Destructive, handler:{
+                    (action: UIAlertAction!) -> Void in
+                    print("削除")
+                })
+
+                alert.addAction(editAction)
+                alert.addAction(copyAction)
+                alert.addAction(bookmarkAction)
+                alert.addAction(deleteAction)
+                alert.addAction(cancelAction)
+                presentViewController(alert, animated: true, completion: nil)
             }
         }
     }
