@@ -108,7 +108,8 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
                 })
                 let deleteAction: UIAlertAction = UIAlertAction(title: "削除", style: UIAlertActionStyle.Destructive, handler:{
                     (action: UIAlertAction!) -> Void in
-                    print("削除")
+                    self.viewModel.deleteDestination(index.row)
+                    self.table.deleteRowsAtIndexPaths([index], withRowAnimation: UITableViewRowAnimation.Automatic)
                 })
 
                 alert.addAction(editAction)
