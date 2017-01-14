@@ -99,7 +99,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
                     (action: UIAlertAction!) -> Void in
                     print("copy")
                 })
-                let bookmarkAction: UIAlertAction = UIAlertAction(title: "お気に入りから", style: UIAlertActionStyle.Default, handler:{
+                let bookmarkAction: UIAlertAction = UIAlertAction(title: "お気に入りに追加", style: UIAlertActionStyle.Default, handler:{
                     (action: UIAlertAction!) -> Void in
                     print("bookmark")
                 })
