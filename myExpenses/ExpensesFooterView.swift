@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import RxSwift
 
 class ExpensesFooterView: UIView {
     @IBOutlet weak var addButton: UIButton!
+    private let bag: DisposeBag = DisposeBag()
 
     // コードから初期化はここから
     override init(frame: CGRect) {
@@ -41,5 +43,42 @@ class ExpensesFooterView: UIView {
             options:NSLayoutFormatOptions(rawValue: 0),
             metrics:nil,
             views: bindings))
+
+        configureButtonAction()
     }
+
+    private func configureButtonAction() {
+       addButton.rx_tap
+        .subscribeNext {
+            // TODO 各メニューの処理を実装する
+            let alert: UIAlertController = UIAlertController(title: "追加メニュー", message: "選択してください", preferredStyle:  UIAlertControllerStyle.ActionSheet)
+            let addAction: UIAlertAction = UIAlertAction(title: "新規追加", style: UIAlertActionStyle.Default, handler:{
+                (action: UIAlertAction!) -> Void in
+                print("add")
+            })
+            let bookmarkAction: UIAlertAction = UIAlertAction(title: "お気に入りから追加", style: UIAlertActionStyle.Default, handler:{
+                (action: UIAlertAction!) -> Void in
+                print("bookmark")
+            })
+            let searchAction: UIAlertAction = UIAlertAction(title: "検索", style: UIAlertActionStyle.Default, handler:{
+                (action: UIAlertAction!) -> Void in
+                print("search")
+            })
+            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:nil)
+
+            alert.addAction(addAction)
+            alert.addAction(bookmarkAction)
+            alert.addAction(searchAction)
+            alert.addAction(cancelAction)
+
+            // TODO extensionとかに抽出したい
+            var root = UIApplication.sharedApplication().keyWindow?.rootViewController
+            while let present = root?.presentedViewController {
+                root = present
+            }
+            root!.presentViewController(alert, animated: true, completion: nil)
+        }
+        .addDisposableTo(bag)
+    }
+
 }
