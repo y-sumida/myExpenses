@@ -78,8 +78,19 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
 
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
-            viewModel.deleteDestination(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            let alert: UIAlertController = UIAlertController(title: "削除してよいですか", message: "", preferredStyle:  UIAlertControllerStyle.Alert)
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
+                (action: UIAlertAction!) -> Void in
+                self.viewModel.deleteDestination(indexPath.row)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            })
+            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:{
+                (action: UIAlertAction!) -> Void in
+            })
+            alert.addAction(cancelAction)
+            alert.addAction(defaultAction)
+
+            presentViewController(alert, animated: true, completion: nil)
         }
     }
 
