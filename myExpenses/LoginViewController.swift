@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, showAPIErrorDialog {
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -62,12 +62,6 @@ class LoginViewController: UIViewController {
     @IBAction func tapRegisterButton(sender: AnyObject) {
         let vc:RegisterViewController = UIStoryboard(name: "Register", bundle: nil).instantiateViewControllerWithIdentifier("RegisterViewController") as! RegisterViewController
         self.navigationController?.pushViewController(vc, animated: true)
-    }
-
-    private func showErrorDialog(error: APIResult) {
-        let vc = UIAlertController(title: error.code, message: error.message, preferredStyle: .Alert)
-        vc.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-        self.presentViewController(vc, animated: true, completion: nil)
     }
 }
 

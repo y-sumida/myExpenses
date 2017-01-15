@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewDataSource, UIGestureRecognizerDelegate {
+class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewDataSource, UIGestureRecognizerDelegate, showAPIErrorDialog {
     @IBOutlet weak var table: UITableView!
     private let bag: DisposeBag = DisposeBag()
     private var viewModel: ExpensesViewModel!
@@ -144,11 +144,5 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         alert.addAction(defaultAction)
 
         presentViewController(alert, animated: true, completion: nil)
-    }
-
-    private func showErrorDialog(error: APIResult) {
-        let vc = UIAlertController(title: error.code, message: error.message, preferredStyle: .Alert)
-        vc.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-        self.presentViewController(vc, animated: true, completion: nil)
     }
 }
