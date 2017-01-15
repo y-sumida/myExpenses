@@ -34,6 +34,7 @@
 		A95593ED1E23D49200882E58 /* ExpensesHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A95593EC1E23D49200882E58 /* ExpensesHeaderView.xib */; };
 		A95593EF1E266DFB00882E58 /* ExpensesFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95593EE1E266DFB00882E58 /* ExpensesFooterView.swift */; };
 		A95593F11E266E0D00882E58 /* ExpensesFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A95593F01E266E0D00882E58 /* ExpensesFooterView.xib */; };
+		A9E49D661E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -79,6 +80,7 @@
 		A95593EC1E23D49200882E58 /* ExpensesHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpensesHeaderView.xib; sourceTree = "<group>"; };
 		A95593EE1E266DFB00882E58 /* ExpensesFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesFooterView.swift; sourceTree = "<group>"; };
 		A95593F01E266E0D00882E58 /* ExpensesFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpensesFooterView.xib; sourceTree = "<group>"; };
+		A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteExpenseModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				A955937E1E1768DF00882E58 /* LoginViewController.swift */,
 				A95593CF1E17965A00882E58 /* LoginViewModel.swift */,
 				A95593D51E19023500882E58 /* LoginModel.swift */,
+				A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */,
 				A95593DB1E2123ED00882E58 /* ExpensesModel.swift */,
 				A95593DF1E212E9E00882E58 /* ExpensesViewModel.swift */,
 				A95593E81E23C88900882E58 /* ExpenseCellViewModel.swift */,
@@ -254,6 +257,7 @@
 				A955937F1E1768DF00882E58 /* LoginViewController.swift in Sources */,
 				A95593D41E179EB400882E58 /* ExpensesViewController.swift in Sources */,
 				A95593D81E1A5E6D00882E58 /* NSURLSessionExtension.swift in Sources */,
+				A9E49D661E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift in Sources */,
 				A95593EF1E266DFB00882E58 /* ExpensesFooterView.swift in Sources */,
 				A95593E91E23C88900882E58 /* ExpenseCellViewModel.swift in Sources */,
 				A955937D1E1768DF00882E58 /* AppDelegate.swift in Sources */,
