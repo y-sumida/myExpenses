@@ -56,6 +56,16 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
             .addDisposableTo(bag)
 
         viewModel.fetchTrigger.onNext(())
+
+        viewModel.result.asObservable()
+            .skip(1) //初期値読み飛ばし
+            .subscribeNext {error in
+                let result = error as! APIResult
+                if result.code != APIResultCode.Success.rawValue {
+                    self.showErrorDialog(result)
+                }
+            }
+            .addDisposableTo(bag)
     }
 
     override func didReceiveMemoryWarning() {
@@ -134,5 +144,11 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         alert.addAction(defaultAction)
 
         presentViewController(alert, animated: true, completion: nil)
+    }
+
+    private func showErrorDialog(error: APIResult) {
+        let vc = UIAlertController(title: error.code, message: error.message, preferredStyle: .Alert)
+        vc.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        self.presentViewController(vc, animated: true, completion: nil)
     }
 }
