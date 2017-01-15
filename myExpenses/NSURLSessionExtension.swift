@@ -12,6 +12,8 @@ import RxCocoa
 
 extension NSURLSession {
     public func rx_responseObject<T: RequestProtocol>(request: T) -> Observable<(T.Response, NSHTTPURLResponse)> {
+        showRequestLog(request.request)
+
         return Observable.create { observer in
             let task = self.dataTaskWithRequest(request.request) { (data, response, error) in
 
@@ -42,5 +44,23 @@ extension NSURLSession {
                 task.cancel()
             }
         }
+    }
+
+    private func showRequestLog(request: NSMutableURLRequest) {
+        print("REQUEST--------------------")
+        print("url \((request.URL?.absoluteString)!)")
+        print("method \(request.HTTPMethod)")
+        if let body: NSData = request.HTTPBody {
+            do {
+                let object = try NSJSONSerialization.JSONObjectWithData(body, options: .MutableContainers) as! NSDictionary
+                print("body \(object)")
+            } catch {
+                print("body empty")
+            }
+        }
+        else {
+            print("body empty")
+        }
+        print("---------------------------")
     }
 }
