@@ -39,25 +39,19 @@ class LoginViewController: UIViewController {
             .addDisposableTo(bag)
         viewModel.result.asObservable()
             .skip(1) //初期値読み飛ばし
-            .subscribe(
-                onNext: {error in
-                    let result = error as! APIResult
+            .subscribeNext {error in
+                let result = error as! APIResult
 
-                    if result.code == APIResultCode.Success.rawValue {
-                        //TODO ログイン成功時にID/パスワードの保存
-                        let vc:ExpensesViewController = UIStoryboard(name: "Expenses", bundle: nil).instantiateViewControllerWithIdentifier("ExpensesViewController") as! ExpensesViewController
-                        vc.sessionId = result.sessionId
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                    else {
-                        self.showErrorDialog(result)
-                    }
-                },
-                onError: { (error: ErrorType) -> Void in
-                    let result = error as! APIResult
+                if result.code == APIResultCode.Success.rawValue {
+                    //TODO ログイン成功時にID/パスワードの保存
+                    let vc:ExpensesViewController = UIStoryboard(name: "Expenses", bundle: nil).instantiateViewControllerWithIdentifier("ExpensesViewController") as! ExpensesViewController
+                    vc.sessionId = result.sessionId
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+                else {
                     self.showErrorDialog(result)
                 }
-            )
+            }
             .addDisposableTo(bag)
     }
 
