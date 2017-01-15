@@ -14,9 +14,11 @@ class ExpensesViewModel {
 
     var period: Variable<String> = Variable("")
     var fetchTrigger: PublishSubject<Void> = PublishSubject()
+    var deleteTrigger: PublishSubject<Void> = PublishSubject()
     var reloadTrigger: PublishSubject<Void> = PublishSubject()
     var result: Variable<ErrorType?> = Variable(nil)
     var fareTotal: Variable<String> = Variable("")
+    var sessionId: String = ""
 
     private var _destinations: [DestinationModel] = []
     var destinations: [DestinationModel] {
@@ -26,6 +28,7 @@ class ExpensesViewModel {
     }
 
     init(sessionId: String) {
+        self.sessionId = sessionId
         fetchTrigger
             .flatMap {
                 ExpensesModel.call(sessionId, period: self.period.value)
@@ -48,12 +51,25 @@ class ExpensesViewModel {
     }
 
     func deleteDestination(index: Int) {
-        // TODO 削除APIコール
-        // TODO indexよりもキー項目指定のほうがいいかも
-        if index < _destinations.count {
-            _destinations.removeAtIndex(index)
-        }
-        calcFareTotal()
+        let expenseId: String = destinations[index].id
+
+        DeleteExpenseModel.call(expenseId, sessionId: self.sessionId)
+            .observeOn(MainScheduler.instance)
+            .subscribe(
+                onNext: { (model, response) in
+                    // TODO indexよりもキー項目指定のほうがいいかも
+                    self.result.value = model.result!
+                    self._destinations.removeAtIndex(index)
+                    self.calcFareTotal()
+
+                    self.reloadTrigger.onNext(())
+                },
+                onError: { (error: ErrorType) in
+                    // APIエラー
+                    self.result.value = error
+                }
+            )
+            .addDisposableTo(bag)
     }
 
     private func calcFareTotal() {

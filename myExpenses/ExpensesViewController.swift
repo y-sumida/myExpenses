@@ -43,6 +43,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         viewModel.reloadTrigger
             .asObservable()
             .subscribeNext {
+                print("reload")
                 self.table.reloadData()
             }
             .addDisposableTo(bag)
@@ -62,6 +63,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("count:" + viewModel.destinations.count.description)
        return viewModel.destinations.count
     }
 
@@ -109,7 +111,6 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
                 let deleteAction: UIAlertAction = UIAlertAction(title: "削除", style: UIAlertActionStyle.Destructive, handler:{
                     (action: UIAlertAction!) -> Void in
                     self.viewModel.deleteDestination(index.row)
-                    self.table.deleteRowsAtIndexPaths([index], withRowAnimation: UITableViewRowAnimation.Automatic)
                 })
 
                 alert.addAction(editAction)
@@ -127,7 +128,6 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
             (action: UIAlertAction!) -> Void in
             self.viewModel.deleteDestination(indexPath.row)
-            self.table.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         })
         let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler: nil)
         alert.addAction(cancelAction)
