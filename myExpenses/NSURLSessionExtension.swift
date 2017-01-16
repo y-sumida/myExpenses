@@ -27,6 +27,8 @@ extension NSURLSession {
                     return
                 }
 
+                self.showResponseLog(httpResponse, data: data)
+
                 if httpResponse.statusCode >= 400 {
                     observer.onError(APIResult(code: "N" + httpResponse.statusCode.description, message: "サーバーエラーが発生しました"))
                     return
@@ -60,6 +62,19 @@ extension NSURLSession {
         }
         else {
             print("body empty")
+        }
+        print("---------------------------")
+    }
+
+    private func showResponseLog(response: NSHTTPURLResponse, data: NSData) {
+        print("RESPONSE--------------------")
+        print("url \((response.URL?.absoluteString))")
+        print("status \(response.statusCode)")
+        do {
+            let object = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as! NSDictionary
+            print("data \(object)")
+        } catch {
+            print("dagta empty")
         }
         print("---------------------------")
     }
