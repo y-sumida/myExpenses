@@ -55,8 +55,6 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
             .bindTo(header.fareTotal.rx_text)
             .addDisposableTo(bag)
 
-        viewModel.fetchTrigger.onNext(())
-
         viewModel.result.asObservable()
             .skip(1) //初期値読み飛ばし
             .subscribeNext {error in
@@ -66,6 +64,12 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
                 }
             }
             .addDisposableTo(bag)
+
+        // 初回ロードは当月指定
+        let now = NSDate()
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyyMM"
+        viewModel.monthlyExpenses(formatter.stringFromDate(now))
     }
 
     override func didReceiveMemoryWarning() {

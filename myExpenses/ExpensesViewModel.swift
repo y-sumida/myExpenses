@@ -28,11 +28,13 @@ class ExpensesViewModel {
     }
 
     init(sessionId: String) {
+        // TODO NSUserDefaultsから取得したほうが良さそう
         self.sessionId = sessionId
-        fetchTrigger
-            .flatMap {
-                ExpensesModel.call(sessionId, period: self.period.value)
-            }
+    }
+
+    func monthlyExpenses(period: String) {
+        //TODO periodは日付型のほうがいいかも
+        ExpensesModel.call(self.sessionId, period: period)
             .observeOn(MainScheduler.instance)//これ以降メインスレッドで実行
             .subscribe(
                 onNext: { (model, response) in
