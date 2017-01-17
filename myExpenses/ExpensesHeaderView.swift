@@ -10,6 +10,7 @@ import UIKit
 
 class ExpensesHeaderView: UIView {
     @IBOutlet weak var fareTotal: UILabel!
+    @IBOutlet weak var periodButton: UIButton!
 
     // コードから初期化はここから
     override init(frame: CGRect) {
