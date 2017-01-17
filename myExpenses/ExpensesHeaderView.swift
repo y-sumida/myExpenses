@@ -24,6 +24,7 @@ class ExpensesHeaderView: UIView {
     }
 
     // xibからカスタムViewを読み込んで準備する
+    // TODO Utilityクラスなりに切り出す
     private func comminInit() {
         let bundle = NSBundle(forClass: self.dynamicType)
         let nib = UINib(nibName: "ExpensesHeaderView", bundle: bundle)
