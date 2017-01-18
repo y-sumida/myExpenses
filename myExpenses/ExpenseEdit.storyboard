@@ -24,7 +24,7 @@
         <!--Expense Edit View Controller-->
         <scene sceneID="6G9-Jr-21d">
             <objects>
-                <viewController id="vH9-7e-q8T" customClass="ExpenseEditViewController" customModule="myExpenses" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ExpenseEditViewController" id="vH9-7e-q8T" customClass="ExpenseEditViewController" customModule="myExpenses" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FHk-bK-Tao"/>
                         <viewControllerLayoutGuide type="bottom" id="doN-m6-Ei7"/>

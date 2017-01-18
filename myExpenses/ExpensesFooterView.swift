@@ -48,6 +48,13 @@ class ExpensesFooterView: UIView {
     }
 
     private func configureButtonAction() {
+        // TODO extensionとかに抽出したい
+        // root として UINavigationController が取れているけど、もっといい方法がありそう。
+        var root = UIApplication.sharedApplication().keyWindow?.rootViewController
+        while let present = root?.presentedViewController {
+            root = present
+        }
+
        addButton.rx_tap
         .subscribeNext {
             // TODO 各メニューの処理を実装する
@@ -55,6 +62,9 @@ class ExpensesFooterView: UIView {
             let addAction: UIAlertAction = UIAlertAction(title: "新規追加", style: UIAlertActionStyle.Default, handler:{
                 (action: UIAlertAction!) -> Void in
                 print("add")
+                let vc:ExpenseEditViewController = UIStoryboard(name: "ExpenseEdit", bundle: nil).instantiateViewControllerWithIdentifier("ExpenseEditViewController") as! ExpenseEditViewController
+                let navi: UINavigationController = root as! UINavigationController
+                navi.pushViewController(vc, animated: true)
             })
             let bookmarkAction: UIAlertAction = UIAlertAction(title: "お気に入りから追加", style: UIAlertActionStyle.Default, handler:{
                 (action: UIAlertAction!) -> Void in
@@ -71,11 +81,6 @@ class ExpensesFooterView: UIView {
             alert.addAction(searchAction)
             alert.addAction(cancelAction)
 
-            // TODO extensionとかに抽出したい
-            var root = UIApplication.sharedApplication().keyWindow?.rootViewController
-            while let present = root?.presentedViewController {
-                root = present
-            }
             root!.presentViewController(alert, animated: true, completion: nil)
         }
         .addDisposableTo(bag)
