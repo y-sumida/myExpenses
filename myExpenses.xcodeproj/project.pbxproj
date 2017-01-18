@@ -36,6 +36,8 @@
 		A95593F11E266E0D00882E58 /* ExpensesFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A95593F01E266E0D00882E58 /* ExpensesFooterView.xib */; };
 		A9E49D661E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */; };
 		A9E49D6B1E2BBA3B00FE3DA4 /* showAPIErrorDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D6A1E2BBA3B00FE3DA4 /* showAPIErrorDialog.swift */; };
+		A9E49D6D1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */; };
+		A9E49D6F1E2FA7EC00FE3DA4 /* ExpenseEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9E49D6E1E2FA7EC00FE3DA4 /* ExpenseEdit.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -83,6 +85,8 @@
 		A95593F01E266E0D00882E58 /* ExpensesFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpensesFooterView.xib; sourceTree = "<group>"; };
 		A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteExpenseModel.swift; sourceTree = "<group>"; };
 		A9E49D6A1E2BBA3B00FE3DA4 /* showAPIErrorDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = showAPIErrorDialog.swift; sourceTree = "<group>"; };
+		A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseEditViewController.swift; sourceTree = "<group>"; };
+		A9E49D6E1E2FA7EC00FE3DA4 /* ExpenseEdit.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ExpenseEdit.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +138,8 @@
 				A95593921E177A8900882E58 /* RegisterViewController.swift */,
 				A95593D31E179EB400882E58 /* ExpensesViewController.swift */,
 				A95593D71E1A5E6D00882E58 /* NSURLSessionExtension.swift */,
+				A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */,
+				A9E49D6E1E2FA7EC00FE3DA4 /* ExpenseEdit.storyboard */,
 				A95593D11E179E6200882E58 /* Expenses.storyboard */,
 				A95593801E1768DF00882E58 /* Login.storyboard */,
 				A95593901E1779CB00882E58 /* Register.storyboard */,
@@ -227,6 +233,7 @@
 				A95593D21E179E6200882E58 /* Expenses.storyboard in Resources */,
 				A95593871E1768DF00882E58 /* LaunchScreen.storyboard in Resources */,
 				A95593841E1768DF00882E58 /* Assets.xcassets in Resources */,
+				A9E49D6F1E2FA7EC00FE3DA4 /* ExpenseEdit.storyboard in Resources */,
 				A95593821E1768DF00882E58 /* Login.storyboard in Resources */,
 				A95593F11E266E0D00882E58 /* ExpensesFooterView.xib in Resources */,
 				A95593E71E2294BA00882E58 /* ExpenseCell.xib in Resources */,
@@ -266,6 +273,7 @@
 				A95593DC1E2123ED00882E58 /* ExpensesModel.swift in Sources */,
 				A95593931E177A8900882E58 /* RegisterViewController.swift in Sources */,
 				A955937F1E1768DF00882E58 /* LoginViewController.swift in Sources */,
+				A9E49D6D1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift in Sources */,
 				A95593D41E179EB400882E58 /* ExpensesViewController.swift in Sources */,
 				A95593D81E1A5E6D00882E58 /* NSURLSessionExtension.swift in Sources */,
 				A9E49D661E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift in Sources */,
