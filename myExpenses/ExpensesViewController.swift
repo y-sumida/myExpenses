@@ -109,6 +109,9 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
                 let editAction: UIAlertAction = UIAlertAction(title: "編集", style: UIAlertActionStyle.Default, handler:{
                     (action: UIAlertAction!) -> Void in
                     print("edit")
+                    // TODO 現在の値を引き渡す
+                    let vc:ExpenseEditViewController = UIStoryboard(name: "ExpenseEdit", bundle: nil).instantiateViewControllerWithIdentifier("ExpenseEditViewController") as! ExpenseEditViewController
+                    self.navigationController!.pushViewController(vc, animated: true)
                 })
                 let copyAction: UIAlertAction = UIAlertAction(title: "複製", style: UIAlertActionStyle.Default, handler:{
                     (action: UIAlertAction!) -> Void in
