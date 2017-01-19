@@ -24,17 +24,33 @@
         <!--Expense Edit View Controller-->
         <scene sceneID="6G9-Jr-21d">
             <objects>
-                <viewController storyboardIdentifier="ExpenseEditViewController" id="vH9-7e-q8T" customClass="ExpenseEditViewController" customModule="myExpenses" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ExpenseEditViewController" automaticallyAdjustsScrollViewInsets="NO" id="vH9-7e-q8T" customClass="ExpenseEditViewController" customModule="myExpenses" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FHk-bK-Tao"/>
                         <viewControllerLayoutGuide type="bottom" id="doN-m6-Ei7"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gYK-WA-WX1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Jvu-x0-bsS">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Jvu-x0-bsS" firstAttribute="leading" secondItem="gYK-WA-WX1" secondAttribute="leading" id="Ioj-gA-qjN"/>
+                            <constraint firstAttribute="trailing" secondItem="Jvu-x0-bsS" secondAttribute="trailing" id="JKk-Ia-1pN"/>
+                            <constraint firstItem="Jvu-x0-bsS" firstAttribute="top" secondItem="FHk-bK-Tao" secondAttribute="bottom" id="MZ6-Dq-27g"/>
+                            <constraint firstItem="doN-m6-Ei7" firstAttribute="top" secondItem="Jvu-x0-bsS" secondAttribute="bottom" id="uno-xK-xL0"/>
+                        </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="Nqw-Nv-8qU"/>
+                    <connections>
+                        <outlet property="table" destination="Jvu-x0-bsS" id="C5B-3K-wiM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OwL-Mu-NYd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
