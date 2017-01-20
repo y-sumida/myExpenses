@@ -61,6 +61,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
                 let result = error as! APIResult
                 if result.code != APIResultCode.Success.rawValue {
                     self.showErrorDialog(result)
+                    self.table.setEditing(false, animated: false)
                 }
             }
             .addDisposableTo(bag)
@@ -146,7 +147,9 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
             (action: UIAlertAction!) -> Void in
             self.viewModel.deleteDestination(indexPath.row)
         })
-        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler: nil)
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler: { _ in
+            self.table.setEditing(false, animated: false)
+        })
         alert.addAction(cancelAction)
         alert.addAction(defaultAction)
 
