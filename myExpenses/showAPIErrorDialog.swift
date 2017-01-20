@@ -11,13 +11,13 @@ import UIKit
 
 // TODO utilityクラスとかでもいい？
 protocol showAPIErrorDialog {
-    func showErrorDialog(error: APIResult)
+    func showErrorDialog(error: APIResult, handler: ((UIAlertAction) -> Void)?)
 }
 
 extension showAPIErrorDialog {
-    func showErrorDialog(error: APIResult) {
+    func showErrorDialog(error: APIResult, handler: ((UIAlertAction) -> Void)? = nil) {
         let dialog = UIAlertController(title: error.code, message: error.message, preferredStyle: .Alert)
-        dialog.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        dialog.addAction(UIAlertAction(title: "OK", style: .Default, handler: handler))
         // TODO extensionとかに抽出したい
         var root = UIApplication.sharedApplication().keyWindow?.rootViewController
         while let present = root?.presentedViewController {

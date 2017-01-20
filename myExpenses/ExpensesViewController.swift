@@ -60,8 +60,9 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
             .subscribeNext {error in
                 let result = error as! APIResult
                 if result.code != APIResultCode.Success.rawValue {
-                    self.showErrorDialog(result)
-                    self.table.setEditing(false, animated: false)
+                    self.showErrorDialog(result) { _ in
+                        self.table.setEditing(false, animated: false)
+                    }
                 }
             }
             .addDisposableTo(bag)
