@@ -32,6 +32,17 @@ enum ExpenseEditSections: Int {
             return "備考"
         }
     }
+
+    var rows: Int {
+        switch self {
+        case Date, .Destination, .Fare, .Memo:
+            return 1
+        case Transport:
+            return 6
+        case Interval:
+            return 2
+        }
+    }
 }
 
 class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
@@ -55,7 +66,6 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // TODO　セクションごとのタイトル
         return 6
     }
 
@@ -64,8 +74,7 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //TODO セクションごとの行数
-        return 2
+        return (ExpenseEditSections(rawValue: section)?.rows)!
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
