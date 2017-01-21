@@ -37,6 +37,7 @@
 		A97823F81E32FC8A00B80942 /* LoadXibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97823F71E32FC8A00B80942 /* LoadXibView.swift */; };
 		A97823FA1E3301EA00B80942 /* TransportSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A97823F91E3301EA00B80942 /* TransportSelectCell.xib */; };
 		A97823FC1E33023700B80942 /* TransportSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97823FB1E33023700B80942 /* TransportSelectCell.swift */; };
+		A97824001E33054800B80942 /* TextEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97823FF1E33054800B80942 /* TextEditViewController.swift */; };
 		A9E49D661E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */; };
 		A9E49D6B1E2BBA3B00FE3DA4 /* ShowAPIErrorDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D6A1E2BBA3B00FE3DA4 /* ShowAPIErrorDialog.swift */; };
 		A9E49D6D1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */; };
@@ -89,6 +90,7 @@
 		A97823F71E32FC8A00B80942 /* LoadXibView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadXibView.swift; sourceTree = "<group>"; };
 		A97823F91E3301EA00B80942 /* TransportSelectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransportSelectCell.xib; sourceTree = "<group>"; };
 		A97823FB1E33023700B80942 /* TransportSelectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransportSelectCell.swift; sourceTree = "<group>"; };
+		A97823FF1E33054800B80942 /* TextEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEditViewController.swift; sourceTree = "<group>"; };
 		A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteExpenseModel.swift; sourceTree = "<group>"; };
 		A9E49D6A1E2BBA3B00FE3DA4 /* ShowAPIErrorDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAPIErrorDialog.swift; sourceTree = "<group>"; };
 		A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseEditViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				A95593D31E179EB400882E58 /* ExpensesViewController.swift */,
 				A95593D71E1A5E6D00882E58 /* NSURLSessionExtension.swift */,
 				A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */,
+				A97823FF1E33054800B80942 /* TextEditViewController.swift */,
 				A9E49D6E1E2FA7EC00FE3DA4 /* ExpenseEdit.storyboard */,
 				A95593D11E179E6200882E58 /* Expenses.storyboard */,
 				A95593801E1768DF00882E58 /* Login.storyboard */,
@@ -294,6 +297,7 @@
 				A95593E91E23C88900882E58 /* ExpenseCellViewModel.swift in Sources */,
 				A955937D1E1768DF00882E58 /* AppDelegate.swift in Sources */,
 				A95593E01E212E9E00882E58 /* ExpensesViewModel.swift in Sources */,
+				A97824001E33054800B80942 /* TextEditViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
