@@ -20,29 +20,23 @@ class TextEditViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        textField.rx_text.asObservable()
-//            .subscribeNext { text in
-//                self.doneButton.enabled = !text.isEmpty
-//            }
-//            .addDisposableTo(bag)
+        textField.rx_text.asObservable()
+            .subscribeNext { text in
+                self.doneButton.enabled = !text.isEmpty
+            }
+            .addDisposableTo(bag)
 
         closeButton.rx_tap.asObservable()
             .subscribeNext {
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }
-        .addDisposableTo(bag)
-
-        // こっちの書き方だと無反応にはなるけどdisableにできない
-        doneButton.rx_tap.asObservable()
-            .withLatestFrom(textField.rx_text.asObservable())
-            .asObservable()
-            .filter { text in
-                !text.isEmpty
+                self.dismissViewControllerAnimated(true, completion: nil)
             }
-            .subscribeNext { _ in
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }
-        .addDisposableTo(bag)
+            .addDisposableTo(bag)
+
+        doneButton.rx_tap.asObservable()
+            .subscribeNext {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+            .addDisposableTo(bag)
     }
 
     override func didReceiveMemoryWarning() {
