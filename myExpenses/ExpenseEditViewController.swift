@@ -80,4 +80,17 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         return UITableViewCell()
     }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // TODO 各セルごとの処理実装
+        showTextEditView()
+    }
+
+    private func showTextEditView() {
+        // TODO キーボード入力
+        let vc:TextEditViewController = UIStoryboard(name: "ExpenseEdit", bundle: nil).instantiateViewControllerWithIdentifier("TextEditViewController") as! TextEditViewController
+        vc.modalPresentationStyle = .OverCurrentContext
+        vc.modalTransitionStyle = .CoverVertical
+        presentViewController(vc, animated: true, completion: nil)
+    }
 }
