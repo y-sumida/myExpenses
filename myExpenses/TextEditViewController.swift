@@ -7,29 +7,39 @@
 //
 
 import UIKit
+import RxSwift
 
 class TextEditViewController: UIViewController {
+    @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var textField: UITextField!
 
+    private let bag: DisposeBag = DisposeBag()
+
+    // TODO どうやってもとの編集画面に入力内容を連携するか検討
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        textField.rx_text.asObservable()
+            .subscribeNext { text in
+                self.doneButton.enabled = !text.isEmpty
+            }
+            .addDisposableTo(bag)
+
+        closeButton.rx_tap.asObservable()
+            .subscribeNext {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        .addDisposableTo(bag)
+
+        doneButton.rx_tap.asObservable()
+            .subscribeNext {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        .addDisposableTo(bag)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

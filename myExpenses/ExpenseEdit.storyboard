@@ -96,6 +96,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BL8-8H-bbc"/>
+                    <connections>
+                        <outlet property="closeButton" destination="Pj9-3Z-6b8" id="PN7-u7-GkT"/>
+                        <outlet property="doneButton" destination="O97-Zc-p9T" id="brl-pT-9wf"/>
+                        <outlet property="textField" destination="FSs-CT-YK7" id="emd-aK-rYr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Odp-Rs-SP6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
