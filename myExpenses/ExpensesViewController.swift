@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewDataSource, UIGestureRecognizerDelegate, showAPIErrorDialog {
+class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewDataSource, UIGestureRecognizerDelegate, ShowAPIErrorDialog {
     @IBOutlet weak var table: UITableView!
     private let bag: DisposeBag = DisposeBag()
     private var viewModel: ExpensesViewModel!
