@@ -35,6 +35,8 @@
 		A95593EF1E266DFB00882E58 /* ExpensesFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95593EE1E266DFB00882E58 /* ExpensesFooterView.swift */; };
 		A95593F11E266E0D00882E58 /* ExpensesFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A95593F01E266E0D00882E58 /* ExpensesFooterView.xib */; };
 		A97823F81E32FC8A00B80942 /* LoadXibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97823F71E32FC8A00B80942 /* LoadXibView.swift */; };
+		A97823FA1E3301EA00B80942 /* TransportSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A97823F91E3301EA00B80942 /* TransportSelectCell.xib */; };
+		A97823FC1E33023700B80942 /* TransportSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97823FB1E33023700B80942 /* TransportSelectCell.swift */; };
 		A9E49D661E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */; };
 		A9E49D6B1E2BBA3B00FE3DA4 /* ShowAPIErrorDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D6A1E2BBA3B00FE3DA4 /* ShowAPIErrorDialog.swift */; };
 		A9E49D6D1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */; };
@@ -85,6 +87,8 @@
 		A95593EE1E266DFB00882E58 /* ExpensesFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesFooterView.swift; sourceTree = "<group>"; };
 		A95593F01E266E0D00882E58 /* ExpensesFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpensesFooterView.xib; sourceTree = "<group>"; };
 		A97823F71E32FC8A00B80942 /* LoadXibView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadXibView.swift; sourceTree = "<group>"; };
+		A97823F91E3301EA00B80942 /* TransportSelectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransportSelectCell.xib; sourceTree = "<group>"; };
+		A97823FB1E33023700B80942 /* TransportSelectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransportSelectCell.swift; sourceTree = "<group>"; };
 		A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteExpenseModel.swift; sourceTree = "<group>"; };
 		A9E49D6A1E2BBA3B00FE3DA4 /* ShowAPIErrorDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAPIErrorDialog.swift; sourceTree = "<group>"; };
 		A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseEditViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +165,8 @@
 				A95593EE1E266DFB00882E58 /* ExpensesFooterView.swift */,
 				A95593F01E266E0D00882E58 /* ExpensesFooterView.xib */,
 				A95593EC1E23D49200882E58 /* ExpensesHeaderView.xib */,
+				A97823F91E3301EA00B80942 /* TransportSelectCell.xib */,
+				A97823FB1E33023700B80942 /* TransportSelectCell.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -234,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A95593D21E179E6200882E58 /* Expenses.storyboard in Resources */,
+				A97823FA1E3301EA00B80942 /* TransportSelectCell.xib in Resources */,
 				A95593871E1768DF00882E58 /* LaunchScreen.storyboard in Resources */,
 				A95593841E1768DF00882E58 /* Assets.xcassets in Resources */,
 				A9E49D6F1E2FA7EC00FE3DA4 /* ExpenseEdit.storyboard in Resources */,
@@ -272,6 +279,7 @@
 				A95593D01E17965A00882E58 /* LoginViewModel.swift in Sources */,
 				A95593D61E19023500882E58 /* LoginModel.swift in Sources */,
 				A95593EB1E23D48000882E58 /* ExpensesHeaderView.swift in Sources */,
+				A97823FC1E33023700B80942 /* TransportSelectCell.swift in Sources */,
 				A95593E61E2294BA00882E58 /* ExpenseCell.swift in Sources */,
 				A95593DC1E2123ED00882E58 /* ExpensesModel.swift in Sources */,
 				A95593931E177A8900882E58 /* RegisterViewController.swift in Sources */,
