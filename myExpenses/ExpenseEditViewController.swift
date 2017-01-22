@@ -59,6 +59,9 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
 
         table.delegate = self
         table.dataSource = self
+
+        let nib = UINib(nibName: "TransportSelectCell", bundle: nil)
+        table.registerNib(nib, forCellReuseIdentifier: "transportCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -78,7 +81,14 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        switch indexPath.section {
+        case ExpenseEditSections.Transport.rawValue:
+            // TODO 交通機関ごとのラベル
+            let cell: TransportSelectCell = tableView.dequeueReusableCellWithIdentifier("transportCell") as! TransportSelectCell
+            return cell
+        default:
+            return UITableViewCell()
+        }
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
