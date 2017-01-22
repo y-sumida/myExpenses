@@ -83,11 +83,17 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // TODO 各セルごとの処理実装
-        showTextEditView()
+        switch indexPath.section {
+        case ExpenseEditSections.Destination.rawValue:
+            showTextEditView(ExpenseEditSections.Destination.title)
+        default:
+            break
+        }
     }
 
-    private func showTextEditView() {
+    private func showTextEditView(title: String) {
         let vc:TextEditViewController = UIStoryboard(name: "ExpenseEdit", bundle: nil).instantiateViewControllerWithIdentifier("TextEditViewController") as! TextEditViewController
+        vc.inputItem = title
         vc.modalPresentationStyle = .OverCurrentContext
         vc.modalTransitionStyle = .CoverVertical
         presentViewController(vc, animated: true, completion: nil)
