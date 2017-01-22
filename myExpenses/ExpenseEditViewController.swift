@@ -96,6 +96,18 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
         switch indexPath.section {
         case ExpenseEditSections.Destination.rawValue:
             showTextEditView(ExpenseEditSections.Destination.title)
+        case ExpenseEditSections.Interval.rawValue:
+            // TODO from/toの２種類を入力する
+            showTextEditView(ExpenseEditSections.Interval.title)
+        case ExpenseEditSections.Transport.rawValue:
+            // TODO その他の判別方法
+            if indexPath.row == 5 {
+                showTextEditView(ExpenseEditSections.Transport.title)
+            }
+        case ExpenseEditSections.Fare.rawValue:
+            showTextEditView(ExpenseEditSections.Fare.title)
+        case ExpenseEditSections.Memo.rawValue:
+            showTextEditView(ExpenseEditSections.Memo.title)
         default:
             break
         }
