@@ -28,12 +28,14 @@ class TextEditViewController: UIViewController {
 
         closeButton.rx_tap.asObservable()
             .subscribeNext {
+                self.textField.endEditing(true)
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
             .addDisposableTo(bag)
 
         doneButton.rx_tap.asObservable()
             .subscribeNext {
+                self.textField.endEditing(true)
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
             .addDisposableTo(bag)

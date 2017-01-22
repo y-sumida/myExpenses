@@ -87,7 +87,6 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
     }
 
     private func showTextEditView() {
-        // TODO キーボード入力
         let vc:TextEditViewController = UIStoryboard(name: "ExpenseEdit", bundle: nil).instantiateViewControllerWithIdentifier("TextEditViewController") as! TextEditViewController
         vc.modalPresentationStyle = .OverCurrentContext
         vc.modalTransitionStyle = .CoverVertical
