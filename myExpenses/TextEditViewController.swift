@@ -18,12 +18,14 @@ class TextEditViewController: UIViewController {
     private let bag: DisposeBag = DisposeBag()
 
     var inputItem: String = ""
+    var keyboard: UIKeyboardType = .Default
 
     // TODO どうやってもとの編集画面に入力内容を連携するか検討
     override func viewDidLoad() {
         super.viewDidLoad()
 
         titleLabel.text = inputItem
+        textField.keyboardType = keyboard
 
         textField.rx_text.asObservable()
             .subscribeNext { text in

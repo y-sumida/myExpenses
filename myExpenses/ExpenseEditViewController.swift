@@ -105,7 +105,7 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
                 showTextEditView(ExpenseEditSections.Transport.title)
             }
         case ExpenseEditSections.Fare.rawValue:
-            showTextEditView(ExpenseEditSections.Fare.title)
+            showTextEditView(ExpenseEditSections.Fare.title, keyboard: .NumberPad)
         case ExpenseEditSections.Memo.rawValue:
             showTextEditView(ExpenseEditSections.Memo.title)
         default:
@@ -113,9 +113,10 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
         }
     }
 
-    private func showTextEditView(title: String) {
+    private func showTextEditView(title: String, keyboard: UIKeyboardType = .Default) {
         let vc:TextEditViewController = UIStoryboard(name: "ExpenseEdit", bundle: nil).instantiateViewControllerWithIdentifier("TextEditViewController") as! TextEditViewController
         vc.inputItem = title
+        vc.keyboard = keyboard
         vc.modalPresentationStyle = .OverCurrentContext
         vc.modalTransitionStyle = .CoverVertical
         presentViewController(vc, animated: true, completion: nil)
