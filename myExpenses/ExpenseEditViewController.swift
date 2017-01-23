@@ -86,6 +86,8 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
         switch indexPath.section {
         case ExpenseEditSections.Fare.rawValue:
             let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
+            cell.placeholder = ExpenseEditSections.Fare.title
+            cell.keyboardType = UIKeyboardType.DecimalPad
             return cell
         case ExpenseEditSections.Transport.rawValue:
             // TODO 交通機関ごとのラベル
