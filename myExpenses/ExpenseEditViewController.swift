@@ -60,8 +60,10 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
         table.delegate = self
         table.dataSource = self
 
-        let nib = UINib(nibName: "TransportSelectCell", bundle: nil)
-        table.registerNib(nib, forCellReuseIdentifier: "transportCell")
+        let transportCell = UINib(nibName: "TransportSelectCell", bundle: nil)
+        table.registerNib(transportCell, forCellReuseIdentifier: "transportCell")
+        let textFieldCell = UINib(nibName: "TextFieldCell", bundle: nil)
+        table.registerNib(textFieldCell, forCellReuseIdentifier: "textFieldCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -82,6 +84,9 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch indexPath.section {
+        case ExpenseEditSections.Fare.rawValue:
+            let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
+            return cell
         case ExpenseEditSections.Transport.rawValue:
             // TODO 交通機関ごとのラベル
             let cell: TransportSelectCell = tableView.dequeueReusableCellWithIdentifier("transportCell") as! TransportSelectCell
@@ -104,8 +109,6 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
             if indexPath.row == 5 {
                 showTextEditView(ExpenseEditSections.Transport.title)
             }
-        case ExpenseEditSections.Fare.rawValue:
-            showTextEditView(ExpenseEditSections.Fare.title, keyboard: .NumberPad)
         case ExpenseEditSections.Memo.rawValue:
             showTextEditView(ExpenseEditSections.Memo.title)
         default:
