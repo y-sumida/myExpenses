@@ -84,14 +84,42 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch indexPath.section {
+        case ExpenseEditSections.Destination.rawValue:
+            let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
+            cell.placeholder = ExpenseEditSections.Destination.title
+            return cell
         case ExpenseEditSections.Fare.rawValue:
             let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
             cell.placeholder = ExpenseEditSections.Fare.title
             cell.keyboardType = UIKeyboardType.DecimalPad
             return cell
         case ExpenseEditSections.Transport.rawValue:
-            // TODO 交通機関ごとのラベル
-            let cell: TransportSelectCell = tableView.dequeueReusableCellWithIdentifier("transportCell") as! TransportSelectCell
+            // TODO その他の判別方法
+            if indexPath.row == 5 {
+                let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
+                cell.placeholder = "その他"
+                return cell
+            }
+            else {
+                // TODO 交通機関ごとのラベル
+                let cell: TransportSelectCell = tableView.dequeueReusableCellWithIdentifier("transportCell") as! TransportSelectCell
+                return cell
+            }
+        case ExpenseEditSections.Interval.rawValue:
+            // from/toの判別方法
+            if indexPath.row == 0 {
+                let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
+                cell.placeholder = "from"
+                return cell
+            }
+            else {
+                let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
+                cell.placeholder = "to"
+                return cell
+            }
+        case ExpenseEditSections.Memo.rawValue:
+            let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
+            cell.placeholder = ExpenseEditSections.Memo.title
             return cell
         default:
             return UITableViewCell()
@@ -101,18 +129,8 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // TODO 各セルごとの処理実装
         switch indexPath.section {
-        case ExpenseEditSections.Destination.rawValue:
+        case ExpenseEditSections.Fare.rawValue:
             showTextEditView(ExpenseEditSections.Destination.title)
-        case ExpenseEditSections.Interval.rawValue:
-            // TODO from/toの２種類を入力する
-            showTextEditView(ExpenseEditSections.Interval.title)
-        case ExpenseEditSections.Transport.rawValue:
-            // TODO その他の判別方法
-            if indexPath.row == 5 {
-                showTextEditView(ExpenseEditSections.Transport.title)
-            }
-        case ExpenseEditSections.Memo.rawValue:
-            showTextEditView(ExpenseEditSections.Memo.title)
         default:
             break
         }
