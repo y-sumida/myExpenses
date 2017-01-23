@@ -48,6 +48,8 @@ enum ExpenseEditSections: Int {
 class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak private var table: UITableView!
 
+    private var isDatePickerOpen: Bool = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // ナビゲーションバー表示
@@ -64,6 +66,8 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
         table.registerNib(transportCell, forCellReuseIdentifier: "transportCell")
         let textFieldCell = UINib(nibName: "TextFieldCell", bundle: nil)
         table.registerNib(textFieldCell, forCellReuseIdentifier: "textFieldCell")
+        let datePicerCell = UINib(nibName: "DatePickerCell", bundle: nil)
+        table.registerNib(datePicerCell, forCellReuseIdentifier: "datePickerCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -79,11 +83,22 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if ExpenseEditSections(rawValue: section) == .Date && isDatePickerOpen {
+                return 2
+        }
         return (ExpenseEditSections(rawValue: section)?.rows)!
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch indexPath.section {
+        case ExpenseEditSections.Date.rawValue:
+            if indexPath.row == 1 {
+                let cell: DatePickerCell = tableView.dequeueReusableCellWithIdentifier("datePickerCell") as! DatePickerCell
+                return cell
+            }
+            else {
+                return UITableViewCell()
+            }
         case ExpenseEditSections.Destination.rawValue:
             let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
             cell.placeholder = ExpenseEditSections.Destination.title
@@ -124,6 +139,11 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // TODO 各セルごとの処理実装
         switch indexPath.section {
+        case ExpenseEditSections.Date.rawValue:
+            if indexPath.row == 0 {
+                isDatePickerOpen = !isDatePickerOpen
+                tableView.reloadData()
+            }
         case ExpenseEditSections.Fare.rawValue:
             showTextEditView(ExpenseEditSections.Destination.title)
         default:

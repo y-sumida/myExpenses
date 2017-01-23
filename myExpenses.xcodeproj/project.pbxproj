@@ -40,6 +40,8 @@
 		A97824001E33054800B80942 /* TextEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97823FF1E33054800B80942 /* TextEditViewController.swift */; };
 		A97824031E363B4900B80942 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97824011E363B4900B80942 /* TextFieldCell.swift */; };
 		A97824041E363B4900B80942 /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A97824021E363B4900B80942 /* TextFieldCell.xib */; };
+		A97824071E3643A800B80942 /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97824051E3643A800B80942 /* DatePickerCell.swift */; };
+		A97824081E3643A800B80942 /* DatePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A97824061E3643A800B80942 /* DatePickerCell.xib */; };
 		A9E49D661E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */; };
 		A9E49D6B1E2BBA3B00FE3DA4 /* ShowAPIErrorDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D6A1E2BBA3B00FE3DA4 /* ShowAPIErrorDialog.swift */; };
 		A9E49D6D1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */; };
@@ -95,6 +97,8 @@
 		A97823FF1E33054800B80942 /* TextEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEditViewController.swift; sourceTree = "<group>"; };
 		A97824011E363B4900B80942 /* TextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		A97824021E363B4900B80942 /* TextFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
+		A97824051E3643A800B80942 /* DatePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
+		A97824061E3643A800B80942 /* DatePickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerCell.xib; sourceTree = "<group>"; };
 		A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteExpenseModel.swift; sourceTree = "<group>"; };
 		A9E49D6A1E2BBA3B00FE3DA4 /* ShowAPIErrorDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAPIErrorDialog.swift; sourceTree = "<group>"; };
 		A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseEditViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +179,8 @@
 				A97823F91E3301EA00B80942 /* TransportSelectCell.xib */,
 				A97823FB1E33023700B80942 /* TransportSelectCell.swift */,
 				A97824011E363B4900B80942 /* TextFieldCell.swift */,
+				A97824051E3643A800B80942 /* DatePickerCell.swift */,
+				A97824061E3643A800B80942 /* DatePickerCell.xib */,
 				A97824021E363B4900B80942 /* TextFieldCell.xib */,
 			);
 			name = view;
@@ -251,6 +257,7 @@
 				A95593D21E179E6200882E58 /* Expenses.storyboard in Resources */,
 				A97823FA1E3301EA00B80942 /* TransportSelectCell.xib in Resources */,
 				A95593871E1768DF00882E58 /* LaunchScreen.storyboard in Resources */,
+				A97824081E3643A800B80942 /* DatePickerCell.xib in Resources */,
 				A95593841E1768DF00882E58 /* Assets.xcassets in Resources */,
 				A9E49D6F1E2FA7EC00FE3DA4 /* ExpenseEdit.storyboard in Resources */,
 				A95593821E1768DF00882E58 /* Login.storyboard in Resources */,
@@ -306,6 +313,7 @@
 				A95593E01E212E9E00882E58 /* ExpensesViewModel.swift in Sources */,
 				A97824001E33054800B80942 /* TextEditViewController.swift in Sources */,
 				A97824031E363B4900B80942 /* TextFieldCell.swift in Sources */,
+				A97824071E3643A800B80942 /* DatePickerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
