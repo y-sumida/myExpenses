@@ -88,11 +88,6 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
             let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
             cell.placeholder = ExpenseEditSections.Destination.title
             return cell
-        case ExpenseEditSections.Fare.rawValue:
-            let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
-            cell.placeholder = ExpenseEditSections.Fare.title
-            cell.keyboardType = UIKeyboardType.DecimalPad
-            return cell
         case ExpenseEditSections.Transport.rawValue:
             // TODO その他の判別方法
             if indexPath.row == 5 {
