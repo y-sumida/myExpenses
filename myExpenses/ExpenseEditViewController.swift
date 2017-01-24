@@ -97,7 +97,10 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
                 return cell
             }
             else {
-                return UITableViewCell()
+                let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
+                cell.placeholder = ExpenseEditSections.Date.title
+                cell.textField.userInteractionEnabled = false
+                return cell
             }
         case ExpenseEditSections.Destination.rawValue:
             let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
