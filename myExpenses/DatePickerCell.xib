@@ -23,6 +23,7 @@
                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fd2-7R-fB6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <items>
+                            <barButtonItem style="plain" systemItem="flexibleSpace" id="7zc-ba-Xw7"/>
                             <barButtonItem style="done" systemItem="done" id="glz-7x-pNy">
                                 <connections>
                                     <action selector="tapDoneButton:" destination="KGk-i7-Jjw" id="MPS-ho-HKS"/>
