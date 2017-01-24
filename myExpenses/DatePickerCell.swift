@@ -13,6 +13,7 @@ class DatePickerCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        datePicker.datePickerMode = UIDatePickerMode.Date
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
