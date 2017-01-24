@@ -9,6 +9,7 @@
 import UIKit
 
 class DatePickerCell: UITableViewCell {
+    @IBOutlet weak var datePicker: UIDatePicker!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -18,4 +19,9 @@ class DatePickerCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    @IBAction func tapDoneButton(sender: AnyObject) {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat  = "yyyy/MM/dd";
+        print(dateFormatter.stringFromDate(datePicker.date))
+    }
 }

@@ -20,6 +20,16 @@
                             <!--2017-01-23 13:59:26 +0000-->
                         </date>
                     </datePicker>
+                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fd2-7R-fB6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <items>
+                            <barButtonItem style="done" systemItem="done" id="glz-7x-pNy">
+                                <connections>
+                                    <action selector="tapDoneButton:" destination="KGk-i7-Jjw" id="MPS-ho-HKS"/>
+                                </connections>
+                            </barButtonItem>
+                        </items>
+                    </toolbar>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="IyI-US-J6W" secondAttribute="bottom" id="Lk7-LE-lze"/>
@@ -28,6 +38,9 @@
                     <constraint firstAttribute="trailing" secondItem="IyI-US-J6W" secondAttribute="trailing" id="vdq-CD-5yL"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="datePicker" destination="IyI-US-J6W" id="BnN-f7-Oqi"/>
+            </connections>
             <point key="canvasLocation" x="350" y="263"/>
         </tableViewCell>
     </objects>

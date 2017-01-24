@@ -61,6 +61,7 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
 
         table.delegate = self
         table.dataSource = self
+        table.estimatedRowHeight = 100
 
         let transportCell = UINib(nibName: "TransportSelectCell", bundle: nil)
         table.registerNib(transportCell, forCellReuseIdentifier: "transportCell")
