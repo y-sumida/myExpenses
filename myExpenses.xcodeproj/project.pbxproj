@@ -42,6 +42,8 @@
 		A97824041E363B4900B80942 /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A97824021E363B4900B80942 /* TextFieldCell.xib */; };
 		A97824071E3643A800B80942 /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97824051E3643A800B80942 /* DatePickerCell.swift */; };
 		A97824081E3643A800B80942 /* DatePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A97824061E3643A800B80942 /* DatePickerCell.xib */; };
+		A978240A1E37942300B80942 /* ExpenseEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97824091E37942300B80942 /* ExpenseEditViewModel.swift */; };
+		A978240C1E3794B900B80942 /* PostExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A978240B1E3794B900B80942 /* PostExpenseModel.swift */; };
 		A9E49D661E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */; };
 		A9E49D6B1E2BBA3B00FE3DA4 /* ShowAPIErrorDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D6A1E2BBA3B00FE3DA4 /* ShowAPIErrorDialog.swift */; };
 		A9E49D6D1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */; };
@@ -99,6 +101,8 @@
 		A97824021E363B4900B80942 /* TextFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
 		A97824051E3643A800B80942 /* DatePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
 		A97824061E3643A800B80942 /* DatePickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerCell.xib; sourceTree = "<group>"; };
+		A97824091E37942300B80942 /* ExpenseEditViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseEditViewModel.swift; sourceTree = "<group>"; };
+		A978240B1E3794B900B80942 /* PostExpenseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostExpenseModel.swift; sourceTree = "<group>"; };
 		A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteExpenseModel.swift; sourceTree = "<group>"; };
 		A9E49D6A1E2BBA3B00FE3DA4 /* ShowAPIErrorDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAPIErrorDialog.swift; sourceTree = "<group>"; };
 		A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseEditViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +160,8 @@
 				A95593D71E1A5E6D00882E58 /* NSURLSessionExtension.swift */,
 				A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */,
 				A97823FF1E33054800B80942 /* TextEditViewController.swift */,
+				A97824091E37942300B80942 /* ExpenseEditViewModel.swift */,
+				A978240B1E3794B900B80942 /* PostExpenseModel.swift */,
 				A9E49D6E1E2FA7EC00FE3DA4 /* ExpenseEdit.storyboard */,
 				A95593D11E179E6200882E58 /* Expenses.storyboard */,
 				A95593801E1768DF00882E58 /* Login.storyboard */,
@@ -297,6 +303,7 @@
 				A95593D61E19023500882E58 /* LoginModel.swift in Sources */,
 				A95593EB1E23D48000882E58 /* ExpensesHeaderView.swift in Sources */,
 				A97823FC1E33023700B80942 /* TransportSelectCell.swift in Sources */,
+				A978240C1E3794B900B80942 /* PostExpenseModel.swift in Sources */,
 				A95593E61E2294BA00882E58 /* ExpenseCell.swift in Sources */,
 				A95593DC1E2123ED00882E58 /* ExpensesModel.swift in Sources */,
 				A95593931E177A8900882E58 /* RegisterViewController.swift in Sources */,
@@ -308,6 +315,7 @@
 				A9E49D661E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift in Sources */,
 				A95593EF1E266DFB00882E58 /* ExpensesFooterView.swift in Sources */,
 				A9E49D6B1E2BBA3B00FE3DA4 /* ShowAPIErrorDialog.swift in Sources */,
+				A978240A1E37942300B80942 /* ExpenseEditViewModel.swift in Sources */,
 				A95593E91E23C88900882E58 /* ExpenseCellViewModel.swift in Sources */,
 				A955937D1E1768DF00882E58 /* AppDelegate.swift in Sources */,
 				A95593E01E212E9E00882E58 /* ExpensesViewModel.swift in Sources */,
