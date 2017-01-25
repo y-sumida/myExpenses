@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 enum ExpenseEditSections: Int {
     case Date = 0
@@ -47,8 +48,12 @@ enum ExpenseEditSections: Int {
 
 class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak private var table: UITableView!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
 
     private var isDatePickerOpen: Bool = false
+    private let bag: DisposeBag = DisposeBag()
+
+    var viewModel: ExpenseEditViewModel = ExpenseEditViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +74,12 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
         table.registerNib(textFieldCell, forCellReuseIdentifier: "textFieldCell")
         let datePicerCell = UINib(nibName: "DatePickerCell", bundle: nil)
         table.registerNib(datePicerCell, forCellReuseIdentifier: "datePickerCell")
+
+        doneButton.rx_tap.asObservable()
+            .subscribeNext {
+                self.viewModel.upsertExpense()
+            }
+            .addDisposableTo(bag)
     }
 
     override func didReceiveMemoryWarning() {

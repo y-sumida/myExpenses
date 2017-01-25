@@ -48,8 +48,11 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" id="Nqw-Nv-8qU"/>
+                    <navigationItem key="navigationItem" id="Nqw-Nv-8qU">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Zz8-FF-IcA"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="doneButton" destination="Zz8-FF-IcA" id="G2a-31-cbp"/>
                         <outlet property="table" destination="Jvu-x0-bsS" id="C5B-3K-wiM"/>
                     </connections>
                 </viewController>
