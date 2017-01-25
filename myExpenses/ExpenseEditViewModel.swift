@@ -13,7 +13,6 @@ class ExpenseEditViewModel {
     private let bag: DisposeBag = DisposeBag()
     private var expense: DestinationModel!
 
-    var finishTrigger: PublishSubject<Void> = PublishSubject()
     var result: Variable<ErrorType?> = Variable(nil)
 
     init(expense: DestinationModel = DestinationModel(data: [:])) {
@@ -26,8 +25,8 @@ class ExpenseEditViewModel {
         PostExpenseModel.call(self.expense, sessionId: "")
             .observeOn(MainScheduler.instance)//これ以降メインスレッドで実行
             .subscribe(
-                onNext: { _ in
-                    self.finishTrigger.onNext(())
+                onNext: { model, response in
+                    self.result.value = model.result
                 },
                 onError: { (error: ErrorType) in
                     // APIエラー
