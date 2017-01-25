@@ -76,6 +76,7 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
         table.registerNib(datePicerCell, forCellReuseIdentifier: "datePickerCell")
 
         // TODO 未入力時にDoneボタンdisable
+        // TODO ViewとViewModelのバインディング
         doneButton.rx_tap.asObservable()
             .subscribeNext {
                 self.viewModel.upsertExpense()

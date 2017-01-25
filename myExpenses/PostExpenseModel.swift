@@ -45,6 +45,7 @@ class PostExpenseRequest: RequestProtocol {
 
     var request: NSMutableURLRequest {
         let body = NSMutableDictionary()
+        // TODO 残りの項目
         body.setValue(sessionId, forKey: "sessionId")
         body.setValue(expense.date, forKey: "date")
         body.setValue(expense.name, forKey: "name")
