@@ -16,11 +16,13 @@ class ExpenseEditViewModel {
     var finishTrigger: PublishSubject<Void> = PublishSubject()
     var result: Variable<ErrorType?> = Variable(nil)
 
-    init(expense: DestinationModel) {
+    init(expense: DestinationModel = DestinationModel(data: [:])) {
         // 交通費１件分のモデル
+        self.expense = expense
     }
     
     func upsertExpense() {
+        // TODO sessionIDをUserDefaultなどから取得
         PostExpenseModel.call(self.expense, sessionId: "")
             .observeOn(MainScheduler.instance)//これ以降メインスレッドで実行
             .subscribe(
