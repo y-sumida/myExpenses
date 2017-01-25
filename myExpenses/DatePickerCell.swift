@@ -11,6 +11,8 @@ import UIKit
 class DatePickerCell: UITableViewCell {
     @IBOutlet weak var datePicker: UIDatePicker!
 
+    var handler: ((date: String) -> Void) = {_ in }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         datePicker.datePickerMode = UIDatePickerMode.Date
@@ -25,5 +27,6 @@ class DatePickerCell: UITableViewCell {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat  = "yyyy/MM/dd";
         print(dateFormatter.stringFromDate(datePicker.date))
+        handler(date: dateFormatter.stringFromDate(datePicker.date))
     }
 }

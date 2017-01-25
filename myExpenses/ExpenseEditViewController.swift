@@ -123,6 +123,12 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
         case ExpenseEditSections.Date.rawValue:
             if indexPath.row == 1 {
                 let cell: DatePickerCell = tableView.dequeueReusableCellWithIdentifier("datePickerCell") as! DatePickerCell
+                cell.handler = { (date: String) in
+                    // TODO ViewModelの日付更新
+                    print("date \(date)")
+                    self.isDatePickerOpen = false
+                    self.table.reloadData()
+                }
                 return cell
             }
             else {
