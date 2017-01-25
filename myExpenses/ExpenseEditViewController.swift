@@ -46,7 +46,7 @@ enum ExpenseEditSections: Int {
     }
 }
 
-class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
+class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableViewDataSource, ShowAPIErrorDialog {
     @IBOutlet weak private var table: UITableView!
     @IBOutlet weak var doneButton: UIBarButtonItem!
 
@@ -75,9 +75,25 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
         let datePicerCell = UINib(nibName: "DatePickerCell", bundle: nil)
         table.registerNib(datePicerCell, forCellReuseIdentifier: "datePickerCell")
 
+        // TODO 未入力時にDoneボタンdisable
         doneButton.rx_tap.asObservable()
             .subscribeNext {
                 self.viewModel.upsertExpense()
+            }
+            .addDisposableTo(bag)
+
+        viewModel.result.asObservable()
+            .skip(1) //初期値読み飛ばし
+            .subscribeNext {error in
+                let result = error as! APIResult
+                if result.code == APIResultCode.Success.rawValue {
+                    self.showCompleteDialog("送信完了") { _ in
+                        self.navigationController?.popViewControllerAnimated(true)
+                    }
+                }
+                else {
+                    self.showErrorDialog(result)
+                }
             }
             .addDisposableTo(bag)
     }
