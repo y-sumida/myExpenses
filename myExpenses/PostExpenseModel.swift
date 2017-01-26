@@ -45,13 +45,22 @@ class PostExpenseRequest: RequestProtocol {
 
     var request: NSMutableURLRequest {
         let body = NSMutableDictionary()
-        // TODO 残りの項目
         body.setValue(sessionId, forKey: "sessionId")
-        body.setValue(expense.date, forKey: "date")
+        body.setValue(expense.dateAsString, forKey: "date")
         body.setValue(expense.name, forKey: "name")
         body.setValue(expense.useJR, forKey: "jr")
+        body.setValue(expense.useSubway, forKey: "subway")
         body.setValue(expense.usePrivate, forKey: "private")
         body.setValue(expense.useHighway, forKey: "highway")
+        body.setValue(expense.useOther, forKey: "other")
+        body.setValue(expense.from, forKey: "from")
+        body.setValue(expense.to, forKey: "to")
+        body.setValue(expense.fare, forKey: "fare")
+        body.setValue(expense.remarks, forKey: "remarks")
+
+        if !expense.id.isEmpty {
+            body.setValue(expense.id, forKey: "id")
+        }
         
         let url:NSURL = NSURL(string: baseURL + "upsert.php")!
         let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
