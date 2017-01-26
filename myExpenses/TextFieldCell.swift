@@ -29,10 +29,7 @@ class TextFieldCell: UITableViewCell, UITextFieldDelegate {
         textField.borderStyle = .None
         textField.placeholder = placeholder
         textField.keyboardType = keyboardType
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+        self.selectionStyle = .None
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool{
