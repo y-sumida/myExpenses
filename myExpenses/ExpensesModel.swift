@@ -50,8 +50,10 @@ class ExpensesModel: ResponseProtocol {
 class DestinationModel {
     var id: String = ""
     var date: NSDate?
+    var dateAsString: String = ""
     var name: String = ""
     var useJR: Bool = false
+    var useSubway: Bool = false
     var usePrivate: Bool = false
     var useHighway: Bool = false
     var useBus: Bool = false
@@ -69,7 +71,11 @@ class DestinationModel {
         if let date = data["date"] {
             let formatter = NSDateFormatter()
             formatter.dateFormat = "yyyyMMdd"
-            self.date = formatter.dateFromString(date as! String)
+
+            if let date: NSDate = formatter.dateFromString(date as! String) {
+                self.date = date
+                self.dateAsString = formatter.stringFromDate(date)
+            }
         }
 
         if let name = data["name"] {
@@ -78,6 +84,10 @@ class DestinationModel {
 
         if let useJR = data["jr"] {
             self.useJR = useJR as! Bool
+        }
+
+        if let useSubway = data["subway"] {
+            self.useJR = useSubway as! Bool
         }
 
         if let usePrivate = data["private"] {
