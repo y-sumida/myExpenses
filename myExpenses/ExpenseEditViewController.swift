@@ -107,10 +107,6 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
         return 6
     }
 
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ExpenseEditSections(rawValue: section)?.title
-    }
-
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if ExpenseEditSections(rawValue: section) == .Date && isDatePickerOpen {
                 return 2
@@ -165,6 +161,11 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
                 cell.placeholder = "to"
                 return cell
             }
+        case ExpenseEditSections.Fare.rawValue:
+            let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
+            cell.placeholder = ExpenseEditSections.Fare.title
+            cell.textField.userInteractionEnabled = false
+            return cell
         case ExpenseEditSections.Memo.rawValue:
             let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
             cell.placeholder = ExpenseEditSections.Memo.title
