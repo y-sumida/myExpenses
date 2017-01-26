@@ -146,7 +146,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         let alert: UIAlertController = UIAlertController(title: "削除してよいですか", message: "", preferredStyle:  UIAlertControllerStyle.Alert)
         let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
             (action: UIAlertAction!) -> Void in
-            self.viewModel.deleteDestination(indexPath.row)
+            self.viewModel.deleteAtIndex(indexPath.row)
         })
         let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler: { _ in
             self.table.setEditing(false, animated: false)

@@ -52,7 +52,7 @@ class ExpensesViewModel {
             .addDisposableTo(bag)
     }
 
-    func deleteDestination(index: Int) {
+    func deleteAtIndex(index: Int) {
         let expenseId: String = expenses[index].id
 
         DeleteExpenseModel.call(expenseId, sessionId: self.sessionId)
