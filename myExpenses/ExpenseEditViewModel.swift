@@ -11,11 +11,11 @@ import RxSwift
 
 class ExpenseEditViewModel {
     private let bag: DisposeBag = DisposeBag()
-    private var expense: DestinationModel!
+    private var expense: ExpenseModel!
 
     var result: Variable<ErrorType?> = Variable(nil)
 
-    init(expense: DestinationModel = DestinationModel(data: [:])) {
+    init(expense: ExpenseModel = ExpenseModel(data: [:])) {
         // 交通費１件分のモデル
         self.expense = expense
     }

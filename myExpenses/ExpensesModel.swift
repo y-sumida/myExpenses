@@ -14,7 +14,7 @@ class ExpensesModel: ResponseProtocol {
     var resultCode: String = ""
     var resultMessage: String = ""
     var sessionId: String = ""
-    var destinations: [DestinationModel] = []
+    var expenses: [ExpenseModel] = []
 
     required init(data: NSDictionary) {
         if let resultCode = data["resultCode"] {
@@ -29,11 +29,11 @@ class ExpensesModel: ResponseProtocol {
             self.sessionId = sessionId as! String
         }
 
-        if let destinations = data["destinations"] {
-            let desitnationsArray = destinations as! Array<[String : AnyObject]>
+        if let expenses = data["destinations"] {
+            let arr = expenses as! Array<[String : AnyObject]>
             
-            self.destinations = desitnationsArray.map {
-               DestinationModel(data: $0)
+            self.expenses = arr.map {
+               ExpenseModel(data: $0)
             }
         }
 
@@ -47,7 +47,7 @@ class ExpensesModel: ResponseProtocol {
     }
 }
 
-class DestinationModel {
+class ExpenseModel {
     var id: String = ""
     var date: NSDate?
     var dateAsString: String = ""

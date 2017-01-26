@@ -20,10 +20,10 @@ class ExpensesViewModel {
     var fareTotal: Variable<String> = Variable("")
     var sessionId: String = ""
 
-    private var _destinations: [DestinationModel] = []
-    var destinations: [DestinationModel] {
+    private var _expenses: [ExpenseModel] = []
+    var expenses: [ExpenseModel] {
         get {
-            return _destinations
+            return _expenses
         }
     }
 
@@ -39,7 +39,7 @@ class ExpensesViewModel {
             .subscribe(
                 onNext: { (model, response) in
                     self.result.value = model.result!
-                    self._destinations = model.destinations
+                    self._expenses = model.expenses
                     self.calcFareTotal()
 
                     self.reloadTrigger.onNext(())
@@ -53,7 +53,7 @@ class ExpensesViewModel {
     }
 
     func deleteDestination(index: Int) {
-        let expenseId: String = destinations[index].id
+        let expenseId: String = expenses[index].id
 
         DeleteExpenseModel.call(expenseId, sessionId: self.sessionId)
             .observeOn(MainScheduler.instance)
@@ -61,7 +61,7 @@ class ExpensesViewModel {
                 onNext: { (model, response) in
                     // TODO indexよりもキー項目指定のほうがいいかも
                     self.result.value = model.result!
-                    self._destinations.removeAtIndex(index)
+                    self._expenses.removeAtIndex(index)
                     self.calcFareTotal()
 
                     self.reloadTrigger.onNext(())
@@ -75,7 +75,7 @@ class ExpensesViewModel {
     }
 
     private func calcFareTotal() {
-        fareTotal.value = _destinations.reduce(0) {
+        fareTotal.value = _expenses.reduce(0) {
             $0 + $1.fare
             }.description
     }

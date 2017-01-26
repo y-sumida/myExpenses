@@ -79,13 +79,13 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("count:" + viewModel.destinations.count.description)
-       return viewModel.destinations.count
+        print("count:" + viewModel.expenses.count.description)
+       return viewModel.expenses.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: ExpenseCell = tableView.dequeueReusableCellWithIdentifier("cell") as! ExpenseCell
-        cell.viewModel = ExpenseCellViewModel(model: viewModel.destinations[indexPath.row])
+        cell.viewModel = ExpenseCellViewModel(model: viewModel.expenses[indexPath.row])
 
         return cell
     }
@@ -112,7 +112,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
                     (action: UIAlertAction!) -> Void in
                     print("edit")
                     let vc:ExpenseEditViewController = UIStoryboard(name: "ExpenseEdit", bundle: nil).instantiateViewControllerWithIdentifier("ExpenseEditViewController") as! ExpenseEditViewController
-                    vc.viewModel = ExpenseEditViewModel(expense: self.viewModel.destinations[index.row])
+                    vc.viewModel = ExpenseEditViewModel(expense: self.viewModel.expenses[index.row])
                     self.navigationController!.pushViewController(vc, animated: true)
                 })
                 let copyAction: UIAlertAction = UIAlertAction(title: "複製", style: UIAlertActionStyle.Default, handler:{

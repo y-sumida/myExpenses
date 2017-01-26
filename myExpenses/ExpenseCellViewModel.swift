@@ -15,7 +15,7 @@ class ExpenseCellViewModel {
     var destination: Variable<String> = Variable("")
     var fare: Variable<String> = Variable("")
 
-    init(model: DestinationModel) {
+    init(model: ExpenseModel) {
         let formatter: NSDateFormatter = NSDateFormatter()
         formatter.dateFormat = "MM/dd"
         self.date.value = formatter.stringFromDate(model.date!)

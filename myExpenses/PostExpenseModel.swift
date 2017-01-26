@@ -31,7 +31,7 @@ class PostExpenseModel: ResponseProtocol {
         result = APIResult(code: self.resultCode, message: self.resultMessage, sessionId: self.sessionId)
     }
     
-    static func call(expense: DestinationModel, sessionId: String) -> Observable<(PostExpenseModel, NSHTTPURLResponse)> {
+    static func call(expense: ExpenseModel, sessionId: String) -> Observable<(PostExpenseModel, NSHTTPURLResponse)> {
         
         let session: NSURLSession = NSURLSession.sharedSession()
         return session.rx_responseObject(PostExpenseRequest(expense: expense, sessionId: sessionId))
@@ -40,7 +40,7 @@ class PostExpenseModel: ResponseProtocol {
 
 class PostExpenseRequest: RequestProtocol {
     typealias Response = PostExpenseModel
-    var expense: DestinationModel!
+    var expense: ExpenseModel!
     var sessionId: String = ""
 
     var request: NSMutableURLRequest {
@@ -70,7 +70,7 @@ class PostExpenseRequest: RequestProtocol {
         return request
     }
     
-    init(expense: DestinationModel, sessionId: String) {
+    init(expense: ExpenseModel, sessionId: String) {
         self.expense = expense
         self.sessionId = sessionId
     }
