@@ -13,6 +13,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     @IBOutlet weak var table: UITableView!
     private let bag: DisposeBag = DisposeBag()
     private var viewModel: ExpensesViewModel!
+    private var period: String = "" // TODO 型を作る
     @IBOutlet weak var header: ExpensesHeaderView!
     @IBOutlet weak var footer: ExpensesFooterView!
 
@@ -71,7 +72,8 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         let now = NSDate()
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyyMM"
-        viewModel.monthlyExpenses(formatter.stringFromDate(now))
+        period = formatter.stringFromDate(now)
+        viewModel.monthlyExpenses(period)
     }
 
     override func didReceiveMemoryWarning() {
