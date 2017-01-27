@@ -57,7 +57,7 @@ class ExpenseModel {
     var usePrivate: Bool = false
     var useHighway: Bool = false
     var useBus: Bool = false
-    var useOther: Bool = false
+    var useOther: String = ""
     var from: String = ""
     var to: String = ""
     var fare: Int = 0
@@ -99,7 +99,7 @@ class ExpenseModel {
         }
 
         if let useOther = data["other"] {
-            self.useOther = useOther as! Bool
+            self.useOther = useOther as! String
         }
 
         if let from = data["from"] {
