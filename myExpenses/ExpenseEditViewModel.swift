@@ -14,10 +14,12 @@ class ExpenseEditViewModel {
     private var expense: ExpenseModel!
 
     var result: Variable<ErrorType?> = Variable(nil)
+    var date: Variable<String> = Variable("")
 
     init(expense: ExpenseModel = ExpenseModel(data: [:])) {
         // 交通費１件分のモデル
         self.expense = expense
+        self.date.value = expense.dateAsString
     }
     
     func upsertExpense() {
