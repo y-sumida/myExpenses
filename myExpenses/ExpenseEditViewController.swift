@@ -120,7 +120,6 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
             if indexPath.row == 1 {
                 let cell: DatePickerCell = tableView.dequeueReusableCellWithIdentifier("datePickerCell") as! DatePickerCell
                 cell.handler = { (date: String) in
-                    // TODO ViewModelの日付更新
                     print("date \(date)")
                     self.isDatePickerOpen = false
                     self.viewModel.date.value = date
@@ -138,12 +137,14 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
         case ExpenseEditSections.Destination.rawValue:
             let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
             cell.placeholder = ExpenseEditSections.Destination.title
+            cell.bindValue = viewModel.destination
             return cell
         case ExpenseEditSections.Transport.rawValue:
             // TODO その他の判別方法
             if indexPath.row == 5 {
                 let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
                 cell.placeholder = "その他"
+                cell.bindValue = viewModel.useOther
                 return cell
             }
             else {
@@ -156,21 +157,25 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
             if indexPath.row == 0 {
                 let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
                 cell.placeholder = "from"
+                cell.bindValue = viewModel.from
                 return cell
             }
             else {
                 let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
                 cell.placeholder = "to"
+                cell.bindValue = viewModel.to
                 return cell
             }
         case ExpenseEditSections.Fare.rawValue:
             let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
             cell.placeholder = ExpenseEditSections.Fare.title
             cell.textField.userInteractionEnabled = false
+            cell.bindValue = viewModel.fare
             return cell
         case ExpenseEditSections.Memo.rawValue:
             let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
             cell.placeholder = ExpenseEditSections.Memo.title
+            cell.bindValue = viewModel.memo
             return cell
         default:
             return UITableViewCell()
