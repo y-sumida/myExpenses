@@ -49,9 +49,6 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
             }
             .addDisposableTo(bag)
 
-        let width: CGFloat = UIScreen.mainScreen().bounds.size.width
-        footer = ExpensesFooterView(frame: CGRectMake(0, 0, width, 40))
-
         viewModel.fareTotal.asObservable()
             .bindTo(header.fareTotal.rx_text)
             .addDisposableTo(bag)
