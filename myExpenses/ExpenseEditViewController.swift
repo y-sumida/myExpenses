@@ -132,13 +132,7 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
                 let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
                 cell.placeholder = ExpenseEditSections.Date.title
                 cell.textField.userInteractionEnabled = false
-
-                viewModel.date.asObservable()
-                    .bindTo(cell.textField.rx_text)
-                    .addDisposableTo(bag)
-                cell.textField.rx_text
-                    .bindTo(viewModel.date)
-                    .addDisposableTo(bag)
+                cell.bindValue = viewModel.date
                 return cell
             }
         case ExpenseEditSections.Destination.rawValue:

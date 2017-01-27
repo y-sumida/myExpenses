@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class TextFieldCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
@@ -20,6 +21,20 @@ class TextFieldCell: UITableViewCell, UITextFieldDelegate {
         didSet {
             textField.keyboardType = keyboardType
         }
+    }
+
+    private var bag: DisposeBag!
+    var bindValue: Variable<String>! {
+        didSet {
+            bag = DisposeBag()
+            bindValue.asObservable()
+                .bindTo(self.textField.rx_text)
+                .addDisposableTo(bag)
+            self.textField.rx_text
+                .bindTo(self.bindValue)
+                .addDisposableTo(bag)
+        }
+        
     }
 
     override func awakeFromNib() {
