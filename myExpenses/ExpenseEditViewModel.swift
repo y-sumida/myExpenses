@@ -21,6 +21,11 @@ class ExpenseEditViewModel {
     var from: Variable<String> = Variable("")
     var to: Variable<String> = Variable("")
     var useOther: Variable<String> = Variable("")
+    var useJR: Variable<Bool> = Variable(false)
+    var useSubway: Variable<Bool> = Variable(false)
+    var usePrivate: Variable<Bool> = Variable(false)
+    var useBus: Variable<Bool> = Variable(false)
+    var useHighway: Variable<Bool> = Variable(false)
 
     init(expense: ExpenseModel = ExpenseModel(data: [:])) {
         // 交通費１件分のモデル
@@ -32,6 +37,11 @@ class ExpenseEditViewModel {
         self.from.value = expense.from
         self.to.value = expense.to
         self.useOther.value = expense.useOther
+        self.useJR.value = expense.useJR
+        self.useSubway.value = expense.useSubway
+        self.usePrivate.value = expense.usePrivate
+        self.useBus.value = expense.useBus
+        self.useHighway.value = expense.useHighway
     }
     
     func upsertExpense() {
