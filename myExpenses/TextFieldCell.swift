@@ -28,6 +28,10 @@ class TextFieldCell: UITableViewCell, UITextFieldDelegate {
         didSet {
             bag = DisposeBag()
             bindValue.asObservable()
+                .filter {
+                    // 料金の初期値0の場合にプレースホルダー表示する。別クラスにしたほうがいいかも。
+                    $0 != "0"
+                }
                 .bindTo(self.textField.rx_text)
                 .addDisposableTo(bag)
             self.textField.rx_text
