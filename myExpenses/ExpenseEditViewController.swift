@@ -148,9 +148,10 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
                 return cell
             }
             else {
-                // TODO 交通機関ごとのラベル
                 let cell: TransportSelectCell = tableView.dequeueReusableCellWithIdentifier("transportCell") as! TransportSelectCell
                 cell.transportName.text = ExpenseEditSections.Transport.placeHolders[indexPath.row]
+                // TODO 各交通期間のbindデータの振り分け
+                cell.bindValue = viewModel.useJR
                 return cell
             }
         case ExpenseEditSections.Interval.rawValue:
