@@ -11,6 +11,7 @@ import RxSwift
 
 class TextFieldCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var title: UILabel!
 
     var placeholder: String = "" {
         didSet {

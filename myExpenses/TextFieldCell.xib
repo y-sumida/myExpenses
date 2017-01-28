@@ -7,29 +7,40 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="TextFieldCell" customModule="myExpenses" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="45" id="KGk-i7-Jjw" customClass="TextFieldCell" customModule="myExpenses" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AkD-IN-SeV">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AkD-IN-SeV">
+                        <rect key="frame" x="61" y="0.0" width="251" height="43"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="28g-cG-YGw">
+                        <rect key="frame" x="13" y="14" width="40" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="AkD-IN-SeV" secondAttribute="trailing" id="NcW-qF-aWN"/>
-                    <constraint firstItem="AkD-IN-SeV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="bLz-Cs-OUK"/>
+                    <constraint firstAttribute="bottom" secondItem="28g-cG-YGw" secondAttribute="bottom" constant="14" id="7ao-LL-GaK"/>
+                    <constraint firstItem="28g-cG-YGw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="8lg-Fz-59b"/>
+                    <constraint firstAttribute="trailing" secondItem="AkD-IN-SeV" secondAttribute="trailing" constant="8" id="CUC-7c-BDo"/>
+                    <constraint firstItem="AkD-IN-SeV" firstAttribute="leading" secondItem="28g-cG-YGw" secondAttribute="trailing" constant="8" id="spP-jX-aaR"/>
+                    <constraint firstItem="28g-cG-YGw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="wIn-Sj-GL8"/>
                     <constraint firstAttribute="bottom" secondItem="AkD-IN-SeV" secondAttribute="bottom" id="yYr-M3-3dC"/>
                     <constraint firstItem="AkD-IN-SeV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="zAK-Wh-KLS"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="textField" destination="AkD-IN-SeV" id="jP7-mx-T1u"/>
+                <outlet property="title" destination="28g-cG-YGw" id="U5u-Fy-T3b"/>
             </connections>
+            <point key="canvasLocation" x="350" y="231"/>
         </tableViewCell>
     </objects>
 </document>
