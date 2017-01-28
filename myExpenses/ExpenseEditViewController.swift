@@ -17,23 +17,6 @@ enum ExpenseEditSections: Int {
     case Fare
     case Memo
 
-    var title: String {
-        switch self {
-        case Date:
-            return "日付"
-        case Destination:
-            return "外出先"
-        case Transport:
-            return "交通機関"
-        case Interval:
-            return "区間"
-        case Fare:
-            return "料金"
-        case Memo:
-            return "備考"
-        }
-    }
-
     var rows: Int {
         switch self {
         case Date, .Destination, .Fare, .Memo:
@@ -42,6 +25,23 @@ enum ExpenseEditSections: Int {
             return 6
         case Interval:
             return 2
+        }
+    }
+
+    var placeHolders: [String] {
+        switch self {
+        case Date:
+            return ["日付"]
+        case Destination:
+            return ["外出先"]
+        case Transport:
+            return ["JR", "私鉄", "地下鉄", "バス", "高速", "その他"]
+        case Interval:
+            return ["from", "to"]
+        case Fare:
+            return ["料金"]
+        case Memo:
+            return ["備考"]
         }
     }
 }
@@ -129,52 +129,49 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
             }
             else {
                 let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
-                cell.placeholder = ExpenseEditSections.Date.title
+                cell.placeholder = ExpenseEditSections.Date.placeHolders[indexPath.row]
                 cell.textField.userInteractionEnabled = false
                 cell.bindValue = viewModel.date
                 return cell
             }
         case ExpenseEditSections.Destination.rawValue:
             let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
-            cell.placeholder = ExpenseEditSections.Destination.title
+            cell.placeholder = ExpenseEditSections.Destination.placeHolders[indexPath.row]
             cell.bindValue = viewModel.destination
             return cell
         case ExpenseEditSections.Transport.rawValue:
             // TODO その他の判別方法
             if indexPath.row == 5 {
                 let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
-                cell.placeholder = "その他"
+                cell.placeholder = ExpenseEditSections.Transport.placeHolders[indexPath.row]
                 cell.bindValue = viewModel.useOther
                 return cell
             }
             else {
                 // TODO 交通機関ごとのラベル
                 let cell: TransportSelectCell = tableView.dequeueReusableCellWithIdentifier("transportCell") as! TransportSelectCell
+                cell.transportName.text = ExpenseEditSections.Transport.placeHolders[indexPath.row]
                 return cell
             }
         case ExpenseEditSections.Interval.rawValue:
-            // from/toの判別方法
+            let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
+            cell.placeholder = ExpenseEditSections.Interval.placeHolders[indexPath.row]
             if indexPath.row == 0 {
-                let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
-                cell.placeholder = "from"
                 cell.bindValue = viewModel.from
-                return cell
             }
             else {
-                let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
-                cell.placeholder = "to"
                 cell.bindValue = viewModel.to
-                return cell
             }
+            return cell
         case ExpenseEditSections.Fare.rawValue:
             let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
-            cell.placeholder = ExpenseEditSections.Fare.title
+            cell.placeholder = ExpenseEditSections.Fare.placeHolders[indexPath.row]
             cell.textField.userInteractionEnabled = false
             cell.bindValue = viewModel.fare
             return cell
         case ExpenseEditSections.Memo.rawValue:
             let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
-            cell.placeholder = ExpenseEditSections.Memo.title
+            cell.placeholder = ExpenseEditSections.Memo.placeHolders[indexPath.row]
             cell.bindValue = viewModel.memo
             return cell
         default:
@@ -191,7 +188,7 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
                 tableView.reloadData()
             }
         case ExpenseEditSections.Fare.rawValue:
-            showTextEditView(ExpenseEditSections.Destination.title)
+            showTextEditView(ExpenseEditSections.Fare.placeHolders[indexPath.row])
         default:
             break
         }
