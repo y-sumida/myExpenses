@@ -73,7 +73,7 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
         let textFieldCell = UINib(nibName: "TextFieldCell", bundle: nil)
         table.registerNib(textFieldCell, forCellReuseIdentifier: "textFieldCell")
         let datePicerCell = UINib(nibName: "DatePickerCell", bundle: nil)
-        table.registerNib(datePicerCell, forCellReuseIdentifier: "datePickerCell")
+        table.registerNib(datePicerCell, forCellReuseIdentifier: "DatePickerCell")
 
         // TODO 未入力時にDoneボタンdisable
         doneButton.rx_tap.asObservable()
@@ -117,7 +117,7 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
         switch indexPath.section {
         case ExpenseEditSections.Date.rawValue:
             if indexPath.row == 1 {
-                let cell: DatePickerCell = tableView.dequeueReusableCellWithIdentifier("datePickerCell") as! DatePickerCell
+                let cell: DatePickerCell = tableView.dequeueReusableCellWithIdentifier("DatePickerCell") as! DatePickerCell
                 cell.handler = { (date: String) in
                     print("date \(date)")
                     self.isDatePickerOpen = false
