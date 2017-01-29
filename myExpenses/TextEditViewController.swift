@@ -19,6 +19,7 @@ class TextEditViewController: UIViewController {
 
     var inputItem: String = ""
     var keyboard: UIKeyboardType = .Default
+    var bindValue: Variable<String>!
 
     // TODO どうやってもとの編集画面に入力内容を連携するか検討
     override func viewDidLoad() {
@@ -46,6 +47,15 @@ class TextEditViewController: UIViewController {
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
             .addDisposableTo(bag)
+
+        if let value: Variable<String> = bindValue {
+            value.asObservable()
+                .bindTo(self.textField.rx_text)
+                .addDisposableTo(bag)
+            self.textField.rx_text
+                .bindTo(value)
+                .addDisposableTo(bag)
+        }
     }
 
     override func didReceiveMemoryWarning() {

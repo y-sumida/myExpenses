@@ -189,14 +189,15 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
                 tableView.reloadData()
             }
         case ExpenseEditSections.Fare.rawValue:
-            showTextEditView(ExpenseEditSections.Fare.placeHolders[indexPath.row], keyboard: .NumberPad)
+            showTextEditView(viewModel.fare, title: ExpenseEditSections.Fare.placeHolders[indexPath.row], keyboard: .NumberPad)
         default:
             break
         }
     }
 
-    private func showTextEditView(title: String, keyboard: UIKeyboardType = .Default) {
+    private func showTextEditView(bindValue:Variable<String>, title: String, keyboard: UIKeyboardType = .Default) {
         let vc:TextEditViewController = UIStoryboard(name: "ExpenseEdit", bundle: nil).instantiateViewControllerWithIdentifier("TextEditViewController") as! TextEditViewController
+        vc.bindValue = bindValue
         vc.inputItem = title
         vc.keyboard = keyboard
         vc.modalPresentationStyle = .OverCurrentContext
