@@ -69,7 +69,7 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
         table.estimatedRowHeight = 100
 
         let transportCell = UINib(nibName: "TransportSelectCell", bundle: nil)
-        table.registerNib(transportCell, forCellReuseIdentifier: "transportCell")
+        table.registerNib(transportCell, forCellReuseIdentifier: "TransportSelectCell")
         let textFieldCell = UINib(nibName: "TextFieldCell", bundle: nil)
         table.registerNib(textFieldCell, forCellReuseIdentifier: "TextFieldCell")
         let datePicerCell = UINib(nibName: "DatePickerCell", bundle: nil)
@@ -147,7 +147,7 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
                 return cell
             }
             else {
-                let cell: TransportSelectCell = tableView.dequeueReusableCellWithIdentifier("transportCell") as! TransportSelectCell
+                let cell: TransportSelectCell = tableView.dequeueReusableCellWithIdentifier("TransportSelectCell") as! TransportSelectCell
                 cell.transportName.text = ExpenseEditSections.Transport.placeHolders[indexPath.row]
                 // TODO 各交通期間のbindデータの振り分け
                 cell.bindValue = viewModel.useJR
