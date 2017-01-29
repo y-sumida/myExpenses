@@ -189,7 +189,7 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
                 tableView.reloadData()
             }
         case ExpenseEditSections.Fare.rawValue:
-            showTextEditView(ExpenseEditSections.Fare.placeHolders[indexPath.row])
+            showTextEditView(ExpenseEditSections.Fare.placeHolders[indexPath.row], keyboard: .NumberPad)
         default:
             break
         }
