@@ -71,7 +71,7 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
         let transportCell = UINib(nibName: "TransportSelectCell", bundle: nil)
         table.registerNib(transportCell, forCellReuseIdentifier: "transportCell")
         let textFieldCell = UINib(nibName: "TextFieldCell", bundle: nil)
-        table.registerNib(textFieldCell, forCellReuseIdentifier: "textFieldCell")
+        table.registerNib(textFieldCell, forCellReuseIdentifier: "TextFieldCell")
         let datePicerCell = UINib(nibName: "DatePickerCell", bundle: nil)
         table.registerNib(datePicerCell, forCellReuseIdentifier: "DatePickerCell")
 
@@ -127,21 +127,21 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
                 return cell
             }
             else {
-                let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
+                let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell") as! TextFieldCell
                 cell.title.text = ExpenseEditSections.Date.placeHolders[indexPath.row]
                 cell.textField.userInteractionEnabled = false
                 cell.bindValue = viewModel.date
                 return cell
             }
         case ExpenseEditSections.Destination.rawValue:
-            let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
+            let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell") as! TextFieldCell
             cell.title.text = ExpenseEditSections.Destination.placeHolders[indexPath.row]
             cell.bindValue = viewModel.destination
             return cell
         case ExpenseEditSections.Transport.rawValue:
             // TODO その他の判別方法
             if indexPath.row == 5 {
-                let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
+                let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell") as! TextFieldCell
                 cell.title.text = ExpenseEditSections.Transport.placeHolders[indexPath.row]
                 cell.bindValue = viewModel.useOther
                 return cell
@@ -154,7 +154,7 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
                 return cell
             }
         case ExpenseEditSections.Interval.rawValue:
-            let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
+            let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell") as! TextFieldCell
             cell.title.text = ExpenseEditSections.Interval.placeHolders[indexPath.row]
             if indexPath.row == 0 {
                 cell.bindValue = viewModel.from
@@ -164,13 +164,13 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
             }
             return cell
         case ExpenseEditSections.Fare.rawValue:
-            let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
+            let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell") as! TextFieldCell
             cell.title.text = ExpenseEditSections.Fare.placeHolders[indexPath.row]
             cell.textField.userInteractionEnabled = false
             cell.bindValue = viewModel.fare
             return cell
         case ExpenseEditSections.Memo.rawValue:
-            let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
+            let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell") as! TextFieldCell
             cell.title.text = ExpenseEditSections.Memo.placeHolders[indexPath.row]
             cell.bindValue = viewModel.memo
             return cell
