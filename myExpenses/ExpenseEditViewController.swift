@@ -118,10 +118,13 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
         case ExpenseEditSections.Date.rawValue:
             if indexPath.row == 1 {
                 let cell: DatePickerCell = tableView.dequeueReusableCellWithIdentifier("DatePickerCell") as! DatePickerCell
-                cell.handler = { (date: String) in
-                    print("date \(date)")
+                cell.bindValue = viewModel.date
+                cell.handler = { (date: NSDate) in
                     self.isDatePickerOpen = false
-                    self.viewModel.date.value = date
+
+                    let dateFormatter = NSDateFormatter()
+                    dateFormatter.dateFormat  = "yyyyMMdd";
+                    self.viewModel.dateAsString.value = dateFormatter.stringFromDate(date)
                     self.table.reloadData()
                 }
                 return cell
@@ -130,7 +133,7 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
                 let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell") as! TextFieldCell
                 cell.title.text = ExpenseEditSections.Date.placeHolders[indexPath.row]
                 cell.textField.userInteractionEnabled = false
-                cell.bindValue = viewModel.date
+                cell.bindValue = viewModel.dateAsString
                 return cell
             }
         case ExpenseEditSections.Destination.rawValue:

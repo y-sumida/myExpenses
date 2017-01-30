@@ -7,11 +7,25 @@
 //
 
 import UIKit
+import RxSwift
 
 class DatePickerCell: UITableViewCell {
     @IBOutlet weak var datePicker: UIDatePicker!
 
-    var handler: ((date: String) -> Void) = {_ in }
+    var handler: ((date: NSDate) -> Void) = {_ in }
+
+    private var bag: DisposeBag!
+    var bindValue: Variable<NSDate>! {
+        didSet {
+            bag = DisposeBag()
+            bindValue.asObservable()
+                .bindTo(self.datePicker.rx_date)
+                .addDisposableTo(bag)
+            self.datePicker.rx_date
+                .bindTo(self.bindValue)
+                .addDisposableTo(bag)
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,9 +38,6 @@ class DatePickerCell: UITableViewCell {
     }
     
     @IBAction func tapDoneButton(sender: AnyObject) {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat  = "yyyy/MM/dd";
-        print(dateFormatter.stringFromDate(datePicker.date))
-        handler(date: dateFormatter.stringFromDate(datePicker.date))
+        handler(date: datePicker.date)
     }
 }

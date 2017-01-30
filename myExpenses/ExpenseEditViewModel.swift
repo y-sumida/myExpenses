@@ -14,7 +14,8 @@ class ExpenseEditViewModel {
     private var expense: ExpenseModel!
 
     var result: Variable<ErrorType?> = Variable(nil)
-    var date: Variable<String> = Variable("")
+    var date: Variable<NSDate> = Variable(NSDate())
+    var dateAsString: Variable<String> = Variable("")
     var destination: Variable<String> = Variable("")
     var fare: Variable<String> = Variable("")
     var memo: Variable<String> = Variable("")
@@ -30,7 +31,10 @@ class ExpenseEditViewModel {
     init(expense: ExpenseModel = ExpenseModel(data: [:])) {
         // 交通費１件分のモデル
         self.expense = expense
-        self.date.value = expense.dateAsString
+        if let date:NSDate = expense.date {
+            self.date.value = date
+        }
+        self.dateAsString.value = expense.dateAsString
         self.destination.value = expense.name
         self.fare.value = expense.fare.description
         self.memo.value = expense.remarks
