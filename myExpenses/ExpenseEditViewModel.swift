@@ -13,6 +13,7 @@ class ExpenseEditViewModel {
     private let bag: DisposeBag = DisposeBag()
     private var expense: ExpenseModel!
 
+    var id: String = ""
     var result: Variable<ErrorType?> = Variable(nil)
     var date: Variable<NSDate> = Variable(NSDate())
     var dateAsString: Variable<String> = Variable("")
@@ -31,6 +32,7 @@ class ExpenseEditViewModel {
     init(expense: ExpenseModel = ExpenseModel(data: [:])) {
         // 交通費１件分のモデル
         self.expense = expense
+        self.id = expense.id
         if let date:NSDate = expense.date {
             self.date.value = date
         }
