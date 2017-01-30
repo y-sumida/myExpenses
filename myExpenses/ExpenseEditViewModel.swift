@@ -29,10 +29,15 @@ class ExpenseEditViewModel {
     var useBus: Variable<Bool> = Variable(false)
     var useHighway: Variable<Bool> = Variable(false)
 
-    init(expense: ExpenseModel = ExpenseModel(data: [:])) {
+    init(expense: ExpenseModel = ExpenseModel(data: [:]), isCopy: Bool = false) {
         // 交通費１件分のモデル
         self.expense = expense
-        self.id = expense.id
+
+        if isCopy {
+            // 複製時はID無視
+            self.id = expense.id
+        }
+
         if let date:NSDate = expense.date {
             self.date.value = date
         }

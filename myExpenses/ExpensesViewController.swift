@@ -117,6 +117,9 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
                 let copyAction: UIAlertAction = UIAlertAction(title: "複製", style: UIAlertActionStyle.Default, handler:{
                     (action: UIAlertAction!) -> Void in
                     print("copy")
+                    let vc:ExpenseEditViewController = UIStoryboard(name: "ExpenseEdit", bundle: nil).instantiateViewControllerWithIdentifier("ExpenseEditViewController") as! ExpenseEditViewController
+                    vc.viewModel = ExpenseEditViewModel(expense: self.viewModel.expenses[index.row], isCopy: true)
+                    self.navigationController!.pushViewController(vc, animated: true)
                 })
                 let bookmarkAction: UIAlertAction = UIAlertAction(title: "お気に入りに追加", style: UIAlertActionStyle.Default, handler:{
                     (action: UIAlertAction!) -> Void in
