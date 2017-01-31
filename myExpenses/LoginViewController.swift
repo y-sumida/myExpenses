@@ -24,9 +24,7 @@ class LoginViewController: UIViewController, ShowAPIErrorDialog {
         if let sessionId: String = sharedInstance.stringForKey("sessionId") {
             // セッションIDが保存してあったらログイン画面をスキップ
             // TODO ログインのviewDidLoadでよい？AppDelegateにおいたほうがいい？
-            let vc:ExpensesViewController = UIStoryboard(name: "Expenses", bundle: nil).instantiateViewControllerWithIdentifier("ExpensesViewController") as! ExpensesViewController
-            vc.sessionId = sessionId
-            self.navigationController?.pushViewController(vc, animated: false)
+            self.showExpensesView(sessionId, animated: false)
         }
 
         // ナビゲーションバー非表示
@@ -56,9 +54,7 @@ class LoginViewController: UIViewController, ShowAPIErrorDialog {
                     sharedInstance.setObject(result.sessionId, forKey: "sessionId")
                     sharedInstance.synchronize()
 
-                    let vc:ExpensesViewController = UIStoryboard(name: "Expenses", bundle: nil).instantiateViewControllerWithIdentifier("ExpensesViewController") as! ExpensesViewController
-                    vc.sessionId = result.sessionId
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    self.showExpensesView(result.sessionId, animated: true)
                 }
                 else {
                     self.showErrorDialog(result)
@@ -74,6 +70,12 @@ class LoginViewController: UIViewController, ShowAPIErrorDialog {
     @IBAction func tapRegisterButton(sender: AnyObject) {
         let vc:RegisterViewController = UIStoryboard(name: "Register", bundle: nil).instantiateViewControllerWithIdentifier("RegisterViewController") as! RegisterViewController
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+
+    private func showExpensesView(sessionId: String, animated: Bool) {
+        let vc:ExpensesViewController = UIStoryboard(name: "Expenses", bundle: nil).instantiateViewControllerWithIdentifier("ExpensesViewController") as! ExpensesViewController
+        vc.sessionId = sessionId
+        self.navigationController?.pushViewController(vc, animated: animated)
     }
 }
 
