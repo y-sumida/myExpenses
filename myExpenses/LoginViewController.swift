@@ -43,7 +43,11 @@ class LoginViewController: UIViewController, ShowAPIErrorDialog {
                 let result = error as! APIResult
 
                 if result.code == APIResultCode.Success.rawValue {
-                    //TODO ログイン成功時にID/パスワードの保存
+                    // ログイン成功時にセッションIDを保存
+                    let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+                    sharedInstance.setObject(result.sessionId, forKey: "sessionId")
+                    sharedInstance.synchronize()
+
                     let vc:ExpensesViewController = UIStoryboard(name: "Expenses", bundle: nil).instantiateViewControllerWithIdentifier("ExpensesViewController") as! ExpensesViewController
                     vc.sessionId = result.sessionId
                     self.navigationController?.pushViewController(vc, animated: true)
