@@ -39,6 +39,16 @@ class LoginViewController: UIViewController, ShowAPIErrorDialog {
         password.rx_text
             .bindTo(viewModel.password)
             .addDisposableTo(bag)
+
+        Observable
+            .combineLatest(
+                email.rx_text.asObservable(),
+            password.rx_text.asObservable()) { c in c }
+            .subscribeNext { (email, password) in
+                self.loginButton.enabled = !(email.isEmpty || password.isEmpty)
+            }
+            .addDisposableTo(bag)
+
         loginButton.rx_tap.subscribeNext {
             self.viewModel.loginTrigger.onNext(())
             }
