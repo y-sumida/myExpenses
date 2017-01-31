@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A933ED181E40CE25009865B0 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A933ED171E40CE25009865B0 /* StringExtension.swift */; };
 		A955937D1E1768DF00882E58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A955937C1E1768DF00882E58 /* AppDelegate.swift */; };
 		A955937F1E1768DF00882E58 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A955937E1E1768DF00882E58 /* LoginViewController.swift */; };
 		A95593821E1768DF00882E58 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95593801E1768DF00882E58 /* Login.storyboard */; };
@@ -67,6 +68,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A933ED171E40CE25009865B0 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		A95593791E1768DF00882E58 /* myExpenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myExpenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A955937C1E1768DF00882E58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A955937E1E1768DF00882E58 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +125,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A933ED161E40CE11009865B0 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				A933ED171E40CE25009865B0 /* StringExtension.swift */,
+			);
+			name = extension;
+			sourceTree = "<group>";
+		};
 		A95593701E1768DF00882E58 = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +155,7 @@
 		A955937B1E1768DF00882E58 /* myExpenses */ = {
 			isa = PBXGroup;
 			children = (
+				A933ED161E40CE11009865B0 /* extension */,
 				A9E49D691E2BBA1100FE3DA4 /* protocol */,
 				A95593E11E22946900882E58 /* view */,
 				A955937C1E1768DF00882E58 /* AppDelegate.swift */,
@@ -319,6 +330,7 @@
 				A95593E91E23C88900882E58 /* ExpenseCellViewModel.swift in Sources */,
 				A955937D1E1768DF00882E58 /* AppDelegate.swift in Sources */,
 				A95593E01E212E9E00882E58 /* ExpensesViewModel.swift in Sources */,
+				A933ED181E40CE25009865B0 /* StringExtension.swift in Sources */,
 				A97824001E33054800B80942 /* TextEditViewController.swift in Sources */,
 				A97824031E363B4900B80942 /* TextFieldCell.swift in Sources */,
 				A97824071E3643A800B80942 /* DatePickerCell.swift in Sources */,
