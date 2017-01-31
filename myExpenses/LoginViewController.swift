@@ -20,6 +20,14 @@ class LoginViewController: UIViewController, ShowAPIErrorDialog {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        if let sessionId: String = sharedInstance.stringForKey("sessionId") {
+            // セッションIDが保存してあったらログイン画面をスキップ
+            // TODO ログインのviewDidLoadでよい？AppDelegateにおいたほうがいい？
+            let vc:ExpensesViewController = UIStoryboard(name: "Expenses", bundle: nil).instantiateViewControllerWithIdentifier("ExpensesViewController") as! ExpensesViewController
+            vc.sessionId = sessionId
+            self.navigationController?.pushViewController(vc, animated: false)
+        }
 
         // ナビゲーションバー非表示
         if let navi = navigationController {
