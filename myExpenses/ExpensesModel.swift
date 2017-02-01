@@ -122,8 +122,8 @@ class ExpenseModel {
 
 class ExpensesRequest: RequestProtocol {
     typealias Response = ExpensesModel
-    var sessionId: String = ""
-    var period: String = "" // TODO あとで型を作る
+    private var sessionId: String = ""
+    private var period: String = "" // TODO あとで型を作る
 
     var request: NSMutableURLRequest {
         let url:NSURL = NSURL(string: baseURL + "expenses.php?sessionId=\(sessionId)&period=\(period)")!
