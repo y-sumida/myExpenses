@@ -17,8 +17,6 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     @IBOutlet weak var header: ExpensesHeaderView!
     @IBOutlet weak var footer: ExpensesFooterView!
 
-    var sessionId: String = ""
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // ナビゲーションバー表示
