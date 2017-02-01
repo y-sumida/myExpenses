@@ -24,7 +24,7 @@ class LoginViewController: UIViewController, ShowAPIErrorDialog {
         if let sessionId: String = sharedInstance.stringForKey("sessionId") {
             // セッションIDが保存してあったらログイン画面をスキップ
             // TODO ログインのviewDidLoadでよい？AppDelegateにおいたほうがいい？
-            self.showExpensesView(false)
+            self.showExpensesView(animated: false)
         }
 
         // ナビゲーションバー非表示
@@ -64,7 +64,7 @@ class LoginViewController: UIViewController, ShowAPIErrorDialog {
                     sharedInstance.setObject(result.sessionId, forKey: "sessionId")
                     sharedInstance.synchronize()
 
-                    self.showExpensesView(true)
+                    self.showExpensesView(animated: true)
                 }
                 else {
                     self.showErrorDialog(result)
@@ -82,7 +82,7 @@ class LoginViewController: UIViewController, ShowAPIErrorDialog {
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
-    private func showExpensesView(animated: Bool) {
+    private func showExpensesView(animated animated: Bool) {
         let vc:ExpensesViewController = UIStoryboard(name: "Expenses", bundle: nil).instantiateViewControllerWithIdentifier("ExpensesViewController") as! ExpensesViewController
         self.navigationController?.pushViewController(vc, animated: animated)
     }
