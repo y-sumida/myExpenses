@@ -34,7 +34,7 @@ class ExpensesViewModel {
 
     func monthlyExpenses(period: String) {
         //TODO periodは日付型のほうがいいかも
-        ExpensesModel.call(self.sessionId, period: period)
+        ExpensesModel.call(period)
             .observeOn(MainScheduler.instance)//これ以降メインスレッドで実行
             .subscribe(
                 onNext: { (model, response) in

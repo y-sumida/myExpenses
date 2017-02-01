@@ -57,6 +57,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
             .skip(1) //初期値読み飛ばし
             .subscribeNext {error in
                 let result = error as! APIResult
+                // TODO セッションIDエラーの場合、ログイン画面へ戻す
                 if result.code != APIResultCode.Success.rawValue {
                     self.showErrorDialog(result) { _ in
                         self.table.setEditing(false, animated: false)

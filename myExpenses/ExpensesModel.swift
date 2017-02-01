@@ -40,10 +40,10 @@ class ExpensesModel: ResponseProtocol {
         result = APIResult(code: self.resultCode, message: self.resultMessage)
     }
 
-    static func call(sessionId: String, period: String) -> Observable<(ExpensesModel, NSHTTPURLResponse)> {
+    static func call(period: String) -> Observable<(ExpensesModel, NSHTTPURLResponse)> {
 
         let session: NSURLSession = NSURLSession.sharedSession()
-        return session.rx_responseObject(ExpensesRequest(sessionId: sessionId, period: period))
+        return session.rx_responseObject(ExpensesRequest(period: period))
     }
 }
 
@@ -122,7 +122,17 @@ class ExpenseModel {
 
 class ExpensesRequest: RequestProtocol {
     typealias Response = ExpensesModel
-    private var sessionId: String = ""
+    private var sessionId: String {
+        get {
+            let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+            if let sessionId: String = sharedInstance.stringForKey("sessionId") {
+                return sessionId
+            }
+            else {
+                return ""
+            }
+        }
+    }
     private var period: String = "" // TODO あとで型を作る
 
     var request: NSMutableURLRequest {
@@ -133,8 +143,7 @@ class ExpensesRequest: RequestProtocol {
         return request
     }
 
-    init(sessionId: String, period: String) {
-        self.sessionId = sessionId
+    init(period: String) {
         self.period = period
     }
 }
