@@ -27,10 +27,7 @@ class ExpensesViewModel {
         }
     }
 
-    init(sessionId: String) {
-        // TODO NSUserDefaultsから取得したほうが良さそう
-        self.sessionId = sessionId
-    }
+    init() {}
 
     func monthlyExpenses(period: String) {
         //TODO periodは日付型のほうがいいかも
@@ -55,7 +52,7 @@ class ExpensesViewModel {
     func deleteAtIndex(index: Int) {
         let expenseId: String = expenses[index].id
 
-        DeleteExpenseModel.call(expenseId, sessionId: self.sessionId)
+        DeleteExpenseModel.call(expenseId)
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: { (model, response) in

@@ -39,7 +39,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         table.addGestureRecognizer(longPressRecognizer)
 
         // Rx
-        viewModel = ExpensesViewModel(sessionId: sessionId)
+        viewModel = ExpensesViewModel()
 
         viewModel.reloadTrigger
             .asObservable()

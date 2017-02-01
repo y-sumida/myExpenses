@@ -32,17 +32,27 @@ class DeleteExpenseModel: ResponseProtocol {
         result = APIResult(code: self.resultCode, message: self.resultMessage, sessionId: self.sessionId)
     }
 
-    static func call(expenseId: String, sessionId: String) -> Observable<(DeleteExpenseModel, NSHTTPURLResponse)> {
+    static func call(expenseId: String) -> Observable<(DeleteExpenseModel, NSHTTPURLResponse)> {
 
         let session: NSURLSession = NSURLSession.sharedSession()
-        return session.rx_responseObject(DeleteExpenseRequest(expenseId: expenseId, sessionId: sessionId))
+        return session.rx_responseObject(DeleteExpenseRequest(expenseId: expenseId))
     }
 }
 
 class DeleteExpenseRequest: RequestProtocol {
     typealias Response = DeleteExpenseModel
-    var expenseId: String = ""
-    var sessionId: String = ""
+    private var expenseId: String = ""
+    private var sessionId: String {
+        get {
+            let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+            if let sessionId: String = sharedInstance.stringForKey("sessionId") {
+                return sessionId
+            }
+            else {
+                return ""
+            }
+        }
+    }
 
     var request: NSMutableURLRequest {
         let body = NSMutableDictionary()
@@ -57,8 +67,7 @@ class DeleteExpenseRequest: RequestProtocol {
         return request
     }
 
-    init(expenseId: String, sessionId: String) {
+    init(expenseId: String) {
         self.expenseId = expenseId
-        self.sessionId = sessionId
     }
 }
