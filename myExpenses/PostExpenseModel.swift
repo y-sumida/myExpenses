@@ -58,7 +58,7 @@ class PostExpenseRequest: RequestProtocol {
         body.setValue(expense.fare, forKey: "fare")
         body.setValue(expense.remarks, forKey: "remarks")
 
-        if !expense.id.isEmpty {
+        if expense.id.isNotEmpty {
             body.setValue(expense.id, forKey: "id")
         }
         

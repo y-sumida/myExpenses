@@ -30,7 +30,7 @@ class TextEditViewController: UIViewController {
 
         textField.rx_text.asObservable()
             .subscribeNext { text in
-                self.doneButton.enabled = !text.isEmpty
+                self.doneButton.enabled = text.isNotEmpty
             }
             .addDisposableTo(bag)
 
