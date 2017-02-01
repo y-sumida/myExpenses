@@ -21,7 +21,7 @@ class LoginViewController: UIViewController, ShowAPIErrorDialog {
     override func viewDidLoad() {
         super.viewDidLoad()
         let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        if let sessionId: String = sharedInstance.stringForKey("sessionId") {
+        if let _ = sharedInstance.stringForKey("sessionId") {
             // セッションIDが保存してあったらログイン画面をスキップ
             // TODO ログインのviewDidLoadでよい？AppDelegateにおいたほうがいい？
             self.showExpensesView(animated: false)
