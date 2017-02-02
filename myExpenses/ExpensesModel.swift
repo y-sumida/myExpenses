@@ -147,3 +147,15 @@ class ExpensesRequest: RequestProtocol {
         self.period = period
     }
 }
+
+class Period {
+    private let date:NSDate!
+    private let description: String
+
+    init(date: NSDate) {
+        self.date = date
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyyMM"
+        description = formatter.stringFromDate(date)
+    }
+}
