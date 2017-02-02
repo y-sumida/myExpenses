@@ -22,6 +22,6 @@ class ExpenseCellViewModel {
 
         self.destination.value = model.name
 
-        self.fare.value = model.fare.description
+        self.fare.value = model.fare.commaSeparated
     }
 }
