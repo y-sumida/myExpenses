@@ -74,6 +74,6 @@ class ExpensesViewModel {
     private func calcFareTotal() {
         fareTotal.value = _expenses.reduce(0) {
             $0 + $1.fare
-            }.description
+            }.commaSeparated
     }
 }
