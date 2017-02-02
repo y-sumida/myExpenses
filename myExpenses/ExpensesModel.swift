@@ -40,7 +40,7 @@ class ExpensesModel: ResponseProtocol {
         result = APIResult(code: self.resultCode, message: self.resultMessage)
     }
 
-    static func call(period: String) -> Observable<(ExpensesModel, NSHTTPURLResponse)> {
+    static func call(period: Period) -> Observable<(ExpensesModel, NSHTTPURLResponse)> {
 
         let session: NSURLSession = NSURLSession.sharedSession()
         return session.rx_responseObject(ExpensesRequest(period: period))
@@ -133,17 +133,17 @@ class ExpensesRequest: RequestProtocol {
             }
         }
     }
-    private var period: String = "" // TODO あとで型を作る
+    private let period: Period! // TODO あとで型を作る
 
     var request: NSMutableURLRequest {
-        let url:NSURL = NSURL(string: baseURL + "expenses.php?sessionId=\(sessionId)&period=\(period)")!
+        let url:NSURL = NSURL(string: baseURL + "expenses.php?sessionId=\(sessionId)&period=\(period.description)")!
         let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         return request
     }
 
-    init(period: String) {
+    init(period: Period) {
         self.period = period
     }
 }

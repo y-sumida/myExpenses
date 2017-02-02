@@ -13,7 +13,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     @IBOutlet weak var table: UITableView!
     private let bag: DisposeBag = DisposeBag()
     private var viewModel: ExpensesViewModel!
-    private var period: String = "" // TODO 型を作る
+    private var period: Period = Period(date: NSDate()) // デフォルト当月
     @IBOutlet weak var header: ExpensesHeaderView!
     @IBOutlet weak var footer: ExpensesFooterView!
 
@@ -65,10 +65,6 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
             .addDisposableTo(bag)
 
         // 初回ロードは当月指定
-        let now = NSDate()
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "yyyyMM"
-        period = formatter.stringFromDate(now)
         viewModel.monthlyExpenses(period)
     }
 
