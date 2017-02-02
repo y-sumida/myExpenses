@@ -49,6 +49,7 @@ struct APIResult: ErrorType {
 enum APIResultCode: String {
     // TODO エラー時の結果コード
     case Success = "E000"
+    case SessionError = "E001" // セッション切れ
 }
 
 class LoginModel: ResponseProtocol {
