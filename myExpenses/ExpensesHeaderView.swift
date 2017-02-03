@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExpensesHeaderView: UIView, UIPopoverPresentationControllerDelegate, LoadXibView{
+class ExpensesHeaderView: UIView, LoadXibView {
     @IBOutlet weak var fareTotal: UILabel!
     @IBOutlet weak var periodButton: UIButton!
 
@@ -20,10 +20,6 @@ class ExpensesHeaderView: UIView, UIPopoverPresentationControllerDelegate, LoadX
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadView()
-    }
-
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return .None
     }
 
     @IBAction func tapButton(sender: AnyObject) {
