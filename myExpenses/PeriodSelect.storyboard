@@ -33,7 +33,7 @@
                                 </toolbar>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.70463362068965518" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="9PK-L8-uiX" secondAttribute="trailing" constant="20" id="EEm-2D-q9e"/>
                             <constraint firstItem="9PK-L8-uiX" firstAttribute="leading" secondItem="XGV-GN-rbe" secondAttribute="leading" constant="20" id="ZvT-P3-tUS"/>

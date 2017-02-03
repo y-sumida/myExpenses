@@ -29,13 +29,13 @@ class ExpensesHeaderView: UIView, UIPopoverPresentationControllerDelegate, LoadX
     @IBAction func tapButton(sender: AnyObject) {
         let vc:PeriodSelectViewController = UIStoryboard(name: "PeriodSelect", bundle: nil).instantiateViewControllerWithIdentifier("PeriodSelectViewController") as! PeriodSelectViewController
 
+        vc.modalPresentationStyle = .Custom
+        vc.modalTransitionStyle = .CrossDissolve
+
         var root = UIApplication.sharedApplication().keyWindow?.rootViewController
         while let present = root?.presentedViewController {
             root = present
         }
-
-        root!.modalPresentationStyle = .Custom
-        root!.modalTransitionStyle = .CrossDissolve
         root!.presentViewController(vc, animated: true, completion: nil)
     }
 }
