@@ -27,20 +27,15 @@ class ExpensesHeaderView: UIView, UIPopoverPresentationControllerDelegate, LoadX
     }
 
     @IBAction func tapButton(sender: AnyObject) {
-        //TODO あとでViewを作る
-        let vc: UIViewController = UIViewController()
-        vc.modalPresentationStyle = .Popover
-        vc.preferredContentSize = CGSize(width: 100, height: 100)
-        vc.popoverPresentationController?.backgroundColor = UIColor.blueColor()
-        vc.popoverPresentationController?.delegate = self
-        vc.popoverPresentationController?.sourceView = sender as? UIView
-        vc.popoverPresentationController?.sourceRect = sender.bounds
-        vc.popoverPresentationController?.permittedArrowDirections = .Up
+        let vc:PeriodSelectViewController = UIStoryboard(name: "PeriodSelect", bundle: nil).instantiateViewControllerWithIdentifier("PeriodSelectViewController") as! PeriodSelectViewController
 
         var root = UIApplication.sharedApplication().keyWindow?.rootViewController
         while let present = root?.presentedViewController {
             root = present
         }
+
+        root!.modalPresentationStyle = .Custom
+        root!.modalTransitionStyle = .CrossDissolve
         root!.presentViewController(vc, animated: true, completion: nil)
     }
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Period Select View Controller-->
+        <scene sceneID="o7t-lF-jtc">
+            <objects>
+                <viewController storyboardIdentifier="PeriodSelectViewController" id="JeU-uu-8b0" customClass="PeriodSelectViewController" customModule="myExpenses" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ayZ-LA-B3c"/>
+                        <viewControllerLayoutGuide type="bottom" id="g8H-q9-MUa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XGV-GN-rbe">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9PK-L8-uiX">
+                                <rect key="frame" x="20" y="104" width="560" height="476"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="kUA-x7-iaU">
+                                    <rect key="frame" x="0.0" y="0.0" width="560" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                    <items>
+                                        <barButtonItem title="Item" id="hnX-i1-9uK">
+                                            <connections>
+                                                <action selector="tapButton:" destination="JeU-uu-8b0" id="CCj-OQ-1P3"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </items>
+                                </toolbar>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="9PK-L8-uiX" secondAttribute="trailing" constant="20" id="EEm-2D-q9e"/>
+                            <constraint firstItem="9PK-L8-uiX" firstAttribute="leading" secondItem="XGV-GN-rbe" secondAttribute="leading" constant="20" id="ZvT-P3-tUS"/>
+                            <constraint firstItem="9PK-L8-uiX" firstAttribute="top" secondItem="ayZ-LA-B3c" secondAttribute="bottom" constant="84" id="hjZ-FF-8wy"/>
+                            <constraint firstItem="g8H-q9-MUa" firstAttribute="top" secondItem="9PK-L8-uiX" secondAttribute="bottom" constant="20" id="wJv-og-Tfn"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A7U-Em-ktj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="321" y="212"/>
+        </scene>
+    </scenes>
+</document>
