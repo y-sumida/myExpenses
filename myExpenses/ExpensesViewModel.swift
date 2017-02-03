@@ -30,7 +30,6 @@ class ExpensesViewModel {
     init() {}
 
     func monthlyExpenses(period: Period) {
-        //TODO periodは日付型のほうがいいかも
         ExpensesModel.call(period)
             .observeOn(MainScheduler.instance)//これ以降メインスレッドで実行
             .subscribe(

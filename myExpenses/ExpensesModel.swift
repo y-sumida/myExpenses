@@ -133,7 +133,7 @@ class ExpensesRequest: RequestProtocol {
             }
         }
     }
-    private let period: Period! // TODO あとで型を作る
+    private let period: Period!
 
     var request: NSMutableURLRequest {
         let url:NSURL = NSURL(string: baseURL + "expenses.php?sessionId=\(sessionId)&period=\(period.description)")!
