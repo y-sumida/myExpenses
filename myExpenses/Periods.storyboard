@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Period Select View Controller-->
+        <!--Periods View Controller-->
         <scene sceneID="o7t-lF-jtc">
             <objects>
-                <viewController storyboardIdentifier="PeriodSelectViewController" id="JeU-uu-8b0" customClass="PeriodSelectViewController" customModule="myExpenses" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PeriodsViewController" id="JeU-uu-8b0" customClass="PeriodsViewController" customModule="myExpenses" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ayZ-LA-B3c"/>
                         <viewControllerLayoutGuide type="bottom" id="g8H-q9-MUa"/>

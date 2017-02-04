@@ -23,7 +23,7 @@ class ExpensesHeaderView: UIView, LoadXibView {
     }
 
     @IBAction func tapButton(sender: AnyObject) {
-        let vc:PeriodSelectViewController = UIStoryboard(name: "PeriodSelect", bundle: nil).instantiateViewControllerWithIdentifier("PeriodSelectViewController") as! PeriodSelectViewController
+        let vc:PeriodsViewController = UIStoryboard(name: "Periods", bundle: nil).instantiateViewControllerWithIdentifier("PeriodsViewController") as! PeriodsViewController
 
         vc.modalPresentationStyle = .Custom
         vc.modalTransitionStyle = .CrossDissolve

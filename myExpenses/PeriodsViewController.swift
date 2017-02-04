@@ -1,5 +1,5 @@
 //
-//  PeriodSelectViewController.swift
+//  PeriodsViewController.swift
 //  myExpenses
 //
 //  Created by Yuki Sumida on 2017/02/03.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PeriodSelectViewController: UIViewController {
+class PeriodsViewController: UIViewController {
 
     // TODO 表示する月の設定　過去半年分くらい？
     // TODO UITableViewDelegate実装
