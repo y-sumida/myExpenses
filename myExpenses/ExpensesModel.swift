@@ -154,9 +154,14 @@ class Period {
     private let description: String
 
     init(date: NSDate) {
-        self.date = date
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyyMM"
+        formatter.locale = NSLocale(localeIdentifier: "ja_JP")
         description = formatter.stringFromDate(date)
+        print(description)
+
+        // 指定した月の月初日を保持
+        self.date = formatter.dateFromString("\(description)")
+        print(self.date)
     }
 }
