@@ -149,6 +149,7 @@ class ExpensesRequest: RequestProtocol {
 }
 
 class Period {
+    // TODO 指定した期間のインスタンスを生成できるようにする
     private let date:NSDate!
     private let description: String
 

@@ -15,6 +15,7 @@ extension NSURLSession {
         showRequestLog(request.request)
 
         return Observable.create { observer in
+            // TODO request.requestを適切な名前にしたい
             let task = self.dataTaskWithRequest(request.request) { (data, response, error) in
 
                 guard let response = response, data = data else {
