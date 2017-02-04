@@ -17,30 +17,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kUA-x7-iaU">
+                                <rect key="frame" x="20" y="84" width="560" height="44"/>
+                                <items>
+                                    <barButtonItem title="Item" id="hnX-i1-9uK">
+                                        <connections>
+                                            <action selector="tapButton:" destination="JeU-uu-8b0" id="CCj-OQ-1P3"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9PK-L8-uiX">
-                                <rect key="frame" x="20" y="104" width="560" height="476"/>
+                                <rect key="frame" x="20" y="128" width="560" height="452"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="kUA-x7-iaU">
-                                    <rect key="frame" x="0.0" y="0.0" width="560" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                    <items>
-                                        <barButtonItem title="Item" id="hnX-i1-9uK">
-                                            <connections>
-                                                <action selector="tapButton:" destination="JeU-uu-8b0" id="CCj-OQ-1P3"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </items>
-                                </toolbar>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.70463362068965518" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="9PK-L8-uiX" secondAttribute="trailing" constant="20" id="EEm-2D-q9e"/>
+                            <constraint firstItem="9PK-L8-uiX" firstAttribute="top" secondItem="kUA-x7-iaU" secondAttribute="bottom" id="RWU-Br-3fn"/>
                             <constraint firstItem="9PK-L8-uiX" firstAttribute="leading" secondItem="XGV-GN-rbe" secondAttribute="leading" constant="20" id="ZvT-P3-tUS"/>
-                            <constraint firstItem="9PK-L8-uiX" firstAttribute="top" secondItem="ayZ-LA-B3c" secondAttribute="bottom" constant="84" id="hjZ-FF-8wy"/>
+                            <constraint firstAttribute="trailing" secondItem="kUA-x7-iaU" secondAttribute="trailing" constant="20" id="f8f-Km-8CI"/>
+                            <constraint firstItem="kUA-x7-iaU" firstAttribute="leading" secondItem="XGV-GN-rbe" secondAttribute="leading" constant="20" id="hTM-on-Gc9"/>
                             <constraint firstItem="g8H-q9-MUa" firstAttribute="top" secondItem="9PK-L8-uiX" secondAttribute="bottom" constant="20" id="wJv-og-Tfn"/>
+                            <constraint firstItem="kUA-x7-iaU" firstAttribute="top" secondItem="ayZ-LA-B3c" secondAttribute="bottom" constant="64" id="z6m-K9-z1j"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="table" destination="9PK-L8-uiX" id="A63-9y-RCG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A7U-Em-ktj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -8,17 +8,36 @@
 
 import UIKit
 
-class PeriodsViewController: UIViewController {
+class PeriodsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var table: UITableView!
 
     // TODO 表示する月の設定　過去半年分くらい？
     // TODO UITableViewDelegate実装
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        table.delegate = self
+        table.dataSource = self
+
+        // TODO カスタムセル必要？
+        table.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 6 // TODO とりあえず半年分
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        //TODO 年月表示
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        cell.textLabel!.text = "\(indexPath.row)"
+
+        return cell
     }
     
     @IBAction func tapButton(sender: AnyObject) {
