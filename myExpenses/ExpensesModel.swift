@@ -174,7 +174,6 @@ class Period {
             let pastDate: NSDate = NSDate(timeInterval: -60*60, sinceDate: halfYears[i - 1].date)
             halfYears.append(Period(date: pastDate))
         }
-        dump(halfYears)
 
         return halfYears
     }

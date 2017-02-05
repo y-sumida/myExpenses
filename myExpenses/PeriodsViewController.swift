@@ -10,6 +10,7 @@ import UIKit
 
 class PeriodsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var table: UITableView!
+    private var periods: [Period]!
 
     // TODO 表示する月の設定　過去半年分くらい？
     // TODO UITableViewDelegate実装
@@ -22,7 +23,7 @@ class PeriodsViewController: UIViewController, UITableViewDelegate, UITableViewD
         // TODO カスタムセル必要？
         table.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
 
-        Period.pastHalfYear()
+        periods = Period.pastHalfYear()
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,13 +31,13 @@ class PeriodsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6 // TODO とりあえず半年分
+        return periods.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        //TODO 年月表示
+        // TODO 表示書式調整
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-        cell.textLabel!.text = "\(indexPath.row)"
+        cell.textLabel!.text = periods[indexPath.row].description
 
         return cell
     }
