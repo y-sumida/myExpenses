@@ -41,6 +41,11 @@ class PeriodsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         return cell
     }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // TODO 選択した月をExpensesViewControllerに連携
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     @IBAction func tapButton(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
