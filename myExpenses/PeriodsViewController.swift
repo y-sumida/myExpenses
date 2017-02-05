@@ -22,6 +22,7 @@ class PeriodsViewController: UIViewController, UITableViewDelegate, UITableViewD
         // TODO カスタムセル必要？
         table.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
 
+        Period.pastHalfYear()
     }
 
     override func didReceiveMemoryWarning() {

@@ -149,9 +149,8 @@ class ExpensesRequest: RequestProtocol {
 }
 
 class Period {
-    // TODO 指定した期間のインスタンスを生成できるようにする
-    private let date:NSDate!
-    private let description: String
+    let date:NSDate!
+    let description: String
 
     init(date: NSDate) {
         let formatter = NSDateFormatter()
@@ -163,5 +162,20 @@ class Period {
         // 指定した月の月初日を保持
         self.date = formatter.dateFromString("\(description)")
         print(self.date)
+    }
+
+    // 過去半年分
+    static func pastHalfYear() -> [Period] {
+        let current: Period = Period(date: NSDate())
+        var halfYears: [Period] = [current]
+
+        for i in 1...5 {
+            // Periodのdateパラメータは月初日なので1時間引くことで前日にする
+            let pastDate: NSDate = NSDate(timeInterval: -60*60, sinceDate: halfYears[i - 1].date)
+            halfYears.append(Period(date: pastDate))
+        }
+        dump(halfYears)
+
+        return halfYears
     }
 }
