@@ -27,6 +27,10 @@ class ExpensesModel: ResponseProtocol {
 
         if let sessionId = data["sessionId"] {
             self.sessionId = sessionId as! String
+            // セッションID更新
+            let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+            sharedInstance.setObject(self.sessionId, forKey: "sessionId")
+            sharedInstance.synchronize()
         }
 
         if let expenses = data["destinations"] {

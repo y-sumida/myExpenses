@@ -27,6 +27,10 @@ class DeleteExpenseModel: ResponseProtocol {
 
         if let sessionId = data["sessionId"] {
             self.sessionId = sessionId as! String
+            // セッションID更新
+            let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+            sharedInstance.setObject(self.sessionId, forKey: "sessionId")
+            sharedInstance.synchronize()
         }
 
         result = APIResult(code: self.resultCode, message: self.resultMessage, sessionId: self.sessionId)
