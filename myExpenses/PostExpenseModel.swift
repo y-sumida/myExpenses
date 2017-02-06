@@ -41,7 +41,17 @@ class PostExpenseModel: ResponseProtocol {
 class PostExpenseRequest: RequestProtocol {
     typealias Response = PostExpenseModel
     var expense: ExpenseModel!
-    var sessionId: String = ""
+    private var sessionId: String {
+        get {
+            let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+            if let sessionId: String = sharedInstance.stringForKey("sessionId") {
+                return sessionId
+            }
+            else {
+                return ""
+            }
+        }
+    }
 
     var request: NSMutableURLRequest {
         let body = NSMutableDictionary()
@@ -72,6 +82,5 @@ class PostExpenseRequest: RequestProtocol {
     
     init(expense: ExpenseModel, sessionId: String) {
         self.expense = expense
-        self.sessionId = sessionId
     }
 }
