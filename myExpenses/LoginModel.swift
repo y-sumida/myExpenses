@@ -70,6 +70,10 @@ class LoginModel: ResponseProtocol {
 
         if let sessionId = data["sessionId"] {
             self.sessionId = sessionId as! String
+            // ログイン成功時にセッションIDを保存
+            let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+            sharedInstance.setObject(self.sessionId, forKey: "sessionId")
+            sharedInstance.synchronize()
         }
 
         if let success = data["success"] {

@@ -59,11 +59,6 @@ class LoginViewController: UIViewController, ShowAPIErrorDialog {
                 let result = error as! APIResult
 
                 if result.code == APIResultCode.Success.rawValue {
-                    // ログイン成功時にセッションIDを保存
-                    let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-                    sharedInstance.setObject(result.sessionId, forKey: "sessionId")
-                    sharedInstance.synchronize()
-
                     self.showExpensesView(animated: true)
                 }
                 else {
