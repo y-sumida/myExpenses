@@ -86,7 +86,12 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
             .skip(1) //初期値読み飛ばし
             .subscribeNext {error in
                 let result = error as! APIResult
-                if result.code == APIResultCode.Success.rawValue {
+                // セッション切れの場合、ログイン画面へ戻す
+                if result.code == APIResultCode.SessionError.rawValue {
+                    // TODO ダイアログ表示する
+                    self.navigationController?.popToRootViewControllerAnimated(false)
+                }
+                else if result.code == APIResultCode.Success.rawValue {
                     self.showCompleteDialog("送信完了") { _ in
                         self.navigationController?.popViewControllerAnimated(true)
                     }
