@@ -56,8 +56,7 @@ class ExpenseEditViewModel {
     }
     
     func upsertExpense() {
-        // TODO sessionIDをUserDefaultなどから取得
-        PostExpenseModel.call(self.expense, sessionId: "")
+        PostExpenseModel.call(self.expense)
             .observeOn(MainScheduler.instance)//これ以降メインスレッドで実行
             .subscribe(
                 onNext: { model, response in
