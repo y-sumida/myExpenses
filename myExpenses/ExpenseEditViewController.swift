@@ -110,7 +110,6 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
             ],
             [
                 ExpenseEditSwitch(placeholder: "JR", type: .Switch, bindValue: viewModel.useJR),
-                ExpenseEditSwitch(placeholder: "JR", type: .Switch, bindValue: viewModel.useJR),
                 ExpenseEditSwitch(placeholder: "私鉄", type: .Switch, bindValue: viewModel.usePrivate),
                 ExpenseEditSwitch(placeholder: "地下鉄", type: .Switch, bindValue: viewModel.useSubway),
                 ExpenseEditSwitch(placeholder: "バス", type: .Switch, bindValue: viewModel.useBus),
@@ -195,6 +194,13 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
             return cell
         }
 
+        if let sw = row as? ExpenseEditSwitch {
+            let cell: TransportSelectCell = tableView.dequeueReusableCellWithIdentifier("TransportSelectCell") as! TransportSelectCell
+            cell.transportName.text = sw.placeholder
+            cell.bindValue = sw.bindValue
+            return cell
+        }
+
         switch indexPath.section {
         case ExpenseEditSections.Date.rawValue:
             let cell: DatePickerCell = tableView.dequeueReusableCellWithIdentifier("DatePickerCell") as! DatePickerCell
@@ -207,12 +213,6 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
                 self.viewModel.dateAsString.value = dateFormatter.stringFromDate(date)
                 self.table.reloadData()
             }
-            return cell
-        case ExpenseEditSections.Transport.rawValue:
-            let cell: TransportSelectCell = tableView.dequeueReusableCellWithIdentifier("TransportSelectCell") as! TransportSelectCell
-            cell.transportName.text = ExpenseEditSections.Transport.placeHolders[indexPath.row]
-            // TODO 各交通期間のbindデータの振り分け
-            cell.bindValue = viewModel.useJR
             return cell
         default:
             return UITableViewCell()
