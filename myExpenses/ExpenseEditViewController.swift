@@ -151,7 +151,7 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 6
+        return rowsInSection.count
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
