@@ -201,10 +201,9 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
             return cell
         }
 
-        switch indexPath.section {
-        case ExpenseEditSections.Date.rawValue:
+        if let date = row as? ExpenseEditDate {
             let cell: DatePickerCell = tableView.dequeueReusableCellWithIdentifier("DatePickerCell") as! DatePickerCell
-            cell.bindValue = viewModel.date
+            cell.bindValue = date.bindValue
             cell.handler = { (date: NSDate) in
                 self.isDatePickerOpen = false
 
@@ -214,9 +213,9 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
                 self.table.reloadData()
             }
             return cell
-        default:
-            return UITableViewCell()
         }
+
+        return UITableViewCell()
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
