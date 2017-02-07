@@ -46,6 +46,19 @@ enum ExpenseEditSections: Int {
     }
 }
 
+enum ExpenseEditType: Int {
+    case Text = 0
+    case Number
+    case Switch
+    case DatePicker
+}
+
+struct ExpenseEditRow<T> {
+    var placeholder: String
+    var type: ExpenseEditType
+    var bindValue: Variable<T>
+}
+
 class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableViewDataSource, ShowAPIErrorDialog {
     @IBOutlet weak private var table: UITableView!
     @IBOutlet weak var doneButton: UIBarButtonItem!
@@ -54,6 +67,7 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
     private let bag: DisposeBag = DisposeBag()
 
     var viewModel: ExpenseEditViewModel = ExpenseEditViewModel()
+    var rowsInSection:[Array<Any>]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +77,35 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
             navigationItem.title = "外出先編集"
             navigationItem.hidesBackButton = false
         }
+
+        rowsInSection = [
+            [
+                ExpenseEditRow(placeholder: "日付", type: .Text, bindValue: viewModel.dateAsString),
+                ExpenseEditRow(placeholder: "", type: .DatePicker, bindValue: viewModel.date)
+            ],
+            [
+                ExpenseEditRow(placeholder: "外出先", type: .Text, bindValue: viewModel.destination),
+            ],
+            [
+                ExpenseEditRow(placeholder: "JR", type: .Switch, bindValue: viewModel.useJR),
+                ExpenseEditRow(placeholder: "JR", type: .Switch, bindValue: viewModel.useJR),
+                ExpenseEditRow(placeholder: "私鉄", type: .Switch, bindValue: viewModel.usePrivate),
+                ExpenseEditRow(placeholder: "地下鉄", type: .Switch, bindValue: viewModel.useSubway),
+                ExpenseEditRow(placeholder: "バス", type: .Switch, bindValue: viewModel.useBus),
+                ExpenseEditRow(placeholder: "高速", type: .Switch, bindValue: viewModel.useHighway),
+                ExpenseEditRow(placeholder: "その他", type: .Text, bindValue: viewModel.useOther),
+            ],
+            [
+                ExpenseEditRow(placeholder: "from", type: .Text, bindValue: viewModel.from),
+                ExpenseEditRow(placeholder: "to", type: .Text, bindValue: viewModel.to),
+            ],
+            [
+                ExpenseEditRow(placeholder: "料金", type: .Number, bindValue: viewModel.fare),
+            ],
+            [
+                ExpenseEditRow(placeholder: "備考", type: .Text, bindValue: viewModel.memo)
+            ]
+        ]
 
         table.delegate = self
         table.dataSource = self
