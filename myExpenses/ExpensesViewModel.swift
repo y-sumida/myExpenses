@@ -18,7 +18,6 @@ class ExpensesViewModel {
     var reloadTrigger: PublishSubject<Void> = PublishSubject()
     var result: Variable<ErrorType?> = Variable(nil)
     var fareTotal: Variable<String> = Variable("")
-    var sessionId: String = ""
 
     private var _expenses: [ExpenseModel] = []
     var expenses: [ExpenseModel] {
