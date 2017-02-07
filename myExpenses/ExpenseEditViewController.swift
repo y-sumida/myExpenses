@@ -53,10 +53,32 @@ enum ExpenseEditType: Int {
     case DatePicker
 }
 
-struct ExpenseEditRow<T> {
+protocol ExpenseEditRow {
+    associatedtype Element
+    var placeholder: String { get }
+    var type: ExpenseEditType { get }
+    var bindValue: Variable<Element> { get }
+}
+
+struct ExpenseEditText: ExpenseEditRow {
+    typealias Element = String
     var placeholder: String
     var type: ExpenseEditType
-    var bindValue: Variable<T>
+    var bindValue: Variable<Element>
+}
+
+struct ExpenseEditDate: ExpenseEditRow {
+    typealias Element = NSDate
+    var placeholder: String
+    var type: ExpenseEditType
+    var bindValue: Variable<Element>
+}
+
+struct ExpenseEditSwitch: ExpenseEditRow {
+    typealias Element = Bool
+    var placeholder: String
+    var type: ExpenseEditType
+    var bindValue: Variable<Element>
 }
 
 class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableViewDataSource, ShowAPIErrorDialog {
@@ -80,30 +102,30 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
 
         rowsInSection = [
             [
-                ExpenseEditRow(placeholder: "日付", type: .Text, bindValue: viewModel.dateAsString),
-                ExpenseEditRow(placeholder: "", type: .DatePicker, bindValue: viewModel.date)
+                ExpenseEditText(placeholder: "日付", type: .Text, bindValue: viewModel.dateAsString),
+                ExpenseEditDate(placeholder: "", type: .DatePicker, bindValue: viewModel.date)
             ],
             [
-                ExpenseEditRow(placeholder: "外出先", type: .Text, bindValue: viewModel.destination),
+                ExpenseEditText(placeholder: "外出先", type: .Text, bindValue: viewModel.destination),
             ],
             [
-                ExpenseEditRow(placeholder: "JR", type: .Switch, bindValue: viewModel.useJR),
-                ExpenseEditRow(placeholder: "JR", type: .Switch, bindValue: viewModel.useJR),
-                ExpenseEditRow(placeholder: "私鉄", type: .Switch, bindValue: viewModel.usePrivate),
-                ExpenseEditRow(placeholder: "地下鉄", type: .Switch, bindValue: viewModel.useSubway),
-                ExpenseEditRow(placeholder: "バス", type: .Switch, bindValue: viewModel.useBus),
-                ExpenseEditRow(placeholder: "高速", type: .Switch, bindValue: viewModel.useHighway),
-                ExpenseEditRow(placeholder: "その他", type: .Text, bindValue: viewModel.useOther),
+                ExpenseEditSwitch(placeholder: "JR", type: .Switch, bindValue: viewModel.useJR),
+                ExpenseEditSwitch(placeholder: "JR", type: .Switch, bindValue: viewModel.useJR),
+                ExpenseEditSwitch(placeholder: "私鉄", type: .Switch, bindValue: viewModel.usePrivate),
+                ExpenseEditSwitch(placeholder: "地下鉄", type: .Switch, bindValue: viewModel.useSubway),
+                ExpenseEditSwitch(placeholder: "バス", type: .Switch, bindValue: viewModel.useBus),
+                ExpenseEditSwitch(placeholder: "高速", type: .Switch, bindValue: viewModel.useHighway),
+                ExpenseEditText(placeholder: "その他", type: .Text, bindValue: viewModel.useOther),
             ],
             [
-                ExpenseEditRow(placeholder: "from", type: .Text, bindValue: viewModel.from),
-                ExpenseEditRow(placeholder: "to", type: .Text, bindValue: viewModel.to),
+                ExpenseEditText(placeholder: "from", type: .Text, bindValue: viewModel.from),
+                ExpenseEditText(placeholder: "to", type: .Text, bindValue: viewModel.to),
             ],
             [
-                ExpenseEditRow(placeholder: "料金", type: .Number, bindValue: viewModel.fare),
+                ExpenseEditText(placeholder: "料金", type: .Number, bindValue: viewModel.fare),
             ],
             [
-                ExpenseEditRow(placeholder: "備考", type: .Text, bindValue: viewModel.memo)
+                ExpenseEditText(placeholder: "備考", type: .Text, bindValue: viewModel.memo)
             ]
         ]
 
@@ -162,68 +184,35 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let row = rowsInSection[indexPath.section][indexPath.row]
+
+        // TODO 変数名を適切なものに
+        // TODO 日付,料金のuserInteractionEnabled
+        if let text = row as? ExpenseEditText {
+            let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell") as! TextFieldCell
+            cell.title.text = text.placeholder
+            cell.bindValue = text.bindValue
+            return cell
+        }
+
         switch indexPath.section {
         case ExpenseEditSections.Date.rawValue:
-            if indexPath.row == 1 {
-                let cell: DatePickerCell = tableView.dequeueReusableCellWithIdentifier("DatePickerCell") as! DatePickerCell
-                cell.bindValue = viewModel.date
-                cell.handler = { (date: NSDate) in
-                    self.isDatePickerOpen = false
+            let cell: DatePickerCell = tableView.dequeueReusableCellWithIdentifier("DatePickerCell") as! DatePickerCell
+            cell.bindValue = viewModel.date
+            cell.handler = { (date: NSDate) in
+                self.isDatePickerOpen = false
 
-                    let dateFormatter = NSDateFormatter()
-                    dateFormatter.dateFormat  = "yyyyMMdd";
-                    self.viewModel.dateAsString.value = dateFormatter.stringFromDate(date)
-                    self.table.reloadData()
-                }
-                return cell
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat  = "yyyyMMdd";
+                self.viewModel.dateAsString.value = dateFormatter.stringFromDate(date)
+                self.table.reloadData()
             }
-            else {
-                let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell") as! TextFieldCell
-                cell.title.text = ExpenseEditSections.Date.placeHolders[indexPath.row]
-                cell.textField.userInteractionEnabled = false
-                cell.bindValue = viewModel.dateAsString
-                return cell
-            }
-        case ExpenseEditSections.Destination.rawValue:
-            let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell") as! TextFieldCell
-            cell.title.text = ExpenseEditSections.Destination.placeHolders[indexPath.row]
-            cell.bindValue = viewModel.destination
             return cell
         case ExpenseEditSections.Transport.rawValue:
-            // TODO その他の判別方法
-            if indexPath.row == 5 {
-                let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell") as! TextFieldCell
-                cell.title.text = ExpenseEditSections.Transport.placeHolders[indexPath.row]
-                cell.bindValue = viewModel.useOther
-                return cell
-            }
-            else {
-                let cell: TransportSelectCell = tableView.dequeueReusableCellWithIdentifier("TransportSelectCell") as! TransportSelectCell
-                cell.transportName.text = ExpenseEditSections.Transport.placeHolders[indexPath.row]
-                // TODO 各交通期間のbindデータの振り分け
-                cell.bindValue = viewModel.useJR
-                return cell
-            }
-        case ExpenseEditSections.Interval.rawValue:
-            let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell") as! TextFieldCell
-            cell.title.text = ExpenseEditSections.Interval.placeHolders[indexPath.row]
-            if indexPath.row == 0 {
-                cell.bindValue = viewModel.from
-            }
-            else {
-                cell.bindValue = viewModel.to
-            }
-            return cell
-        case ExpenseEditSections.Fare.rawValue:
-            let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell") as! TextFieldCell
-            cell.title.text = ExpenseEditSections.Fare.placeHolders[indexPath.row]
-            cell.textField.userInteractionEnabled = false
-            cell.bindValue = viewModel.fare
-            return cell
-        case ExpenseEditSections.Memo.rawValue:
-            let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell") as! TextFieldCell
-            cell.title.text = ExpenseEditSections.Memo.placeHolders[indexPath.row]
-            cell.bindValue = viewModel.memo
+            let cell: TransportSelectCell = tableView.dequeueReusableCellWithIdentifier("TransportSelectCell") as! TransportSelectCell
+            cell.transportName.text = ExpenseEditSections.Transport.placeHolders[indexPath.row]
+            // TODO 各交通期間のbindデータの振り分け
+            cell.bindValue = viewModel.useJR
             return cell
         default:
             return UITableViewCell()
