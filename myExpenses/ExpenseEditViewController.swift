@@ -192,7 +192,10 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
             cell.title.text = text.placeholder
             cell.bindValue = text.bindValue
             if text.type == .Number {
-               cell.keyboardType = .NumberPad
+                cell.keyboardType = .NumberPad
+            }
+            else {
+                cell.keyboardType = .Default
             }
             return cell
         }
