@@ -13,7 +13,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     @IBOutlet weak var table: UITableView!
     private let bag: DisposeBag = DisposeBag()
     private var viewModel: ExpensesViewModel!
-    private var period: Period = Period(date: NSDate()) // デフォルト当月
+    private var period: Period = Period() // デフォルト当月
     @IBOutlet weak var header: ExpensesHeaderView!
     @IBOutlet weak var footer: ExpensesFooterView!
 

@@ -156,7 +156,7 @@ class Period {
     let date:NSDate!
     let description: String
 
-    init(date: NSDate) {
+    init(date: NSDate = NSDate()) {
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyyMM"
         formatter.locale = NSLocale(localeIdentifier: "ja_JP")
