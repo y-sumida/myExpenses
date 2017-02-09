@@ -188,7 +188,6 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
         let row = rowsInSection[indexPath.section][indexPath.row]
 
         // TODO 変数名を適切なものに
-        // TODO 日付のuserInteractionEnabled
         if let text = row as? ExpenseEditText {
             let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell") as! TextFieldCell
             cell.title.text = text.placeholder
@@ -227,7 +226,6 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        // TODO 各セルごとの処理実装
         switch indexPath.section {
         case ExpenseEditSections.Date.rawValue:
             if indexPath.row == 0 {

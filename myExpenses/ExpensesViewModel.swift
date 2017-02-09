@@ -54,7 +54,6 @@ class ExpensesViewModel {
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: { (model, response) in
-                    // TODO indexよりもキー項目指定のほうがいいかも
                     self.result.value = model.result!
                     self._expenses.removeAtIndex(index)
                     self.calcFareTotal()

@@ -13,14 +13,12 @@ class PeriodsViewController: UIViewController, UITableViewDelegate, UITableViewD
     private var periods: [Period]!
 
     // TODO 表示する月の設定　過去半年分くらい？
-    // TODO UITableViewDelegate実装
     override func viewDidLoad() {
         super.viewDidLoad()
 
         table.delegate = self
         table.dataSource = self
 
-        // TODO カスタムセル必要？
         table.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
 
         periods = Period.pastHalfYear()
