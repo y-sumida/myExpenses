@@ -60,6 +60,11 @@ class TextFieldCell: UITableViewCell, UITextFieldDelegate {
 
     }
 
+    override func prepareForReuse() {
+        placeholder = ""
+        keyboardType = .Default
+    }
+
     func textFieldShouldReturn(textField: UITextField) -> Bool{
         textField.resignFirstResponder()
         return true
