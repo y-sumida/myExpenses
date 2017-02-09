@@ -1,5 +1,5 @@
 //
-//  ShowAPIErrorDialog.swift
+//  ShowDialog.swift
 //  myExpenses
 //
 //  Created by Yuki Sumida on 2017/01/15.
@@ -9,13 +9,12 @@
 import Foundation
 import UIKit
 
-// TODO utilityクラスとかでもいい？
-protocol ShowAPIErrorDialog {
+protocol ShowDialog {
     func showErrorDialog(error: APIResult, handler: ((UIAlertAction) -> Void)?)
     func showCompleteDialog(message: String, handler: ((UIAlertAction) -> Void)?)
 }
 
-extension ShowAPIErrorDialog {
+extension ShowDialog {
     func showErrorDialog(error: APIResult, handler: ((UIAlertAction) -> Void)? = nil) {
         let dialog = UIAlertController(title: error.code, message: error.message, preferredStyle: .Alert)
         dialog.addAction(UIAlertAction(title: "OK", style: .Default, handler: handler))

@@ -82,7 +82,7 @@ struct ExpenseEditSwitch: ExpenseEditRow {
     var bindValue: Variable<Element>
 }
 
-class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableViewDataSource, ShowAPIErrorDialog {
+class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableViewDataSource, ShowDialog {
     @IBOutlet weak private var table: UITableView!
     @IBOutlet weak var doneButton: UIBarButtonItem!
 
