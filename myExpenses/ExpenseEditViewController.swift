@@ -48,6 +48,7 @@ enum ExpenseEditSections: Int {
 
 enum ExpenseEditType: Int {
     case Text = 0
+    case Date
     case Number
     case Switch
     case DatePicker
@@ -102,7 +103,7 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
 
         rowsInSection = [
             [
-                ExpenseEditText(placeholder: "日付", type: .Text, bindValue: viewModel.dateAsString),
+                ExpenseEditText(placeholder: "日付", type: .Date, bindValue: viewModel.dateAsString),
                 ExpenseEditDate(placeholder: "", type: .DatePicker, bindValue: viewModel.date)
             ],
             [
@@ -194,6 +195,9 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
             if text.type == .Number {
                 cell.keyboardType = .NumberPad
             }
+            else if text.type == .Date {
+                cell.textField.userInteractionEnabled = false
+            }
             return cell
         }
 
@@ -229,8 +233,6 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
                 isDatePickerOpen = !isDatePickerOpen
                 tableView.reloadData()
             }
-        case ExpenseEditSections.Fare.rawValue:
-            showTextEditView(viewModel.fare, title: ExpenseEditSections.Fare.placeHolders[indexPath.row], keyboard: .NumberPad)
         default:
             break
         }

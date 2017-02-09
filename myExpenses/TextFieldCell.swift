@@ -63,6 +63,7 @@ class TextFieldCell: UITableViewCell, UITextFieldDelegate {
     override func prepareForReuse() {
         placeholder = ""
         keyboardType = .Default
+        textField.userInteractionEnabled = true
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool{
