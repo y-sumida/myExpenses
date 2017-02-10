@@ -257,12 +257,51 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
         }
     }
 
+    // TODO protocolかextensionに切り出したい
     func keyboardWillShow(notification: NSNotification) {
-        print("show")
+        if let userInfo = notification.userInfo,
+            let firstResponder: UIResponder = searchFirstResponder(self.view)!,
+            let textField: UITextField = firstResponder as? UITextField,
+            let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue, animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey]?.doubleValue {
+
+            table.contentInset = UIEdgeInsetsZero
+            table.scrollIndicatorInsets = UIEdgeInsetsZero
+
+            let convertedKeyboardFrame: CGRect = table.convertRect(keyboardFrame, fromView: nil)
+            let convertedTextFieldFrame: CGRect = textField.convertRect(textField.frame, toView: table)
+
+            let offsetY: CGFloat = CGRectGetMaxY(convertedTextFieldFrame) - CGRectGetMinY(convertedKeyboardFrame)
+            if offsetY > 0 {
+                UIView.beginAnimations("ResizeForKeyboard", context: nil)
+                UIView.setAnimationDuration(animationDuration)
+
+                let contentInsets = UIEdgeInsetsMake(0, 0, offsetY, 0)
+                table.contentInset = contentInsets
+                table.scrollIndicatorInsets = contentInsets
+                table.contentOffset = CGPointMake(0, table.contentOffset.y + offsetY)
+
+                UIView.commitAnimations()
+            }
+        }
     }
 
     func keyboardWillHide(notification: NSNotification) {
-        print("hide")
+        table.contentInset = UIEdgeInsetsZero
+        table.scrollIndicatorInsets = UIEdgeInsetsZero
+    }
+
+    func searchFirstResponder(view: UIView) -> UIResponder? {
+        if view.isFirstResponder() {
+            return view
+        }
+
+        for view in view.subviews {
+            if let responder:UIResponder = searchFirstResponder(view) {
+               return responder
+            }
+        }
+
+        return nil
     }
 
     private func showTextEditView(bindValue:Variable<String>, title: String, keyboard: UIKeyboardType = .Default) {
