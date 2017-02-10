@@ -167,6 +167,15 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
                 }
             }
             .addDisposableTo(bag)
+
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: #selector(self.keyboardWillShow),
+                                                         name: UIKeyboardWillShowNotification,
+                                                         object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: #selector(self.keyboardWillHide),
+                                                         name: UIKeyboardWillHideNotification,
+                                                         object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -235,6 +244,14 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
         default:
             break
         }
+    }
+
+    func keyboardWillShow(notification: NSNotification) {
+        print("show")
+    }
+
+    func keyboardWillHide(notification: NSNotification) {
+        print("hide")
     }
 
     private func showTextEditView(bindValue:Variable<String>, title: String, keyboard: UIKeyboardType = .Default) {

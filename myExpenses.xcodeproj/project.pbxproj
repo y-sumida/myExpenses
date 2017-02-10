@@ -48,6 +48,7 @@
 		A97847F81E436BB200A2C2A9 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97847F71E436BB200A2C2A9 /* IntExtension.swift */; };
 		A97847FA1E44C5CE00A2C2A9 /* Periods.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A97847F91E44C5CE00A2C2A9 /* Periods.storyboard */; };
 		A97847FC1E44C6A600A2C2A9 /* PeriodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97847FB1E44C6A600A2C2A9 /* PeriodsViewController.swift */; };
+		A97BEDCA1E4CAEFF00CDBEC6 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97BEDC91E4CAEFF00CDBEC6 /* NSDateExtension.swift */; };
 		A9E49D661E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */; };
 		A9E49D6B1E2BBA3B00FE3DA4 /* ShowDialog.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D6A1E2BBA3B00FE3DA4 /* ShowDialog.swift.swift */; };
 		A9E49D6D1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */; };
@@ -111,6 +112,7 @@
 		A97847F71E436BB200A2C2A9 /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		A97847F91E44C5CE00A2C2A9 /* Periods.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Periods.storyboard; sourceTree = "<group>"; };
 		A97847FB1E44C6A600A2C2A9 /* PeriodsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodsViewController.swift; sourceTree = "<group>"; };
+		A97BEDC91E4CAEFF00CDBEC6 /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
 		A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteExpenseModel.swift; sourceTree = "<group>"; };
 		A9E49D6A1E2BBA3B00FE3DA4 /* ShowDialog.swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowDialog.swift.swift; sourceTree = "<group>"; };
 		A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseEditViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			children = (
 				A933ED171E40CE25009865B0 /* StringExtension.swift */,
 				A97847F71E436BB200A2C2A9 /* IntExtension.swift */,
+				A97BEDC91E4CAEFF00CDBEC6 /* NSDateExtension.swift */,
 			);
 			name = extension;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				A95593E01E212E9E00882E58 /* ExpensesViewModel.swift in Sources */,
 				A933ED181E40CE25009865B0 /* StringExtension.swift in Sources */,
 				A97824001E33054800B80942 /* TextEditViewController.swift in Sources */,
+				A97BEDCA1E4CAEFF00CDBEC6 /* NSDateExtension.swift in Sources */,
 				A97824031E363B4900B80942 /* TextFieldCell.swift in Sources */,
 				A97824071E3643A800B80942 /* DatePickerCell.swift in Sources */,
 			);
