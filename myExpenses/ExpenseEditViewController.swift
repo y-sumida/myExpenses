@@ -178,6 +178,17 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
                                                          object: nil)
     }
 
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        NSNotificationCenter.defaultCenter().removeObserver(self,
+                                                            name: UIKeyboardWillShowNotification,
+                                                            object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self,
+                                                            name: UIKeyboardWillHideNotification,
+                                                            object: nil)
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
