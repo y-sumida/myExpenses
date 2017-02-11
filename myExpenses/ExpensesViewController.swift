@@ -11,12 +11,13 @@ import RxSwift
 
 class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewDataSource, UIGestureRecognizerDelegate, ShowDialog {
     @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var footer: ExpensesFooterView!
+    @IBOutlet weak var periodButton: UIBarButtonItem!
+    @IBOutlet weak var fareTotal: UIBarButtonItem!
+
     private let bag: DisposeBag = DisposeBag()
     private var viewModel: ExpensesViewModel!
     private var period: Period = Period() // デフォルト当月
-    @IBOutlet weak var footer: ExpensesFooterView!
-    @IBOutlet weak var periodButton: UIBarButtonItem!
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // ナビゲーションバー表示
@@ -47,9 +48,11 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
             }
             .addDisposableTo(bag)
 
-        //viewModel.fareTotal.asObservable()
-        //    .bindTo(header.fareTotal.rx_text)
-        //    .addDisposableTo(bag)
+        viewModel.fareTotal.asObservable()
+            .subscribeNext {
+                self.fareTotal.title = $0
+            }
+            .addDisposableTo(bag)
 
         viewModel.result.asObservable()
             .skip(1) //初期値読み飛ばし
@@ -74,6 +77,11 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
 
         // TODO 表示形式
         periodButton.title = period.description
+
+        // UIBarButtonItemをラベルとして使う
+        fareTotal.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.blackColor()], forState: .Normal)
+        fareTotal.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.blackColor()], forState: .Disabled)
+        fareTotal.enabled = false
     }
 
     override func didReceiveMemoryWarning() {

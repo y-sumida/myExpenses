@@ -77,6 +77,7 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="1DH-Wh-2zO"/>
                     <connections>
+                        <outlet property="fareTotal" destination="fF1-og-82U" id="Jle-VO-jrJ"/>
                         <outlet property="footer" destination="80L-y6-kJB" id="Hou-Iz-0mE"/>
                         <outlet property="periodButton" destination="SYu-Ev-u9p" id="6Zd-7i-nqp"/>
                         <outlet property="table" destination="vO1-Zz-h5a" id="NpZ-NC-ar6"/>
