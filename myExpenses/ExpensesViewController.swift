@@ -14,9 +14,10 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     private let bag: DisposeBag = DisposeBag()
     private var viewModel: ExpensesViewModel!
     private var period: Period = Period() // デフォルト当月
-    @IBOutlet weak var header: ExpensesHeaderView!
+    //@IBOutlet weak var header: ExpensesHeaderView!
     @IBOutlet weak var footer: ExpensesFooterView!
 
+    @IBOutlet weak var periodButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
         // ナビゲーションバー表示
@@ -47,9 +48,9 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
             }
             .addDisposableTo(bag)
 
-        viewModel.fareTotal.asObservable()
-            .bindTo(header.fareTotal.rx_text)
-            .addDisposableTo(bag)
+        //viewModel.fareTotal.asObservable()
+        //    .bindTo(header.fareTotal.rx_text)
+        //    .addDisposableTo(bag)
 
         viewModel.result.asObservable()
             .skip(1) //初期値読み飛ばし
@@ -157,5 +158,8 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         alert.addAction(defaultAction)
 
         presentViewController(alert, animated: true, completion: nil)
+    }
+
+    @IBAction func tapPeriod(sender: AnyObject) {
     }
 }
