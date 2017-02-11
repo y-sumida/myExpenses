@@ -260,7 +260,7 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
     // TODO protocolかextensionに切り出したい
     func keyboardWillShow(notification: NSNotification) {
         if let userInfo = notification.userInfo,
-            let firstResponder: UIResponder = searchFirstResponder(self.view)!,
+            let firstResponder: UIResponder = self.view.searchFirstResponder()!,
             let textField: UITextField = firstResponder as? UITextField,
             let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue, animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey]?.doubleValue {
 
@@ -288,20 +288,6 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
     func keyboardWillHide(notification: NSNotification) {
         table.contentInset = UIEdgeInsetsZero
         table.scrollIndicatorInsets = UIEdgeInsetsZero
-    }
-
-    func searchFirstResponder(view: UIView) -> UIResponder? {
-        if view.isFirstResponder() {
-            return view
-        }
-
-        for view in view.subviews {
-            if let responder:UIResponder = searchFirstResponder(view) {
-               return responder
-            }
-        }
-
-        return nil
     }
 
     private func showTextEditView(bindValue:Variable<String>, title: String, keyboard: UIKeyboardType = .Default) {
