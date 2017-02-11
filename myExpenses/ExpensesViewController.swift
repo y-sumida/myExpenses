@@ -14,10 +14,9 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     private let bag: DisposeBag = DisposeBag()
     private var viewModel: ExpensesViewModel!
     private var period: Period = Period() // デフォルト当月
-    //@IBOutlet weak var header: ExpensesHeaderView!
     @IBOutlet weak var footer: ExpensesFooterView!
-
     @IBOutlet weak var periodButton: UIBarButtonItem!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // ナビゲーションバー表示
@@ -72,6 +71,9 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
 
         // 初回ロードは当月指定
         viewModel.monthlyExpenses(period)
+
+        // TODO 表示形式
+        periodButton.title = period.description
     }
 
     override func didReceiveMemoryWarning() {
