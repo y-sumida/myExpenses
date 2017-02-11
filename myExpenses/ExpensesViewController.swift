@@ -161,5 +161,11 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     }
 
     @IBAction func tapPeriod(sender: AnyObject) {
+        let vc:PeriodsViewController = UIStoryboard(name: "Periods", bundle: nil).instantiateViewControllerWithIdentifier("PeriodsViewController") as! PeriodsViewController
+
+        vc.modalPresentationStyle = .Custom
+        vc.modalTransitionStyle = .CrossDissolve
+
+        self.navigationController!.presentViewController(vc, animated: true, completion: nil)
     }
 }
