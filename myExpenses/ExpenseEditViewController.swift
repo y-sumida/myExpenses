@@ -27,23 +27,6 @@ enum ExpenseEditSections: Int {
             return 2
         }
     }
-
-    var placeHolders: [String] {
-        switch self {
-        case Date:
-            return ["日付"]
-        case Destination:
-            return ["外出先"]
-        case Transport:
-            return ["JR", "私鉄", "地下鉄", "バス", "高速", "その他"]
-        case Interval:
-            return ["from", "to"]
-        case Fare:
-            return ["料金"]
-        case Memo:
-            return ["備考"]
-        }
-    }
 }
 
 enum ExpenseEditType: Int {
