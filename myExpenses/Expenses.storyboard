@@ -34,16 +34,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vO1-Zz-h5a">
-                                <rect key="frame" x="0.0" y="44" width="600" height="430"/>
+                                <rect key="frame" x="0.0" y="44" width="600" height="448"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="80L-y6-kJB" customClass="ExpensesFooterView" customModule="myExpenses" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="496" width="600" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="xxw-aW-hYe"/>
-                                </constraints>
-                            </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqG-B0-oh0">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <items>
@@ -58,27 +51,37 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hue-06-kED">
+                                <rect key="frame" x="0.0" y="492" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="GaQ-R6-d2K"/>
+                                    <barButtonItem systemItem="compose" id="C6Y-ef-162">
+                                        <connections>
+                                            <action selector="tapEditButton:" destination="Emo-XN-Oc7" id="uIr-gq-bkF"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="80L-y6-kJB" firstAttribute="leading" secondItem="71m-pO-xUf" secondAttribute="leading" id="2RP-1J-da0"/>
                             <constraint firstAttribute="trailing" secondItem="vO1-Zz-h5a" secondAttribute="trailing" id="87t-l0-saH"/>
+                            <constraint firstItem="hue-06-kED" firstAttribute="top" secondItem="vO1-Zz-h5a" secondAttribute="bottom" id="8TF-nu-ulV"/>
+                            <constraint firstItem="ne2-Bh-RbY" firstAttribute="top" secondItem="hue-06-kED" secondAttribute="bottom" id="Acj-EJ-cn9"/>
                             <constraint firstItem="vO1-Zz-h5a" firstAttribute="top" secondItem="tqG-B0-oh0" secondAttribute="bottom" id="HCX-KO-3KO"/>
                             <constraint firstItem="vO1-Zz-h5a" firstAttribute="top" secondItem="tqG-B0-oh0" secondAttribute="bottom" id="S3F-PJ-RrH"/>
                             <constraint firstItem="tqG-B0-oh0" firstAttribute="leading" secondItem="71m-pO-xUf" secondAttribute="leading" id="Ulm-gI-9J1"/>
                             <constraint firstAttribute="trailing" secondItem="tqG-B0-oh0" secondAttribute="trailing" id="Xmi-IO-A86"/>
-                            <constraint firstItem="ne2-Bh-RbY" firstAttribute="top" secondItem="80L-y6-kJB" secondAttribute="bottom" id="d9z-ra-u8o"/>
+                            <constraint firstItem="hue-06-kED" firstAttribute="leading" secondItem="71m-pO-xUf" secondAttribute="leading" id="cJ9-Rh-aOV"/>
+                            <constraint firstAttribute="trailing" secondItem="hue-06-kED" secondAttribute="trailing" id="le0-yM-cYy"/>
                             <constraint firstItem="tqG-B0-oh0" firstAttribute="top" secondItem="71m-pO-xUf" secondAttribute="top" id="m0E-yc-ogt"/>
-                            <constraint firstItem="80L-y6-kJB" firstAttribute="top" secondItem="vO1-Zz-h5a" secondAttribute="bottom" constant="22" id="rjy-d7-zeF"/>
                             <constraint firstItem="vO1-Zz-h5a" firstAttribute="leading" secondItem="71m-pO-xUf" secondAttribute="leading" id="wtp-9S-dKW"/>
-                            <constraint firstAttribute="trailing" secondItem="80L-y6-kJB" secondAttribute="trailing" id="x5L-ev-lbH"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="1DH-Wh-2zO"/>
                     <connections>
                         <outlet property="fareTotal" destination="fF1-og-82U" id="Jle-VO-jrJ"/>
-                        <outlet property="footer" destination="80L-y6-kJB" id="Hou-Iz-0mE"/>
                         <outlet property="periodButton" destination="SYu-Ev-u9p" id="6Zd-7i-nqp"/>
                         <outlet property="table" destination="vO1-Zz-h5a" id="NpZ-NC-ar6"/>
                     </connections>

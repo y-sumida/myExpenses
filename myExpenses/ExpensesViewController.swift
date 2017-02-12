@@ -11,7 +11,6 @@ import RxSwift
 
 class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewDataSource, UIGestureRecognizerDelegate, ShowDialog {
     @IBOutlet weak var table: UITableView!
-    @IBOutlet weak var footer: ExpensesFooterView!
     @IBOutlet weak var periodButton: UIBarButtonItem!
     @IBOutlet weak var fareTotal: UIBarButtonItem!
 
@@ -168,6 +167,33 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         alert.addAction(defaultAction)
 
         presentViewController(alert, animated: true, completion: nil)
+    }
+
+    @IBAction func tapEditButton(sender: AnyObject) {
+        // TODO 各メニューの処理を実装する
+        let alert: UIAlertController = UIAlertController(title: "追加メニュー", message: "選択してください", preferredStyle:  UIAlertControllerStyle.ActionSheet)
+        let addAction: UIAlertAction = UIAlertAction(title: "新規追加", style: UIAlertActionStyle.Default, handler:{
+            (action: UIAlertAction!) -> Void in
+            print("add")
+            let vc:ExpenseEditViewController = UIStoryboard(name: "ExpenseEdit", bundle: nil).instantiateViewControllerWithIdentifier("ExpenseEditViewController") as! ExpenseEditViewController
+            self.navigationController!.pushViewController(vc, animated: true)
+        })
+        let bookmarkAction: UIAlertAction = UIAlertAction(title: "お気に入りから追加", style: UIAlertActionStyle.Default, handler:{
+            (action: UIAlertAction!) -> Void in
+            print("bookmark")
+        })
+        let searchAction: UIAlertAction = UIAlertAction(title: "検索", style: UIAlertActionStyle.Default, handler:{
+            (action: UIAlertAction!) -> Void in
+            print("search")
+        })
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:nil)
+
+        alert.addAction(addAction)
+        alert.addAction(bookmarkAction)
+        alert.addAction(searchAction)
+        alert.addAction(cancelAction)
+
+        self.navigationController!.presentViewController(alert, animated: true, completion: nil)
     }
 
     @IBAction func tapPeriod(sender: AnyObject) {
