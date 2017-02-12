@@ -20,7 +20,7 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kUA-x7-iaU">
                                 <rect key="frame" x="20" y="84" width="560" height="44"/>
                                 <items>
-                                    <barButtonItem title="Item" id="hnX-i1-9uK">
+                                    <barButtonItem systemItem="cancel" id="hnX-i1-9uK">
                                         <connections>
                                             <action selector="tapButton:" destination="JeU-uu-8b0" id="CCj-OQ-1P3"/>
                                         </connections>
