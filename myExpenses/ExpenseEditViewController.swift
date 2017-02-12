@@ -16,17 +16,6 @@ enum ExpenseEditSections: Int {
     case Interval
     case Fare
     case Memo
-
-    var rows: Int {
-        switch self {
-        case Date, .Destination, .Fare, .Memo:
-            return 1
-        case Transport:
-            return 6
-        case Interval:
-            return 2
-        }
-    }
 }
 
 enum ExpenseEditType: Int {
@@ -181,10 +170,10 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if ExpenseEditSections(rawValue: section) == .Date && isDatePickerOpen {
-                return 2
+        if ExpenseEditSections(rawValue: section) == .Date && !isDatePickerOpen {
+                return 1
         }
-        return (ExpenseEditSections(rawValue: section)?.rows)!
+        return rowsInSection[section].count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
