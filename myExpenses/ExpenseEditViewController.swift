@@ -243,7 +243,7 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
     // TODO protocolかextensionに切り出したい
     func keyboardWillShow(notification: NSNotification) {
         if let userInfo = notification.userInfo,
-            let firstResponder: UIResponder = self.view.searchFirstResponder()!,
+            let firstResponder: UIResponder = self.view.searchFirstResponder(),
             let textField: UITextField = firstResponder as? UITextField,
             let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue, animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey]?.doubleValue {
 
