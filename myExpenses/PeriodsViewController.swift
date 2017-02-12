@@ -12,6 +12,8 @@ class PeriodsViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var table: UITableView!
     private var periods: [Period]!
 
+    var handler: ((period: Period) -> Void) = {_ in }
+
     // TODO 表示する月の設定　過去半年分くらい？
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +43,7 @@ class PeriodsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        // TODO 選択した月をExpensesViewControllerに連携
+        self.handler(period: periods[indexPath.row])
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

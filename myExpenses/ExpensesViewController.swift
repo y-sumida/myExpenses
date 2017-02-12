@@ -175,6 +175,11 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
 
         vc.modalPresentationStyle = .Custom
         vc.modalTransitionStyle = .CrossDissolve
+        vc.handler = { period in
+            self.period = period
+            self.periodButton.title = period.description
+            self.viewModel.monthlyExpenses(period)
+        }
 
         self.navigationController!.presentViewController(vc, animated: true, completion: nil)
     }
