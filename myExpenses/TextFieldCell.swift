@@ -62,6 +62,8 @@ class TextFieldCell: UITableViewCell, UITextFieldDelegate {
 
     override func prepareForReuse() {
         placeholder = ""
+        title.text = ""
+        textField.text = ""
         keyboardType = .Default
         textField.userInteractionEnabled = true
     }
