@@ -24,6 +24,7 @@ class SearchViewController: UIViewController {
                 print("search")
                 // TODO 検索APIコール
                 // TODO 検索結果をtableに反映
+                self.searchBar.resignFirstResponder()
             }
             .addDisposableTo(bag)
 
