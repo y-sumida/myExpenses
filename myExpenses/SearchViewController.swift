@@ -29,10 +29,10 @@ class SearchViewController: UIViewController {
 
         self.searchBar.rx_cancelButtonClicked.asObservable()
             .subscribeNext {
-                print("cancel")
-                // TODO キャンセル処理
-        }
-        .addDisposableTo(bag)
+                self.searchBar.resignFirstResponder()
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+            .addDisposableTo(bag)
     }
 
     override func didReceiveMemoryWarning() {
