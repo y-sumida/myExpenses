@@ -14,7 +14,6 @@ class PeriodsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     var handler: ((period: Period) -> Void) = {_ in }
 
-    // TODO 表示する月の設定　過去半年分くらい？
     override func viewDidLoad() {
         super.viewDidLoad()
 
