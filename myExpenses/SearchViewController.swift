@@ -7,11 +7,32 @@
 //
 
 import UIKit
+import RxSwift
 
 class SearchViewController: UIViewController {
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var table: UITableView!
+
+    private let bag: DisposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.searchBar.showsCancelButton = true
+
+        self.searchBar.rx_searchButtonClicked.asObservable()
+            .subscribeNext {
+                print("search")
+                // TODO 検索APIコール
+                // TODO 検索結果をtableに反映
+            }
+            .addDisposableTo(bag)
+
+        self.searchBar.rx_cancelButtonClicked.asObservable()
+            .subscribeNext {
+                print("cancel")
+                // TODO キャンセル処理
+        }
+        .addDisposableTo(bag)
     }
 
     override func didReceiveMemoryWarning() {

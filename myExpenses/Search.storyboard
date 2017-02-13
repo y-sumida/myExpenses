@@ -40,6 +40,10 @@
                     <toolbarItems/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="searchBar" destination="3Wh-Bl-fqF" id="LHe-Kw-fui"/>
+                        <outlet property="table" destination="V1p-3U-54t" id="9bR-Cx-GZM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BHE-OY-PhJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
