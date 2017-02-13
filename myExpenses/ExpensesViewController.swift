@@ -185,6 +185,10 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         let searchAction: UIAlertAction = UIAlertAction(title: "検索", style: UIAlertActionStyle.Default, handler:{
             (action: UIAlertAction!) -> Void in
             print("search")
+            let vc:SearchViewController = UIStoryboard(name: "Search", bundle: nil).instantiateViewControllerWithIdentifier("SearchViewController") as! SearchViewController
+            vc.modalPresentationStyle = .Custom
+            vc.modalTransitionStyle = .CoverVertical
+            self.navigationController!.presentViewController(vc, animated: true, completion: nil)
         })
         let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:nil)
 
