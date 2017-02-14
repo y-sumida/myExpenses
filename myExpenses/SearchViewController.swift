@@ -18,6 +18,7 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.searchBar.showsCancelButton = true
+        self.searchBar.becomeFirstResponder() //検索窓にフォーカス
 
         self.searchBar.rx_searchButtonClicked.asObservable()
             .subscribeNext {
