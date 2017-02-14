@@ -29,7 +29,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.searchBar.rx_searchButtonClicked.asObservable()
             .subscribeNext {
                 self.viewModel.searchExpenses(self.searchBar.text!)
-                self.searchBar.resignFirstResponder()
             }
             .addDisposableTo(bag)
 
@@ -44,6 +43,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             .asObservable()
             .subscribeNext {
                 self.table.reloadData()
+                if !self.viewModel.expenses.isEmpty {
+                    self.searchBar.resignFirstResponder()
+                }
             }
             .addDisposableTo(bag)
     }
