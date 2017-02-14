@@ -43,7 +43,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             .asObservable()
             .subscribeNext {
                 self.table.reloadData()
-                if !self.viewModel.expenses.isEmpty {
+                if self.viewModel.expenses.isNotEmpty {
                     self.searchBar.resignFirstResponder()
                 }
             }
