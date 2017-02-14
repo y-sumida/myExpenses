@@ -14,6 +14,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var table: UITableView!
 
     private let bag: DisposeBag = DisposeBag()
+    private var viewModel: ExpensesViewModel = ExpensesViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +23,7 @@ class SearchViewController: UIViewController {
 
         self.searchBar.rx_searchButtonClicked.asObservable()
             .subscribeNext {
-                print("search")
-                // TODO 検索APIコール
+                self.viewModel.searchExpenses(self.searchBar.text!)
                 // TODO 検索結果をtableに反映
                 self.searchBar.resignFirstResponder()
             }

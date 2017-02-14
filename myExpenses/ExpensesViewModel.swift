@@ -68,6 +68,23 @@ class ExpensesViewModel {
             .addDisposableTo(bag)
     }
 
+    func searchExpenses(keyword: String) {
+        ExpensesModel.call(keyword)
+            .observeOn(MainScheduler.instance)
+            .subscribe(
+                onNext: { (model, response) in
+                    self.result.value = model.result!
+
+                    self.reloadTrigger.onNext(())
+                },
+                onError: { (error: ErrorType) in
+                    // APIエラー
+                    self.result.value = error
+                }
+            )
+            .addDisposableTo(bag)
+    }
+
     private func calcFareTotal() {
         fareTotal.value = _expenses.reduce(0) {
             $0 + $1.fare
