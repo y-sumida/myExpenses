@@ -74,6 +74,7 @@ class ExpensesViewModel {
             .subscribe(
                 onNext: { (model, response) in
                     self.result.value = model.result!
+                    self._expenses = model.expenses
 
                     self.reloadTrigger.onNext(())
                 },
