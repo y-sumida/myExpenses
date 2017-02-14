@@ -21,13 +21,6 @@ class TextFieldCell: UITableViewCell, UITextFieldDelegate {
     var keyboardType: UIKeyboardType = .Default {
         didSet {
             textField.keyboardType = keyboardType
-            if keyboardType == .NumberPad {
-                let toolbar = UIToolbar(frame: CGRectMake(0, 0, self.frame.size.width, 40.0))
-                let flexible = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-                let done = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(self.closeKeyboard))
-                toolbar.items = [flexible, done]
-                textField.inputAccessoryView = toolbar
-            }
         }
     }
 
@@ -56,6 +49,16 @@ class TextFieldCell: UITableViewCell, UITextFieldDelegate {
         textField.borderStyle = .None
         textField.placeholder = placeholder
         textField.keyboardType = keyboardType
+        textField.autocapitalizationType = .None
+        textField.autocorrectionType = .No
+
+        // Doneボタン
+        let toolbar = UIToolbar(frame: CGRectMake(0, 0, self.frame.size.width, 40.0))
+        let flexible = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let done = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(self.closeKeyboard))
+        toolbar.items = [flexible, done]
+        textField.inputAccessoryView = toolbar
+
         self.selectionStyle = .None
 
     }
