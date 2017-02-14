@@ -152,7 +152,7 @@ class ExpensesRequest: RequestProtocol {
     }
 }
 
-class Period {
+struct Period {
     let date:NSDate!
     let description: String
 
