@@ -86,6 +86,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         actionButton.rx_tap.asObservable()
             .subscribeNext {
                 print("action tap")
+                self.showUploadConfirmDialog()
             }
             .addDisposableTo(bag)
     }
@@ -166,6 +167,20 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
             (action: UIAlertAction!) -> Void in
             self.viewModel.deleteAtIndex(indexPath.row)
+        })
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler: { _ in
+            self.table.setEditing(false, animated: false)
+        })
+        alert.addAction(cancelAction)
+        alert.addAction(defaultAction)
+
+        presentViewController(alert, animated: true, completion: nil)
+    }
+
+    private func showUploadConfirmDialog() {
+        let alert: UIAlertController = UIAlertController(title: "精算伝票を作成します。\nよろしいですか？", message: "", preferredStyle:  UIAlertControllerStyle.Alert)
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
+            (action: UIAlertAction!) -> Void in
         })
         let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler: { _ in
             self.table.setEditing(false, animated: false)
