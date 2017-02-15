@@ -163,18 +163,15 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     }
 
     private func showDeleteConfirmDialog(indexPath: NSIndexPath) {
-        let alert: UIAlertController = UIAlertController(title: "削除してよいですか", message: "", preferredStyle:  UIAlertControllerStyle.Alert)
-        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
+        let defaultHandler: (UIAlertAction) -> Void = {
             (action: UIAlertAction!) -> Void in
             self.viewModel.deleteAtIndex(indexPath.row)
-        })
-        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler: { _ in
+        }
+        let cancelHandler: (UIAlertAction) -> Void = {
+            (action: UIAlertAction!) -> Void in
             self.table.setEditing(false, animated: false)
-        })
-        alert.addAction(cancelAction)
-        alert.addAction(defaultAction)
-
-        presentViewController(alert, animated: true, completion: nil)
+        }
+        self.showConfirmDialog("削除して良いですか", defaultHandler: defaultHandler, cancelHandler: cancelHandler)
     }
 
     private func showUploadConfirmDialog() {
