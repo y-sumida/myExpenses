@@ -13,6 +13,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var periodButton: UIBarButtonItem!
     @IBOutlet weak var fareTotal: UIBarButtonItem!
+    @IBOutlet weak var actionButton: UIBarButtonItem!
 
     private let bag: DisposeBag = DisposeBag()
     private var viewModel: ExpensesViewModel!
@@ -81,6 +82,12 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         fareTotal.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.blackColor()], forState: .Normal)
         fareTotal.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.blackColor()], forState: .Disabled)
         fareTotal.enabled = false
+
+        actionButton.rx_tap.asObservable()
+            .subscribeNext {
+                print("action tap")
+            }
+            .addDisposableTo(bag)
     }
 
     override func didReceiveMemoryWarning() {
