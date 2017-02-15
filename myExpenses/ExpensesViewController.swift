@@ -178,18 +178,12 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     }
 
     private func showUploadConfirmDialog() {
-        let alert: UIAlertController = UIAlertController(title: "精算伝票を作成します。\nよろしいですか？", message: "", preferredStyle:  UIAlertControllerStyle.Alert)
-        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
+        let defaultHandler: (UIAlertAction) -> Void = {
             (action: UIAlertAction!) -> Void in
             // TODO APIコール
             self.showCompleteDialog("登録メールアドレスに伝票を送信しました")
-        })
-        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler: { _ in
-        })
-        alert.addAction(cancelAction)
-        alert.addAction(defaultAction)
-
-        presentViewController(alert, animated: true, completion: nil)
+        }
+        self.showConfirmDialog("精算伝票を作成します。\nよろしいですか？", defaultHandler: defaultHandler, cancelHandler: nil)
     }
 
     @IBAction func tapEditButton(sender: AnyObject) {
