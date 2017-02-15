@@ -181,9 +181,10 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         let alert: UIAlertController = UIAlertController(title: "精算伝票を作成します。\nよろしいですか？", message: "", preferredStyle:  UIAlertControllerStyle.Alert)
         let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
             (action: UIAlertAction!) -> Void in
+            // TODO APIコール
+            self.showCompleteDialog("登録メールアドレスに伝票を送信しました")
         })
         let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler: { _ in
-            self.table.setEditing(false, animated: false)
         })
         alert.addAction(cancelAction)
         alert.addAction(defaultAction)
