@@ -42,7 +42,7 @@ class PostExpenseModel: ResponseProtocol {
     }
 }
 
-class PostExpenseRequest: RequestProtocol {
+struct PostExpenseRequest: RequestProtocol {
     typealias Response = PostExpenseModel
     var expense: ExpenseModel!
     private var sessionId: String {

@@ -90,7 +90,7 @@ class LoginModel: ResponseProtocol {
     }
 }
 
-class LoginRequest: RequestProtocol {
+struct LoginRequest: RequestProtocol {
     typealias Response = LoginModel
     var email: String = ""
     var password: String = ""

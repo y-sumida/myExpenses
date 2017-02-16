@@ -43,7 +43,7 @@ class DeleteExpenseModel: ResponseProtocol {
     }
 }
 
-class DeleteExpenseRequest: RequestProtocol {
+struct DeleteExpenseRequest: RequestProtocol {
     typealias Response = DeleteExpenseModel
     private var expenseId: String = ""
     private var sessionId: String {

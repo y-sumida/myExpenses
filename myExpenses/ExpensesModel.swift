@@ -130,7 +130,7 @@ class ExpenseModel {
     }
 }
 
-class ExpensesRequest: RequestProtocol {
+struct ExpensesRequest: RequestProtocol {
     typealias Response = ExpensesModel
     private var sessionId: String {
         get {
