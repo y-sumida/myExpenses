@@ -16,7 +16,7 @@ protocol ShowDialog {
     func showConfirmDialog(message: String, defaultHandler: ((UIAlertAction) -> Void)?, cancelHandler: ((UIAlertAction) -> Void)?)
 }
 
-extension ShowDialog {
+extension ShowDialog where Self: UIViewController {
     var root: UIViewController {
         var root = UIApplication.sharedApplication().keyWindow?.rootViewController
         while let present = root?.presentedViewController {
