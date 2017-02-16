@@ -64,4 +64,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         return cell
     }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // TODO 選択した内容を遷移元に連携
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }
