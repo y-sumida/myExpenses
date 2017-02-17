@@ -132,6 +132,7 @@ class ExpenseModel {
 
 struct ExpensesRequest: RequestProtocol {
     typealias Response = ExpensesModel
+    var method: HTTPMethod = .Get
     private var sessionId: String {
         get {
             let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -148,7 +149,7 @@ struct ExpensesRequest: RequestProtocol {
     var request: NSMutableURLRequest {
         let url:NSURL = NSURL(string: baseURL + "expenses.php?sessionId=\(sessionId)&period=\(period.description)")!
         let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "GET"
+        request.HTTPMethod = self.method.rawValue
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         return request
     }
@@ -160,6 +161,7 @@ struct ExpensesRequest: RequestProtocol {
 
 class SearchRequest: RequestProtocol {
     typealias Response = ExpensesModel
+    var method: HTTPMethod = .Get
     private var sessionId: String {
         get {
             let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -176,7 +178,7 @@ class SearchRequest: RequestProtocol {
     var request: NSMutableURLRequest {
         let url:NSURL = NSURL(string: baseURL + "search.php?sessionId=\(sessionId)&keyword=\(keyword)")!
         let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "GET"
+        request.HTTPMethod = self.method.rawValue
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         return request
     }

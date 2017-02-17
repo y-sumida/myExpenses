@@ -17,6 +17,7 @@ public protocol RequestProtocol {
     associatedtype Response: ResponseProtocol
     var request: NSMutableURLRequest {get}
     var baseURL: String { get }
+    var method: HTTPMethod { get }
     func responseToObject(data: NSData) -> Response
 }
 

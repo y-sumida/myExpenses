@@ -44,6 +44,7 @@ class PostExpenseModel: ResponseProtocol {
 
 struct PostExpenseRequest: RequestProtocol {
     typealias Response = PostExpenseModel
+    var method: HTTPMethod = .Post
     var expense: ExpenseModel!
     private var sessionId: String {
         get {
@@ -78,7 +79,7 @@ struct PostExpenseRequest: RequestProtocol {
         
         let url:NSURL = NSURL(string: baseURL + "upsert.php")!
         let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "POST"
+        request.HTTPMethod = self.method.rawValue
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions.init(rawValue: 2))
         return request
