@@ -49,6 +49,7 @@
 		A97BEDEC1E51EC5800CDBEC6 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A97BEDEB1E51EC5800CDBEC6 /* Search.storyboard */; };
 		A97BEDEE1E51ED1900CDBEC6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97BEDED1E51ED1900CDBEC6 /* SearchViewController.swift */; };
 		A97BEDF21E53520A00CDBEC6 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97BEDF11E53520A00CDBEC6 /* ArrayExtension.swift */; };
+		A97BEDF41E5734CA00CDBEC6 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97BEDF31E5734CA00CDBEC6 /* RequestProtocol.swift */; };
 		A9E49D661E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */; };
 		A9E49D6B1E2BBA3B00FE3DA4 /* ShowDialog.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D6A1E2BBA3B00FE3DA4 /* ShowDialog.swift.swift */; };
 		A9E49D6D1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */; };
@@ -113,6 +114,7 @@
 		A97BEDEB1E51EC5800CDBEC6 /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		A97BEDED1E51ED1900CDBEC6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A97BEDF11E53520A00CDBEC6 /* ArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
+		A97BEDF31E5734CA00CDBEC6 /* RequestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
 		A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteExpenseModel.swift; sourceTree = "<group>"; };
 		A9E49D6A1E2BBA3B00FE3DA4 /* ShowDialog.swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowDialog.swift.swift; sourceTree = "<group>"; };
 		A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseEditViewController.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			children = (
 				A9E49D6A1E2BBA3B00FE3DA4 /* ShowDialog.swift.swift */,
 				A97823F71E32FC8A00B80942 /* LoadXibView.swift */,
+				A97BEDF31E5734CA00CDBEC6 /* RequestProtocol.swift */,
 			);
 			name = protocol;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				A9E49D6B1E2BBA3B00FE3DA4 /* ShowDialog.swift.swift in Sources */,
 				A97BEDCC1E4F413C00CDBEC6 /* UIViewExtension.swift in Sources */,
 				A978240A1E37942300B80942 /* ExpenseEditViewModel.swift in Sources */,
+				A97BEDF41E5734CA00CDBEC6 /* RequestProtocol.swift in Sources */,
 				A95593E91E23C88900882E58 /* ExpenseCellViewModel.swift in Sources */,
 				A955937D1E1768DF00882E58 /* AppDelegate.swift in Sources */,
 				A95593E01E212E9E00882E58 /* ExpensesViewModel.swift in Sources */,
