@@ -44,8 +44,6 @@ class DeleteExpenseModel: ResponseProtocol {
 }
 
 struct DeleteExpenseRequest: RequestProtocol {
-    typealias Response = DeleteExpenseModel
-    var method: HTTPMethod = .Post
     private var expenseId: String = ""
     private var sessionId: String {
         get {
@@ -59,16 +57,22 @@ struct DeleteExpenseRequest: RequestProtocol {
         }
     }
 
-    var request: NSMutableURLRequest {
+    // RequestProtocol
+    typealias Response = DeleteExpenseModel
+    var method: HTTPMethod = .Post
+    var body: NSMutableDictionary {
         let body = NSMutableDictionary()
         body.setValue(expenseId, forKey: "id");
         body.setValue(sessionId, forKey: "sessionId");
+        return body
+    }
 
+    var request: NSMutableURLRequest {
         let url:NSURL = NSURL(string: baseURL + "delete.php")!
         let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
         request.HTTPMethod = self.method.rawValue
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions.init(rawValue: 2))
+        request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(self.body, options: NSJSONWritingOptions.init(rawValue: 2))
         return request
     }
 
