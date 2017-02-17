@@ -59,6 +59,7 @@ struct PostExpenseRequest: RequestProtocol {
     // RequestProtocol
     typealias Response = PostExpenseModel
     var method: HTTPMethod = .Post
+    var path: String = "upsert.php"
     var body: NSMutableDictionary {
         let body = NSMutableDictionary()
         body.setValue(sessionId, forKey: "sessionId")
@@ -81,7 +82,7 @@ struct PostExpenseRequest: RequestProtocol {
         return body
     }
     var request: NSMutableURLRequest {
-        let url:NSURL = NSURL(string: baseURL + "upsert.php")!
+        let url:NSURL = NSURL(string: baseURL + path)!
         let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
         request.HTTPMethod = self.method.rawValue
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

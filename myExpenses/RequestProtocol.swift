@@ -17,6 +17,7 @@ public protocol RequestProtocol {
     associatedtype Response: ResponseProtocol
     var request: NSMutableURLRequest {get}
     var baseURL: String { get }
+    var path: String { get }
     var method: HTTPMethod { get }
     var body: NSMutableDictionary? { get }
     func responseToObject(data: NSData) -> Response
@@ -25,6 +26,10 @@ public protocol RequestProtocol {
 extension RequestProtocol {
     var baseURL: String {
         return "http://localhost/"
+    }
+
+    var path: String {
+        return ""
     }
 
     var body: NSMutableDictionary? {

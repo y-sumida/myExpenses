@@ -133,6 +133,9 @@ class ExpenseModel {
 struct ExpensesRequest: RequestProtocol {
     typealias Response = ExpensesModel
     var method: HTTPMethod = .Get
+    var path: String {
+        return "expenses.php?sessionId=\(sessionId)&period=\(period.description)"
+    }
     private var sessionId: String {
         get {
             let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -147,7 +150,7 @@ struct ExpensesRequest: RequestProtocol {
     private let period: Period!
 
     var request: NSMutableURLRequest {
-        let url:NSURL = NSURL(string: baseURL + "expenses.php?sessionId=\(sessionId)&period=\(period.description)")!
+        let url:NSURL = NSURL(string: baseURL + path)!
         let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
         request.HTTPMethod = self.method.rawValue
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

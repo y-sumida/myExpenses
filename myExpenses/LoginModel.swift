@@ -75,6 +75,7 @@ struct LoginRequest: RequestProtocol {
     // RequestProtocol
     typealias Response = LoginModel
     var method: HTTPMethod = .Post
+    var path: String = "login.php"
     var body: NSMutableDictionary {
         let body = NSMutableDictionary()
         body.setValue(email, forKey: "email");
@@ -82,7 +83,7 @@ struct LoginRequest: RequestProtocol {
         return body
     }
     var request: NSMutableURLRequest {
-        let url:NSURL = NSURL(string: baseURL + "login.php")!
+        let url:NSURL = NSURL(string: baseURL + path)!
         let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
         request.HTTPMethod = self.method.rawValue
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
