@@ -18,6 +18,8 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     private let bag: DisposeBag = DisposeBag()
     private var viewModel: ExpensesViewModel!
     private var period: Period = Period() // デフォルト当月
+    var refreshControll = UIRefreshControl()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // ナビゲーションバー表示
@@ -45,6 +47,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
             .subscribeNext {
                 print("reload")
                 self.table.reloadData()
+                self.refreshControll.endRefreshing()
             }
             .addDisposableTo(bag)
 
@@ -71,6 +74,14 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
                 }
             }
             .addDisposableTo(bag)
+
+        // Pull Refresh
+        self.refreshControll.rx_controlEvent(.ValueChanged)
+            .subscribeNext { _ in
+               self.viewModel.monthlyExpenses(self.period)
+            }
+            .addDisposableTo(bag)
+        table.addSubview(refreshControll)
 
         // 初回ロードは当月指定
         viewModel.monthlyExpenses(period)
