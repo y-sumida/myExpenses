@@ -18,12 +18,17 @@ public protocol RequestProtocol {
     var request: NSMutableURLRequest {get}
     var baseURL: String { get }
     var method: HTTPMethod { get }
+    var body: NSMutableDictionary? { get }
     func responseToObject(data: NSData) -> Response
 }
 
 extension RequestProtocol {
     var baseURL: String {
         return "http://localhost/"
+    }
+
+    var body: NSMutableDictionary? {
+        return nil
     }
 
     func responseToObject(data: NSData) -> Response {
