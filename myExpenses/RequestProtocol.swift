@@ -8,6 +8,11 @@
 
 import Foundation
 
+public enum HTTPMethod: String {
+    case Get = "GET"
+    case Post = "POST"
+}
+
 public protocol RequestProtocol {
     associatedtype Response: ResponseProtocol
     var request: NSMutableURLRequest {get}
