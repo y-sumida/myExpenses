@@ -68,15 +68,6 @@ struct DeleteExpenseRequest: RequestProtocol {
         return body
     }
 
-    var request: NSMutableURLRequest {
-        let url:NSURL = NSURL(string: baseURL + path)!
-        let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = self.method.rawValue
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(self.body, options: NSJSONWritingOptions.init(rawValue: 2))
-        return request
-    }
-
     init(expenseId: String) {
         self.expenseId = expenseId
     }

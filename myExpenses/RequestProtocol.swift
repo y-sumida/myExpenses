@@ -36,6 +36,18 @@ extension RequestProtocol {
         return nil
     }
 
+    var request: NSMutableURLRequest {
+        let url:NSURL = NSURL(string: baseURL + path)!
+        let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = self.method.rawValue
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        if let `body`: NSMutableDictionary = body {
+            request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions.init(rawValue: 2))
+        }
+        return request
+    }
+
     func responseToObject(data: NSData) -> Response {
         do {
             let object = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as! NSDictionary

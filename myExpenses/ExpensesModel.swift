@@ -149,22 +149,12 @@ struct ExpensesRequest: RequestProtocol {
     }
     private let period: Period!
 
-    var request: NSMutableURLRequest {
-        let url:NSURL = NSURL(string: baseURL + path)!
-        let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = self.method.rawValue
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        return request
-    }
-
     init(period: Period) {
         self.period = period
     }
 }
 
 class SearchRequest: RequestProtocol {
-    typealias Response = ExpensesModel
-    var method: HTTPMethod = .Get
     private var sessionId: String {
         get {
             let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -178,12 +168,11 @@ class SearchRequest: RequestProtocol {
     }
     private let keyword: String
 
-    var request: NSMutableURLRequest {
-        let url:NSURL = NSURL(string: baseURL + "search.php?sessionId=\(sessionId)&keyword=\(keyword)")!
-        let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = self.method.rawValue
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        return request
+    // RequestProtocol
+    typealias Response = ExpensesModel
+    var method: HTTPMethod = .Get
+    var path: String {
+        return "search.php?sessionId=\(sessionId)&keyword=\(keyword)"
     }
 
     init(keyword: String) {
