@@ -69,21 +69,24 @@ class LoginModel: ResponseProtocol {
 }
 
 struct LoginRequest: RequestProtocol {
-    typealias Response = LoginModel
-    var method: HTTPMethod = .Post
     var email: String = ""
     var password: String = ""
 
-    var request: NSMutableURLRequest {
+    // RequestProtocol
+    typealias Response = LoginModel
+    var method: HTTPMethod = .Post
+    var body: NSMutableDictionary {
         let body = NSMutableDictionary()
         body.setValue(email, forKey: "email");
         body.setValue(password, forKey: "password");
-
+        return body
+    }
+    var request: NSMutableURLRequest {
         let url:NSURL = NSURL(string: baseURL + "login.php")!
         let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
         request.HTTPMethod = self.method.rawValue
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions.init(rawValue: 2))
+        request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(self.body, options: NSJSONWritingOptions.init(rawValue: 2))
         return request
     }
 
