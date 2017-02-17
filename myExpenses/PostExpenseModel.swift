@@ -43,8 +43,6 @@ class PostExpenseModel: ResponseProtocol {
 }
 
 struct PostExpenseRequest: RequestProtocol {
-    typealias Response = PostExpenseModel
-    var method: HTTPMethod = .Post
     var expense: ExpenseModel!
     private var sessionId: String {
         get {
@@ -58,7 +56,10 @@ struct PostExpenseRequest: RequestProtocol {
         }
     }
 
-    var request: NSMutableURLRequest {
+    // RequestProtocol
+    typealias Response = PostExpenseModel
+    var method: HTTPMethod = .Post
+    var body: NSMutableDictionary {
         let body = NSMutableDictionary()
         body.setValue(sessionId, forKey: "sessionId")
         body.setValue(expense.dateAsString, forKey: "date")
@@ -76,12 +77,15 @@ struct PostExpenseRequest: RequestProtocol {
         if expense.id.isNotEmpty {
             body.setValue(expense.id, forKey: "id")
         }
-        
+
+        return body
+    }
+    var request: NSMutableURLRequest {
         let url:NSURL = NSURL(string: baseURL + "upsert.php")!
         let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
         request.HTTPMethod = self.method.rawValue
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions.init(rawValue: 2))
+        request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(self.body, options: NSJSONWritingOptions.init(rawValue: 2))
         return request
     }
     
