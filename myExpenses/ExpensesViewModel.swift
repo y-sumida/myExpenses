@@ -13,8 +13,6 @@ class ExpensesViewModel {
     private let bag: DisposeBag = DisposeBag()
 
     var period: Variable<String> = Variable("")
-    var fetchTrigger: PublishSubject<Void> = PublishSubject()
-    var deleteTrigger: PublishSubject<Void> = PublishSubject()
     var reloadTrigger: PublishSubject<Void> = PublishSubject()
     var result: Variable<ErrorType?> = Variable(nil)
     var fareTotal: Variable<String> = Variable("")
