@@ -14,6 +14,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     @IBOutlet weak var periodButton: UIBarButtonItem!
     @IBOutlet weak var fareTotal: UIBarButtonItem!
     @IBOutlet weak var actionButton: UIBarButtonItem!
+    @IBOutlet weak var menuButton: UIBarButtonItem!
 
     private let bag: DisposeBag = DisposeBag()
     private var viewModel: ExpensesViewModel!
@@ -98,6 +99,14 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
             .subscribeNext {
                 print("action tap")
                 self.showUploadConfirmDialog()
+            }
+            .addDisposableTo(bag)
+
+        // menu
+        menuButton.rx_tap.asObservable()
+            .subscribeNext {
+                // TODO メニュー表示
+                print("menu tap")
             }
             .addDisposableTo(bag)
     }
