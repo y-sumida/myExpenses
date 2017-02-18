@@ -8,10 +8,6 @@
 import Foundation
 import RxSwift
 
-public protocol ResponseProtocol {
-    init(data: NSDictionary)
-}
-
 struct APIResult: ErrorType {
     var code: String
     var message: String
