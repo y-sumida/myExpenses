@@ -51,6 +51,7 @@
 		A97BEDF21E53520A00CDBEC6 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97BEDF11E53520A00CDBEC6 /* ArrayExtension.swift */; };
 		A97BEDF41E5734CA00CDBEC6 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97BEDF31E5734CA00CDBEC6 /* RequestProtocol.swift */; };
 		A97BEDF61E588E7100CDBEC6 /* ResponseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97BEDF51E588E7100CDBEC6 /* ResponseProtocol.swift */; };
+		A97BEDF81E58915D00CDBEC6 /* UIBarButtonItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97BEDF71E58915D00CDBEC6 /* UIBarButtonItemExtension.swift */; };
 		A9E49D661E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */; };
 		A9E49D6B1E2BBA3B00FE3DA4 /* ShowDialog.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D6A1E2BBA3B00FE3DA4 /* ShowDialog.swift.swift */; };
 		A9E49D6D1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */; };
@@ -117,6 +118,7 @@
 		A97BEDF11E53520A00CDBEC6 /* ArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		A97BEDF31E5734CA00CDBEC6 /* RequestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
 		A97BEDF51E588E7100CDBEC6 /* ResponseProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseProtocol.swift; sourceTree = "<group>"; };
+		A97BEDF71E58915D00CDBEC6 /* UIBarButtonItemExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtension.swift; sourceTree = "<group>"; };
 		A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteExpenseModel.swift; sourceTree = "<group>"; };
 		A9E49D6A1E2BBA3B00FE3DA4 /* ShowDialog.swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowDialog.swift.swift; sourceTree = "<group>"; };
 		A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseEditViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				A97847F71E436BB200A2C2A9 /* IntExtension.swift */,
 				A97BEDC91E4CAEFF00CDBEC6 /* NSDateExtension.swift */,
 				A97BEDCB1E4F413C00CDBEC6 /* UIViewExtension.swift */,
+				A97BEDF71E58915D00CDBEC6 /* UIBarButtonItemExtension.swift */,
 			);
 			name = extension;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				A95593D01E17965A00882E58 /* LoginViewModel.swift in Sources */,
 				A95593D61E19023500882E58 /* LoginModel.swift in Sources */,
 				A97847FC1E44C6A600A2C2A9 /* PeriodsViewController.swift in Sources */,
+				A97BEDF81E58915D00CDBEC6 /* UIBarButtonItemExtension.swift in Sources */,
 				A97BEDEE1E51ED1900CDBEC6 /* SearchViewController.swift in Sources */,
 				A97847F81E436BB200A2C2A9 /* IntExtension.swift in Sources */,
 				A97823FC1E33023700B80942 /* TransportSelectCell.swift in Sources */,

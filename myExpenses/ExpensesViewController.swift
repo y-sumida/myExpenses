@@ -91,9 +91,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         periodButton.title = period.description
 
         // UIBarButtonItemをラベルとして使う
-        fareTotal.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.blackColor()], forState: .Normal)
-        fareTotal.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.blackColor()], forState: .Disabled)
-        fareTotal.enabled = false
+        fareTotal.asLabel(color: UIColor.blackColor())
 
         actionButton.rx_tap.asObservable()
             .subscribeNext {
