@@ -32,6 +32,10 @@ class LoginViewController: UIViewController, ShowDialog {
             navi.setNavigationBarHidden(true, animated: true)
         }
 
+        // サジェスト無効化
+        email.autocapitalizationType = .None
+        email.autocorrectionType = .No
+
         // bind
         email.rx_text
             .bindTo(viewModel.email)
