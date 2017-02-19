@@ -9,6 +9,8 @@
 import UIKit
 import RxSwift
 
+//TODO 検索履歴
+
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var table: UITableView!
