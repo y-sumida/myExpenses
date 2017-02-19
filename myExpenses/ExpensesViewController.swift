@@ -105,6 +105,8 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
             .subscribeNext {
                 // TODO メニュー表示
                 print("menu tap")
+                let vc:MenuViewController = UIStoryboard(name: "Menu", bundle: nil).instantiateViewControllerWithIdentifier("MenuViewController") as! MenuViewController
+                self.navigationController?.pushViewController(vc, animated: true)
             }
             .addDisposableTo(bag)
     }

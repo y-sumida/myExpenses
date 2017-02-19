@@ -24,7 +24,7 @@
         <!--Menu View Controller-->
         <scene sceneID="dIL-3y-VMN">
             <objects>
-                <viewController id="p0K-rg-vIy" customClass="MenuViewController" customModule="myExpenses" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MenuViewController" id="p0K-rg-vIy" customClass="MenuViewController" customModule="myExpenses" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Jff-dq-DnL"/>
                         <viewControllerLayoutGuide type="bottom" id="PYT-QV-Ygy"/>
@@ -47,6 +47,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cjt-to-F6Y"/>
+                    <connections>
+                        <outlet property="table" destination="tg0-6r-M4u" id="wnA-nz-C1e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OaG-Br-2rR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
