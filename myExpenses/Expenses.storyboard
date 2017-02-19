@@ -80,7 +80,7 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="1DH-Wh-2zO">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="ICD-kS-WqG"/>
+                        <barButtonItem key="leftBarButtonItem" image="ic_menu" id="ICD-kS-WqG"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="Sf0-YB-uS3"/>
                     </navigationItem>
                     <connections>
@@ -96,4 +96,7 @@
             <point key="canvasLocation" x="-528" y="-131"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_menu" width="24" height="24"/>
+    </resources>
 </document>
