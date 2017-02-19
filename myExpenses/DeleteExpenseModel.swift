@@ -9,14 +9,14 @@
 import Foundation
 import RxSwift
 
-class DeleteExpenseModel: ResponseProtocol {
+struct DeleteExpenseModel: ResponseProtocol {
     var result:APIResult?
     var resultCode: String = ""
     var resultMessage: String = ""
     var sessionId: String = ""
     var isSuccess: Bool = false
 
-    required init(data: NSDictionary) {
+    init(data: NSDictionary) {
         if let resultCode = data["resultCode"] {
             self.resultCode = resultCode as! String
         }
