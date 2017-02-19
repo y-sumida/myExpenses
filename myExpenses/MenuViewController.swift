@@ -13,6 +13,12 @@ class MenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // ナビゲーションバー表示
+        if let navi = navigationController {
+            navi.setNavigationBarHidden(false, animated: true)
+            navigationItem.title = "設定"
+        }
     }
 
     override func didReceiveMemoryWarning() {
