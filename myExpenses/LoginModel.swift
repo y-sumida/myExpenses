@@ -58,6 +58,10 @@ struct LoginModel: ResponseProtocol {
     }
 
     static func call(email: String, password: String) -> Observable<(LoginModel, NSHTTPURLResponse)> {
+        // メールアドレス保存
+        let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        sharedInstance.setObject(email, forKey: "email")
+        sharedInstance.synchronize()
 
         let session: NSURLSession = NSURLSession.sharedSession()
         return session.rx_responseObject(LoginRequest(email: email, password: password))
