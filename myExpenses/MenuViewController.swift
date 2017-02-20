@@ -11,6 +11,13 @@ import UIKit
 class MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var table: UITableView!
 
+    private var email: String {
+        let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        guard let mail: String = sharedInstance.stringForKey("email") else { return "" }
+
+        return mail
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,6 +29,10 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         table.delegate = self
         table.dataSource = self
+        table.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+
+        // TODO emailが空のときにログインがめに戻す
+        // TODO ログアウト処理
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,6 +48,14 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        if indexPath.section == 0 {
+            cell.textLabel?.text = self.email
+        }
+        else {
+            cell.textLabel?.text = "ログアウト"
+        }
+
+        return cell
     }
 }
