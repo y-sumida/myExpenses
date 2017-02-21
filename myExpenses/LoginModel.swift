@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 
 struct APIResult: ErrorType {
+    // TODO codeをenumに
     var code: String
     var message: String
     var sessionId: String
@@ -21,9 +22,10 @@ struct APIResult: ErrorType {
 }
 
 enum APIResultCode: String {
-    // TODO エラー時の結果コード
     case Success = "E000"
     case SessionError = "E001" // セッション切れ
+    case JSONError = "E002"
+    case UnknownError = "E999"
 }
 
 struct LoginModel: ResponseProtocol {
@@ -53,6 +55,8 @@ struct LoginModel: ResponseProtocol {
         if let success = data["success"] {
             self.isSuccess = success as! Bool
         }
+        // TODO 必須項目がなかった場合に例外処理
+
 
         result = APIResult(code: self.resultCode, message: self.resultMessage, sessionId: self.sessionId)
     }
