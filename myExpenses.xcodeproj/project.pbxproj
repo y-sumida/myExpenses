@@ -54,6 +54,7 @@
 		A97BEDFF1E59D47C00CDBEC6 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A97BEDFE1E59D47C00CDBEC6 /* Menu.storyboard */; };
 		A97BEE011E59D4EC00CDBEC6 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97BEE001E59D4EC00CDBEC6 /* MenuViewController.swift */; };
 		A97BEE071E5C7DE200CDBEC6 /* LogoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97BEE061E5C7DE200CDBEC6 /* LogoutModel.swift */; };
+		A97BEE091E5C808500CDBEC6 /* LogoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97BEE081E5C808500CDBEC6 /* LogoutViewModel.swift */; };
 		A9E49D661E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */; };
 		A9E49D6B1E2BBA3B00FE3DA4 /* ShowDialog.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D6A1E2BBA3B00FE3DA4 /* ShowDialog.swift.swift */; };
 		A9E49D6D1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */; };
@@ -123,6 +124,7 @@
 		A97BEDFE1E59D47C00CDBEC6 /* Menu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
 		A97BEE001E59D4EC00CDBEC6 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		A97BEE061E5C7DE200CDBEC6 /* LogoutModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutModel.swift; sourceTree = "<group>"; };
+		A97BEE081E5C808500CDBEC6 /* LogoutViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutViewModel.swift; sourceTree = "<group>"; };
 		A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteExpenseModel.swift; sourceTree = "<group>"; };
 		A9E49D6A1E2BBA3B00FE3DA4 /* ShowDialog.swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowDialog.swift.swift; sourceTree = "<group>"; };
 		A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseEditViewController.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				A97824091E37942300B80942 /* ExpenseEditViewModel.swift */,
 				A95593DF1E212E9E00882E58 /* ExpensesViewModel.swift */,
 				A95593CF1E17965A00882E58 /* LoginViewModel.swift */,
+				A97BEE081E5C808500CDBEC6 /* LogoutViewModel.swift */,
 			);
 			name = viewmodel;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				A97823FC1E33023700B80942 /* TransportSelectCell.swift in Sources */,
 				A97BEE011E59D4EC00CDBEC6 /* MenuViewController.swift in Sources */,
 				A97BEDF61E588E7100CDBEC6 /* ResponseProtocol.swift in Sources */,
+				A97BEE091E5C808500CDBEC6 /* LogoutViewModel.swift in Sources */,
 				A978240C1E3794B900B80942 /* PostExpenseModel.swift in Sources */,
 				A95593E61E2294BA00882E58 /* ExpenseCell.swift in Sources */,
 				A95593DC1E2123ED00882E58 /* ExpensesModel.swift in Sources */,
