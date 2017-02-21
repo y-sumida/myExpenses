@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import RxSwift
 
 class MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var table: UITableView!
+
+    private let bag: DisposeBag = DisposeBag()
+    private let viewModel: LogoutViewModel = LogoutViewModel()
 
     private var email: String {
         let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -31,8 +35,14 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         table.dataSource = self
         table.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
 
-        // TODO emailが空のときにログインがめに戻す
-        // TODO ログアウト処理
+        // ログアウト処理
+        // TODO もっとかんたんにできそう
+        viewModel.result.asObservable()
+            .skip(1) //初期値読み飛ばし
+            .subscribeNext {_ in
+                self.navigationController?.popToRootViewControllerAnimated(false)
+            }
+            .addDisposableTo(bag)
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,5 +67,11 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
 
         return cell
+    }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 1 {
+            viewModel.logoutTrigger.onNext(())
+        }
     }
 }
