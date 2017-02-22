@@ -35,8 +35,12 @@ extension NSURLSession {
                     return
                 }
 
-                let object = request.responseToObject(data)
-                observer.on(.Next(object, httpResponse))
+                if let object = request.responseToObject(data) {
+                    observer.on(.Next(object, httpResponse))
+                }
+                else {
+                    observer.onError(APIResult(code: APIResultCode.JSONError.rawValue, message: "サーバーエラーが発生しました"))
+                }
                 observer.on(.Completed)
             }
 

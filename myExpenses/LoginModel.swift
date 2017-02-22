@@ -35,13 +35,19 @@ struct LoginModel: ResponseProtocol {
     var sessionId: String = ""
     var isSuccess: Bool = false
 
-    init(data: NSDictionary) {
+    init?(data: NSDictionary) {
         if let resultCode = data["resultCode"] {
             self.resultCode = resultCode as! String
+        }
+        else {
+            return nil
         }
 
         if let resultMessage = data["resultMessage"] {
             self.resultMessage = resultMessage as! String
+        }
+        else {
+            return nil
         }
 
         if let sessionId = data["sessionId"] {
@@ -51,12 +57,16 @@ struct LoginModel: ResponseProtocol {
             sharedInstance.setObject(self.sessionId, forKey: "sessionId")
             sharedInstance.synchronize()
         }
+        else {
+            return nil
+        }
 
         if let success = data["success"] {
             self.isSuccess = success as! Bool
         }
-        // TODO 必須項目がなかった場合に例外処理
-
+        else {
+            return nil
+        }
 
         result = APIResult(code: self.resultCode, message: self.resultMessage, sessionId: self.sessionId)
     }

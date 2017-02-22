@@ -20,7 +20,7 @@ public protocol RequestProtocol {
     var path: String { get }
     var method: HTTPMethod { get }
     var body: NSMutableDictionary? { get }
-    func responseToObject(data: NSData) -> Response
+    func responseToObject(data: NSData) -> Response?
 }
 
 extension RequestProtocol {
@@ -48,7 +48,7 @@ extension RequestProtocol {
         return request
     }
 
-    func responseToObject(data: NSData) -> Response {
+    func responseToObject(data: NSData) -> Response? {
         do {
             let object = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as! NSDictionary
             return Response(data: object)

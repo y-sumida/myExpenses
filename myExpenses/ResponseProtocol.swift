@@ -9,5 +9,5 @@
 import Foundation
 
 public protocol ResponseProtocol {
-    init(data: NSDictionary)
+    init?(data: NSDictionary)
 }
