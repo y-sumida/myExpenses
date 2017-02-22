@@ -19,12 +19,12 @@ extension NSURLSession {
             let task = self.dataTaskWithRequest(request.request) { (data, response, error) in
 
                 guard let response = response, data = data else {
-                    observer.on(.Error(error ?? RxCocoaURLError.Unknown))
+                    observer.onError(APIResult(code: APIResultCode.UnknownError.rawValue, message: "サーバーエラーが発生しました"))
                     return
                 }
 
                 guard let httpResponse = response as? NSHTTPURLResponse else {
-                    observer.on(.Error(RxCocoaURLError.NonHTTPResponse(response: response)))
+                    observer.onError(APIResult(code: APIResultCode.UnknownError.rawValue, message: "サーバーエラーが発生しました"))
                     return
                 }
 
