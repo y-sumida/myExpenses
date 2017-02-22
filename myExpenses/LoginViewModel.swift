@@ -18,6 +18,10 @@ class LoginViewModel {
     var result: Variable<ErrorType?> = Variable(nil)
 
     init() {
+        configureTrigger()
+    }
+
+    private func configureTrigger() {
         loginTrigger
             .flatMap {
                 LoginModel.call(self.email.value, password: self.password.value)
@@ -30,6 +34,7 @@ class LoginViewModel {
                 onError: { (error: ErrorType) in
                     // APIエラー
                     self.result.value = error
+                    self.configureTrigger() //エラーのあともstreamが流れるように
                 }
             )
             .addDisposableTo(bag)
