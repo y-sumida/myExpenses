@@ -15,18 +15,15 @@ struct LogoutModel: ResponseProtocol {
     var resultMessage: String = ""
     var isSuccess: Bool = false
 
-    init(data: NSDictionary) {
-        if let resultCode = data["resultCode"] {
-            self.resultCode = resultCode as! String
-        }
+    init?(data: NSDictionary) {
+        guard let resultCode = data["resultCode"],
+            let resultMessage = data["resultMessage"],
+            let success = data["success"]
+            else { return nil }
 
-        if let resultMessage = data["resultMessage"] {
-            self.resultMessage = resultMessage as! String
-        }
-
-        if let success = data["success"] {
-            self.isSuccess = success as! Bool
-        }
+        self.resultCode = resultCode as! String
+        self.resultMessage = resultMessage as! String
+        self.isSuccess = success as! Bool
 
         result = APIResult(code: self.resultCode, message: self.resultMessage)
     }
