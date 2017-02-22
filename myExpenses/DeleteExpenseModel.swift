@@ -16,22 +16,20 @@ struct DeleteExpenseModel: ResponseProtocol {
     var sessionId: String = ""
     var isSuccess: Bool = false
 
-    init(data: NSDictionary) {
-        if let resultCode = data["resultCode"] {
-            self.resultCode = resultCode as! String
-        }
+    init?(data: NSDictionary) {
+        guard let resultCode = data["resultCode"],
+            let resultMessage = data["resultMessage"],
+            let sessionId = data["sessionId"]
+            else { return nil }
 
-        if let resultMessage = data["resultMessage"] {
-            self.resultMessage = resultMessage as! String
-        }
+        self.resultCode = resultCode as! String
+        self.resultMessage = resultMessage as! String
 
-        if let sessionId = data["sessionId"] {
-            self.sessionId = sessionId as! String
-            // セッションID更新
-            let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-            sharedInstance.setObject(self.sessionId, forKey: "sessionId")
-            sharedInstance.synchronize()
-        }
+        self.sessionId = sessionId as! String
+        // セッションID更新
+        let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        sharedInstance.setObject(self.sessionId, forKey: "sessionId")
+        sharedInstance.synchronize()
 
         result = APIResult(code: self.resultCode, message: self.resultMessage, sessionId: self.sessionId)
     }
