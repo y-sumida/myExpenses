@@ -36,37 +36,22 @@ struct LoginModel: ResponseProtocol {
     var isSuccess: Bool = false
 
     init?(data: NSDictionary) {
-        if let resultCode = data["resultCode"] {
-            self.resultCode = resultCode as! String
-        }
-        else {
-            return nil
-        }
+        guard let resultCode = data["resultCode"],
+            let resultMessage = data["resultMessage"],
+            let sessionId = data["sessionId"],
+            let success = data["success"]
+            else { return nil }
 
-        if let resultMessage = data["resultMessage"] {
-            self.resultMessage = resultMessage as! String
-        }
-        else {
-            return nil
-        }
+        self.resultCode = resultCode as! String
+        self.resultMessage = resultMessage as! String
 
-        if let sessionId = data["sessionId"] {
-            self.sessionId = sessionId as! String
-            // ログイン成功時にセッションIDを保存
-            let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-            sharedInstance.setObject(self.sessionId, forKey: "sessionId")
-            sharedInstance.synchronize()
-        }
-        else {
-            return nil
-        }
+        self.sessionId = sessionId as! String
+        // ログイン成功時にセッションIDを保存
+        let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        sharedInstance.setObject(self.sessionId, forKey: "sessionId")
+        sharedInstance.synchronize()
 
-        if let success = data["success"] {
-            self.isSuccess = success as! Bool
-        }
-        else {
-            return nil
-        }
+        self.isSuccess = success as! Bool
 
         result = APIResult(code: self.resultCode, message: self.resultMessage, sessionId: self.sessionId)
     }
