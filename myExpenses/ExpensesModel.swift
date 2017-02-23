@@ -37,7 +37,7 @@ class ExpensesModel: ResponseProtocol {
             let arr = expenses as! Array<[String : AnyObject]>
             
             self.expenses = arr.map {
-               ExpenseModel(data: $0)
+               ExpenseModel(data: $0)!
             }
         }
 
@@ -58,6 +58,10 @@ class ExpensesModel: ResponseProtocol {
 }
 
 class ExpenseModel {
+    var result:APIResult?
+    var resultCode: String = ""
+    var resultMessage: String = ""
+    var sessionId: String = ""
     var id: String = ""
     var date: NSDate?
     var dateAsString: String = ""
@@ -73,60 +77,58 @@ class ExpenseModel {
     var fare: Int = 0
     var remarks: String = ""
 
-    init(data: NSDictionary) {
-        if let id = data["id"] {
-            self.id = id as! String
+    init?(data: NSDictionary) {
+        guard let resultCode = data["resultCode"],
+            let resultMessage = data["resultMessage"],
+            let sessionId = data["sessionId"],
+            let id = data["id"],
+            let date = data["date"],
+            let name = data["name"],
+            let useJR = data["jr"],
+            let useSubway = data["subway"],
+            let usePrivate = data["private"],
+            let useBus = data["bus"],
+            let useOther = data["other"],
+            let from = data["from"],
+            let to = data["to"],
+            let fare = data["fare"],
+            let remarks = data["remarks"]
+            else { return nil }
+
+        self.resultCode = resultCode as! String
+        self.resultMessage = resultMessage as! String
+
+        self.sessionId = sessionId as! String
+        // セッションID更新
+        let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        sharedInstance.setObject(self.sessionId, forKey: "sessionId")
+        sharedInstance.synchronize()
+
+        result = APIResult(code: self.resultCode, message: self.resultMessage, sessionId: self.sessionId)
+
+        self.id = id as! String
+
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+        if let date: NSDate = formatter.dateFromString(date as! String) {
+            self.date = date
+            self.dateAsString = formatter.stringFromDate(date)
+        }
+        else {
+            return nil
         }
 
-        if let date = data["date"] {
-            let formatter = NSDateFormatter()
-            formatter.dateFormat = "yyyyMMdd"
-
-            if let date: NSDate = formatter.dateFromString(date as! String) {
-                self.date = date
-                self.dateAsString = formatter.stringFromDate(date)
-            }
-        }
-
-        if let name = data["name"] {
-            self.name = name as! String
-        }
-
-        if let useJR = data["jr"] {
-            self.useJR = useJR as! Bool
-        }
-
-        if let useSubway = data["subway"] {
-            self.useJR = useSubway as! Bool
-        }
-
-        if let usePrivate = data["private"] {
-            self.usePrivate = usePrivate as! Bool
-        }
-
-        if let useBus = data["bus"] {
-            self.usePrivate = useBus as! Bool
-        }
-
-        if let useOther = data["other"] {
-            self.useOther = useOther as! String
-        }
-
-        if let from = data["from"] {
-            self.from = from as! String
-        }
-
-        if let to = data["to"] {
-            self.to = to as! String
-        }
-
-        if let fare = data["fare"] {
-            self.fare = fare as! Int
-        }
-
-        if let remarks = data["remarks"] {
-            self.remarks = remarks as! String
-        }
+        self.name = name as! String
+        self.useJR = useJR as! Bool
+        self.useSubway = useSubway as! Bool
+        self.usePrivate = usePrivate as! Bool
+        self.usePrivate = useBus as! Bool
+        self.useOther = useOther as! String
+        self.from = from as! String
+        self.to = to as! String
+        self.fare = fare as! Int
+        self.remarks = remarks as! String
+        
     }
 }
 
