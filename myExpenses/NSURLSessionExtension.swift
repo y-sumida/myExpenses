@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 extension NSURLSession {
-    public func rx_responseObject<T: RequestProtocol>(request: T) -> Observable<(T.Response, NSHTTPURLResponse)> {
+    func rx_responseObject<T: RequestProtocol>(request: T) -> Observable<(T.Response, NSHTTPURLResponse)> {
         showRequestLog(request.request)
 
         return Observable.create { observer in

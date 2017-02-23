@@ -13,7 +13,7 @@ public enum HTTPMethod: String {
     case Post = "POST"
 }
 
-public protocol RequestProtocol {
+protocol RequestProtocol {
     associatedtype Response: ResponseProtocol
     var request: NSMutableURLRequest {get}
     var baseURL: String { get }
