@@ -19,19 +19,19 @@ extension NSURLSession {
             let task = self.dataTaskWithRequest(request.request) { (data, response, error) in
 
                 guard let response = response, data = data else {
-                    observer.onError(APIResult(code: APIResultCode.UnknownError.rawValue, message: "サーバーエラーが発生しました"))
+                    observer.onError(APIResult(code: APIResultCode.UnknownError, message: "サーバーエラーが発生しました"))
                     return
                 }
 
                 guard let httpResponse = response as? NSHTTPURLResponse else {
-                    observer.onError(APIResult(code: APIResultCode.UnknownError.rawValue, message: "サーバーエラーが発生しました"))
+                    observer.onError(APIResult(code: APIResultCode.UnknownError, message: "サーバーエラーが発生しました"))
                     return
                 }
 
                 self.showResponseLog(httpResponse, data: data)
 
                 if httpResponse.statusCode >= 400 {
-                    observer.onError(APIResult(code: "N" + httpResponse.statusCode.description, message: "サーバーエラーが発生しました"))
+                    observer.onError(APIResult(code: APIResultCode.create("N" + httpResponse.statusCode.description), message: "サーバーエラーが発生しました"))
                     return
                 }
 
@@ -39,7 +39,7 @@ extension NSURLSession {
                     observer.on(.Next(object, httpResponse))
                 }
                 else {
-                    observer.onError(APIResult(code: APIResultCode.JSONError.rawValue, message: "サーバーエラーが発生しました"))
+                    observer.onError(APIResult(code: APIResultCode.JSONError, message: "サーバーエラーが発生しました"))
                 }
                 observer.on(.Completed)
             }

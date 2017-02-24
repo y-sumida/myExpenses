@@ -62,7 +62,7 @@ class LoginViewController: UIViewController, ShowDialog {
             .subscribeNext {error in
                 let result = error as! APIResult
 
-                if result.code == APIResultCode.Success.rawValue {
+                if result.code == APIResultCode.Success {
                     self.showExpensesView(animated: true)
                 }
                 else {

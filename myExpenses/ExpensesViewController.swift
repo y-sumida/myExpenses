@@ -63,12 +63,12 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
             .subscribeNext {error in
                 let result = error as! APIResult
                 // セッション切れの場合、ログイン画面へ戻す
-                if result.code == APIResultCode.SessionError.rawValue {
+                if result.code == APIResultCode.SessionError {
                     self.showCompleteDialog("セッションエラー") { _ in
                         self.navigationController?.popToRootViewControllerAnimated(false)
                     }
                 }
-                else if result.code != APIResultCode.Success.rawValue {
+                else if result.code != APIResultCode.Success {
                     self.showErrorDialog(result) { _ in
                         self.table.setEditing(false, animated: false)
                     }

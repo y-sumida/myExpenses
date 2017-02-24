@@ -30,7 +30,7 @@ class PostExpenseModel: ResponseProtocol {
         sharedInstance.setObject(self.sessionId, forKey: "sessionId")
         sharedInstance.synchronize()
         
-        result = APIResult(code: self.resultCode, message: self.resultMessage, sessionId: self.sessionId)
+        result = APIResult(code: APIResultCode.create(self.resultCode), message: self.resultMessage, sessionId: self.sessionId)
     }
     
     static func call(expense: ExpenseModel) -> Observable<(PostExpenseModel, NSHTTPURLResponse)> {

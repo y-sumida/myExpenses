@@ -26,7 +26,7 @@ extension ShowDialog where Self: UIViewController {
     }
 
     func showErrorDialog(error: APIResult, handler: ((UIAlertAction) -> Void)? = nil) {
-        let dialog = UIAlertController(title: error.code, message: error.message, preferredStyle: .Alert)
+        let dialog = UIAlertController(title: error.code.rawValue, message: error.message, preferredStyle: .Alert)
         dialog.addAction(UIAlertAction(title: "OK", style: .Default, handler: handler))
 
         self.root.presentViewController(dialog, animated: true, completion: nil)

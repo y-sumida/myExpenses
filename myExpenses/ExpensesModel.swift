@@ -41,7 +41,7 @@ class ExpensesModel: ResponseProtocol {
             }
         }
 
-        result = APIResult(code: self.resultCode, message: self.resultMessage)
+        result = APIResult(code: APIResultCode.create(self.resultCode), message: self.resultMessage)
     }
 
     static func call(period: Period) -> Observable<(ExpensesModel, NSHTTPURLResponse)> {
@@ -104,7 +104,7 @@ class ExpenseModel {
         sharedInstance.setObject(self.sessionId, forKey: "sessionId")
         sharedInstance.synchronize()
 
-        result = APIResult(code: self.resultCode, message: self.resultMessage, sessionId: self.sessionId)
+        result = APIResult(code: APIResultCode.create(self.resultCode), message: self.resultMessage, sessionId: self.sessionId)
 
         self.id = id as! String
 

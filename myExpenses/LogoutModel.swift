@@ -25,7 +25,7 @@ struct LogoutModel: ResponseProtocol {
         self.resultMessage = resultMessage as! String
         self.isSuccess = success as! Bool
 
-        result = APIResult(code: self.resultCode, message: self.resultMessage)
+        result = APIResult(code: APIResultCode.create(self.resultCode), message: self.resultMessage)
     }
 
     static func call() -> Observable<(LogoutModel, NSHTTPURLResponse)> {

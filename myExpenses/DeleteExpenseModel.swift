@@ -31,7 +31,7 @@ struct DeleteExpenseModel: ResponseProtocol {
         sharedInstance.setObject(self.sessionId, forKey: "sessionId")
         sharedInstance.synchronize()
 
-        result = APIResult(code: self.resultCode, message: self.resultMessage, sessionId: self.sessionId)
+        result = APIResult(code: APIResultCode.create(self.resultCode), message: self.resultMessage, sessionId: self.sessionId)
     }
 
     static func call(expenseId: String) -> Observable<(DeleteExpenseModel, NSHTTPURLResponse)> {
