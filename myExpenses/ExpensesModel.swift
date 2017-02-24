@@ -35,9 +35,11 @@ class ExpensesModel: ResponseProtocol {
 
         if let expenses = data["destinations"] {
             let arr = expenses as! Array<[String : AnyObject]>
-            
-            self.expenses = arr.map {
-               ExpenseModel(data: $0)!
+
+            arr.forEach {
+                if let expense: ExpenseModel = ExpenseModel(data: $0) {
+                    self.expenses.append(expense)
+                }
             }
         }
 
@@ -78,10 +80,7 @@ class ExpenseModel {
     var remarks: String = ""
 
     init?(data: NSDictionary) {
-        guard let resultCode = data["resultCode"],
-            let resultMessage = data["resultMessage"],
-            let sessionId = data["sessionId"],
-            let id = data["id"],
+        guard let id = data["id"],
             let date = data["date"],
             let name = data["name"],
             let useJR = data["jr"],
@@ -94,17 +93,6 @@ class ExpenseModel {
             let fare = data["fare"],
             let remarks = data["remarks"]
             else { return nil }
-
-        self.resultCode = resultCode as! String
-        self.resultMessage = resultMessage as! String
-
-        self.sessionId = sessionId as! String
-        // セッションID更新
-        let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        sharedInstance.setObject(self.sessionId, forKey: "sessionId")
-        sharedInstance.synchronize()
-
-        result = APIResult(code: APIResultCode.create(self.resultCode), message: self.resultMessage, sessionId: self.sessionId)
 
         self.id = id as! String
 
