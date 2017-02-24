@@ -26,6 +26,10 @@ enum APIResultCode: String {
     case SessionError = "E001" // セッション切れ
     case JSONError = "E002"
     case UnknownError = "E999"
+
+    static func create(code: String?) -> APIResultCode {
+        return APIResultCode(rawValue: code ?? "") ?? .UnknownError
+    }
 }
 
 struct LoginModel: ResponseProtocol {
