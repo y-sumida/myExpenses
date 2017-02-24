@@ -17,12 +17,7 @@ class ExpensesViewModel {
     var result: Variable<ErrorType?> = Variable(nil)
     var fareTotal: Variable<String> = Variable("")
 
-    private var _expenses: [ExpenseModel] = []
-    var expenses: [ExpenseModel] {
-        get {
-            return _expenses
-        }
-    }
+    private(set) var expenses: [ExpenseModel] = []
 
     init() {}
 
@@ -32,7 +27,7 @@ class ExpensesViewModel {
             .subscribe(
                 onNext: { (model, response) in
                     self.result.value = model.result!
-                    self._expenses = model.expenses
+                    self.expenses = model.expenses
                     self.calcFareTotal()
 
                     self.reloadTrigger.onNext(())
@@ -53,7 +48,7 @@ class ExpensesViewModel {
             .subscribe(
                 onNext: { (model, response) in
                     self.result.value = model.result!
-                    self._expenses.removeAtIndex(index)
+                    self.expenses.removeAtIndex(index)
                     self.calcFareTotal()
 
                     self.reloadTrigger.onNext(())
@@ -72,7 +67,7 @@ class ExpensesViewModel {
             .subscribe(
                 onNext: { (model, response) in
                     self.result.value = model.result!
-                    self._expenses = model.expenses
+                    self.expenses = model.expenses
 
                     self.reloadTrigger.onNext(())
                 },
@@ -85,7 +80,7 @@ class ExpensesViewModel {
     }
 
     private func calcFareTotal() {
-        fareTotal.value = _expenses.reduce(0) {
+        fareTotal.value = expenses.reduce(0) {
             $0 + $1.fare
             }.commaSeparated
     }
