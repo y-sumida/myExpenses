@@ -118,6 +118,9 @@ class ExpenseModel {
         self.remarks = remarks as! String
         
     }
+
+    // 新規作成時用
+    init() {}
 }
 
 struct ExpensesRequest: RequestProtocol {

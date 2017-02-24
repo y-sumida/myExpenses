@@ -29,7 +29,7 @@ class ExpenseEditViewModel {
     var useBus: Variable<Bool> = Variable(false)
     var useHighway: Variable<Bool> = Variable(false)
 
-    init(expense: ExpenseModel = ExpenseModel(data: [:])!, isCopy: Bool = false) {
+    init(expense: ExpenseModel = ExpenseModel(), isCopy: Bool = false) {
         // 交通費１件分のモデル
         self.expense = expense
 
