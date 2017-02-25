@@ -142,19 +142,17 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
             }
             .addDisposableTo(bag)
 
-        NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: #selector(self.keyboardWillShow),
-                                                         name: UIKeyboardWillShowNotification,
-                                                         object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: #selector(self.keyboardWillHide),
-                                                         name: UIKeyboardWillHideNotification,
-                                                         object: nil)
-    }
+        NSNotificationCenter.defaultCenter().rx_notification(UIKeyboardWillShowNotification, object: nil)
+            .subscribeNext { [ unowned self] notification in
+                self.keyboardWillShow(notification)
+            }
+            .addDisposableTo(bag)
 
-    deinit {
-       print("deinit")
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NSNotificationCenter.defaultCenter().rx_notification(UIKeyboardWillHideNotification, object: nil)
+            .subscribeNext { [ unowned self] notification in
+                self.keyboardWillHide(notification)
+            }
+            .addDisposableTo(bag)
     }
 
     override func didReceiveMemoryWarning() {
