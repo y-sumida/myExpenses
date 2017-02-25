@@ -18,6 +18,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private let bag: DisposeBag = DisposeBag()
     private var viewModel: ExpensesViewModel = ExpensesViewModel()
 
+    deinit {
+        print("search deinit")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.searchBar.showsCancelButton = true
@@ -29,13 +33,15 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         table.registerNib(nib, forCellReuseIdentifier: "cell")
 
         self.searchBar.rx_searchButtonClicked.asObservable()
-            .subscribeNext {
+            .subscribeNext { [weak self] in
+                guard let `self` = self else { return }
                 self.viewModel.searchExpenses(self.searchBar.text!)
             }
             .addDisposableTo(bag)
 
         self.searchBar.rx_cancelButtonClicked.asObservable()
-            .subscribeNext {
+            .subscribeNext { [weak self] in
+                guard let `self` = self else { return }
                 self.searchBar.resignFirstResponder()
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
@@ -43,7 +49,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         viewModel.reloadTrigger
             .asObservable()
-            .subscribeNext {
+            .subscribeNext { [weak self] in
+                guard let `self` = self else { return }
                 self.table.reloadData()
                 if self.viewModel.expenses.isNotEmpty {
                     self.searchBar.resignFirstResponder()
