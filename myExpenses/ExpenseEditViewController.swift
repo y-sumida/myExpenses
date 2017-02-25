@@ -114,14 +114,16 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
 
         // TODO 未入力時にDoneボタンdisable
         doneButton.rx_tap.asObservable()
-            .subscribeNext {
+            .subscribeNext { [weak self] in
+                guard let `self` = self else { return }
                 self.viewModel.upsertExpense()
             }
             .addDisposableTo(bag)
 
         viewModel.result.asObservable()
             .skip(1) //初期値読み飛ばし
-            .subscribeNext {error in
+            .subscribeNext { [weak self] error in
+                guard let `self` = self else { return }
                 let result = error as! APIResult
                 // セッション切れの場合、ログイン画面へ戻す
                 if result.code == APIResultCode.SessionError {
@@ -148,6 +150,10 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
                                                          selector: #selector(self.keyboardWillHide),
                                                          name: UIKeyboardWillHideNotification,
                                                          object: nil)
+    }
+
+    deinit {
+       print("deinit")
     }
 
     override func viewDidDisappear(animated: Bool) {
