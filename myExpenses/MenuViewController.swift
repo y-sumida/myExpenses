@@ -39,7 +39,8 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         // TODO もっとかんたんにできそう
         viewModel.result.asObservable()
             .skip(1) //初期値読み飛ばし
-            .subscribeNext {_ in
+            .subscribeNext {[weak self] _ in
+                guard let `self` = self else { return }
                 self.navigationController?.popToRootViewControllerAnimated(false)
             }
             .addDisposableTo(bag)
