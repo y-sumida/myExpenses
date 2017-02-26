@@ -25,14 +25,16 @@ class ExpensesViewModel {
         ExpensesModel.call(period)
             .observeOn(MainScheduler.instance)//これ以降メインスレッドで実行
             .subscribe(
-                onNext: { (model, response) in
+                onNext: { [weak self] (model, response) in
+                    guard let `self` = self else { return }
                     self.result.value = model.result!
                     self.expenses = model.expenses
                     self.calcFareTotal()
 
                     self.reloadTrigger.onNext(())
                 },
-                onError: { (error: ErrorType) in
+                onError: { [weak self] (error: ErrorType) in
+                    guard let `self` = self else { return }
                     // APIエラー
                     self.result.value = error
                 }
@@ -46,14 +48,16 @@ class ExpensesViewModel {
         DeleteExpenseModel.call(expenseId)
             .observeOn(MainScheduler.instance)
             .subscribe(
-                onNext: { (model, response) in
+                onNext: { [weak self] (model, response) in
+                    guard let `self` = self else { return }
                     self.result.value = model.result!
                     self.expenses.removeAtIndex(index)
                     self.calcFareTotal()
 
                     self.reloadTrigger.onNext(())
                 },
-                onError: { (error: ErrorType) in
+                onError: { [weak self] (error: ErrorType) in
+                    guard let `self` = self else { return }
                     // APIエラー
                     self.result.value = error
                 }
@@ -65,13 +69,15 @@ class ExpensesViewModel {
         ExpensesModel.call(keyword)
             .observeOn(MainScheduler.instance)
             .subscribe(
-                onNext: { (model, response) in
+                onNext: { [weak self] (model, response) in
+                    guard let `self` = self else { return }
                     self.result.value = model.result!
                     self.expenses = model.expenses
 
                     self.reloadTrigger.onNext(())
                 },
-                onError: { (error: ErrorType) in
+                onError: { [weak self] (error: ErrorType) in
+                    guard let `self` = self else { return }
                     // APIエラー
                     self.result.value = error
                 }
