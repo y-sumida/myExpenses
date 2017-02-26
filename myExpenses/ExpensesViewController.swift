@@ -45,22 +45,24 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
 
         viewModel.reloadTrigger
             .asObservable()
-            .subscribeNext {
-                print("reload")
+            .subscribeNext { [weak self] in
+                guard let `self` = self else { return }
                 self.table.reloadData()
                 self.refreshControll.endRefreshing()
             }
             .addDisposableTo(bag)
 
         viewModel.fareTotal.asObservable()
-            .subscribeNext {
+            .subscribeNext { [weak self] in
+                guard let `self` = self else { return }
                 self.fareTotal.title = $0
             }
             .addDisposableTo(bag)
 
         viewModel.result.asObservable()
             .skip(1) //初期値読み飛ばし
-            .subscribeNext {error in
+            .subscribeNext { [weak self] error in
+                guard let `self` = self else { return }
                 let result = error as! APIResult
                 // セッション切れの場合、ログイン画面へ戻す
                 if result.code == APIResultCode.SessionError {
@@ -78,8 +80,9 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
 
         // Pull Refresh
         self.refreshControll.rx_controlEvent(.ValueChanged)
-            .subscribeNext { _ in
-               self.viewModel.monthlyExpenses(self.period)
+            .subscribeNext { [weak self] in
+                guard let `self` = self else { return }
+                self.viewModel.monthlyExpenses(self.period)
             }
             .addDisposableTo(bag)
         table.addSubview(refreshControll)
@@ -94,15 +97,16 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         fareTotal.asLabel(color: UIColor.blackColor())
 
         actionButton.rx_tap.asObservable()
-            .subscribeNext {
-                print("action tap")
+            .subscribeNext { [weak self] in
+                guard let `self` = self else { return }
                 self.showUploadConfirmDialog()
             }
             .addDisposableTo(bag)
 
         // menu
         menuButton.rx_tap.asObservable()
-            .subscribeNext {
+            .subscribeNext { [weak self] in
+                guard let `self` = self else { return }
                 let vc:MenuViewController = UIStoryboard(name: "Menu", bundle: nil).instantiateViewControllerWithIdentifier("MenuViewController") as! MenuViewController
                 self.navigationController?.pushViewController(vc, animated: true)
             }
@@ -115,7 +119,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("count:" + viewModel.expenses.count.description)
-       return viewModel.expenses.count
+        return viewModel.expenses.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
