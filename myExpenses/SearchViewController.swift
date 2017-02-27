@@ -18,10 +18,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private let bag: DisposeBag = DisposeBag()
     private var viewModel: ExpensesViewModel = ExpensesViewModel()
 
-    deinit {
-        print("search deinit")
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.searchBar.showsCancelButton = true
