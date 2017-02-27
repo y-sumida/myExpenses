@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import RxSwift
 
-class ExpenseCellViewModel {
+final class ExpenseCellViewModel {
     var date: Variable<String> = Variable("")
     var destination: Variable<String> = Variable("")
     var fare: Variable<String> = Variable("")

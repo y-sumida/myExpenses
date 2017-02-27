@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class ExpenseEditViewModel {
+final class ExpenseEditViewModel {
     private let bag: DisposeBag = DisposeBag()
     private var expense: ExpenseModel!
 

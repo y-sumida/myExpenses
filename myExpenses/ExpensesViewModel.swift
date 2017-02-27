@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class ExpensesViewModel {
+final class ExpensesViewModel {
     private let bag: DisposeBag = DisposeBag()
 
     var period: Variable<String> = Variable("")

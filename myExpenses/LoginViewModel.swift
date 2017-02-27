@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class LoginViewModel {
+final class LoginViewModel {
     private let bag: DisposeBag = DisposeBag()
 
     var email: Variable<String> = Variable("")

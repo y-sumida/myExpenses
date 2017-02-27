@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class LogoutViewModel {
+final class LogoutViewModel {
     private let bag: DisposeBag = DisposeBag()
 
     var logoutTrigger: PublishSubject<Void> = PublishSubject()
