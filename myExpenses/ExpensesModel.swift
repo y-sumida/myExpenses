@@ -53,6 +53,16 @@ class ExpensesModel: ResponseProtocol {
     }
 
     static func call(keyword: String) -> Observable<(ExpensesModel, NSHTTPURLResponse)> {
+        // 検索キーワード保存
+        let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        if var searchWords: [String] = sharedInstance.arrayForKey("searchWords") as? [String] {
+            searchWords.append(keyword)
+            sharedInstance.setObject(searchWords, forKey: "searchWords")
+        }
+        else {
+            sharedInstance.setObject([keyword], forKey: "searchWords")
+        }
+        sharedInstance.synchronize()
 
         let session: NSURLSession = NSURLSession.sharedSession()
         return session.rx_responseObject(SearchRequest(keyword: keyword))
