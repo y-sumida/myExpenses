@@ -56,7 +56,10 @@ class ExpensesModel: ResponseProtocol {
         // 検索キーワード保存
         let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         if var searchWords: [String] = sharedInstance.arrayForKey("searchWords") as? [String] {
-            searchWords.append(keyword)
+            searchWords.insert(keyword, atIndex: 0)
+            if searchWords.count > 10 {
+                searchWords.removeLast()
+            }
             sharedInstance.setObject(searchWords, forKey: "searchWords")
         }
         else {
