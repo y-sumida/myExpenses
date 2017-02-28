@@ -43,6 +43,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             .addDisposableTo(bag)
 
+        self.searchBar.rx_text.asObservable()
+            .subscribeNext { text in
+               print(text)
+            }
+            .addDisposableTo(bag)
+
         viewModel.reloadTrigger
             .asObservable()
             .subscribeNext { [weak self] in
