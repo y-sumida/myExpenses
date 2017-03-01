@@ -22,26 +22,22 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         return mail
     }
 
+    var logoutHandler: (() -> Void) = {_ in }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // ナビゲーションバー表示
-        if let navi = navigationController {
-            navi.setNavigationBarHidden(false, animated: true)
-            navigationItem.title = "設定"
-        }
 
         table.delegate = self
         table.dataSource = self
         table.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
 
         // ログアウト処理
-        // TODO もっとかんたんにできそう
         viewModel.result.asObservable()
             .skip(1) //初期値読み飛ばし
             .subscribeNext {[weak self] _ in
                 guard let `self` = self else { return }
-                self.navigationController?.popToRootViewControllerAnimated(false)
+                self.dismissViewControllerAnimated(true, completion: nil)
+                self.logoutHandler()
             }
             .addDisposableTo(bag)
     }

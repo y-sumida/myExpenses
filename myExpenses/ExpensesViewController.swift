@@ -111,9 +111,11 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
                 guard let `self` = self else { return }
                 let vc:MenuViewController = UIStoryboard(name: "Menu", bundle: nil).instantiateViewControllerWithIdentifier("MenuViewController") as! MenuViewController
                 vc.transitioningDelegate = self
+                vc.logoutHandler = { [weak self] in
+                    guard let `self` = self else { return }
+                    self.navigationController?.popToRootViewControllerAnimated(false)
+                }
                 self.presentViewController(vc, animated: true, completion: nil)
-                // TODO この遷移方法だとナビゲーションバーがない
-                // TODO ログアウト時に遷移できない
             }
             .addDisposableTo(bag)
     }
