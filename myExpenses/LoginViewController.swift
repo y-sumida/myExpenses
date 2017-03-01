@@ -27,11 +27,6 @@ class LoginViewController: UIViewController, ShowDialog {
             self.showExpensesView(animated: false)
         }
 
-        // ナビゲーションバー非表示
-        if let navi = navigationController {
-            navi.setNavigationBarHidden(true, animated: true)
-        }
-
         // サジェスト無効化
         email.autocapitalizationType = .None
         email.autocorrectionType = .No
@@ -70,6 +65,18 @@ class LoginViewController: UIViewController, ShowDialog {
                 }
             }
             .addDisposableTo(bag)
+    }
+
+    override func viewWillAppear(animated: Bool) {
+       super.viewWillAppear(animated)
+        // ナビゲーションバー非表示
+        if let navi = navigationController {
+            navi.setNavigationBarHidden(true, animated: true)
+        }
+        // フォームクリア
+        // TODO これだとログインボタンのdisable制御がきいてない
+        email.text = ""
+        password.text = ""
     }
 
     override func didReceiveMemoryWarning() {
