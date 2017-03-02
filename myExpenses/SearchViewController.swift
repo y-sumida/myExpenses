@@ -28,30 +28,29 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let nib = UINib(nibName: "ExpenseCell", bundle: nil)
         table.registerNib(nib, forCellReuseIdentifier: "cell")
 
-        self.searchBar.rx_searchButtonClicked.asObservable()
-            .subscribeNext { [weak self] in
+        self.searchBar.rx_searchButtonClicked.asDriver()
+            .driveNext { [weak self] in
                 guard let `self` = self else { return }
                 self.viewModel.searchExpenses(self.searchBar.text!)
             }
             .addDisposableTo(bag)
 
-        self.searchBar.rx_cancelButtonClicked.asObservable()
-            .subscribeNext { [weak self] in
+        self.searchBar.rx_cancelButtonClicked.asDriver()
+            .driveNext { [weak self] in
                 guard let `self` = self else { return }
                 self.searchBar.resignFirstResponder()
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
             .addDisposableTo(bag)
 
-        self.searchBar.rx_text.asObservable()
-            .subscribeNext { text in
+        self.searchBar.rx_text.asDriver()
+            .driveNext { text in
                print(text)
             }
             .addDisposableTo(bag)
 
-        viewModel.reloadTrigger
-            .asObservable()
-            .subscribeNext { [weak self] in
+        viewModel.reloadTrigger.asDriver(onErrorJustReturn: ())
+            .driveNext { [weak self] in
                 guard let `self` = self else { return }
                 self.table.reloadData()
                 if self.viewModel.expenses.isNotEmpty {
