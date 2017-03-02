@@ -74,9 +74,10 @@ class LoginViewController: UIViewController, ShowDialog {
             navi.setNavigationBarHidden(true, animated: true)
         }
         // フォームクリア
-        // TODO これだとログインボタンのdisable制御がきいてない
+        // TODO Rxでボタンdisableにする方法
         email.text = ""
         password.text = ""
+        loginButton.enabled = false
     }
 
     override func didReceiveMemoryWarning() {
