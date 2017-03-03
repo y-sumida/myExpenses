@@ -24,6 +24,8 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     var logoutHandler: (() -> Void) = {_ in }
 
+    private let animationController = SlideMenuAnimationController()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,6 +42,8 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.logoutHandler()
             }
             .addDisposableTo(bag)
+
+        self.transitioningDelegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,5 +74,11 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         if indexPath.section == 1 {
             viewModel.logoutTrigger.onNext(())
         }
+    }
+}
+
+extension MenuViewController: UIViewControllerTransitioningDelegate {
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return animationController
     }
 }

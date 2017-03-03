@@ -21,8 +21,6 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     private var period: Period = Period() // デフォルト当月
     var refreshControll = UIRefreshControl()
 
-    private let animationController = SlideMenuAnimationController()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // ナビゲーションバー表示
@@ -110,7 +108,6 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
             .subscribeNext { [weak self] in
                 guard let `self` = self else { return }
                 let vc:MenuViewController = UIStoryboard(name: "Menu", bundle: nil).instantiateViewControllerWithIdentifier("MenuViewController") as! MenuViewController
-                vc.transitioningDelegate = self
                 vc.logoutHandler = { [weak self] in
                     guard let `self` = self else { return }
                     self.navigationController?.popToRootViewControllerAnimated(false)
@@ -258,8 +255,4 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     }
 }
 
-extension ExpensesViewController: UIViewControllerTransitioningDelegate {
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return animationController
-    }
-}
+
