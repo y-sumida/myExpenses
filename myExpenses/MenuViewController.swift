@@ -44,6 +44,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             .addDisposableTo(bag)
 
         self.transitioningDelegate = self
+        // TODO スワイプでOPEN/ClOSE
     }
 
     override func didReceiveMemoryWarning() {
@@ -79,6 +80,12 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
 
 extension MenuViewController: UIViewControllerTransitioningDelegate {
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        animationController.isPresenting = true
+        return animationController
+    }
+
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        animationController.isPresenting = false
         return animationController
     }
 }
