@@ -38,8 +38,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             .skip(1) //初期値読み飛ばし
             .subscribeNext {[weak self] _ in
                 guard let `self` = self else { return }
-                self.dismissViewControllerAnimated(true, completion: nil)
-                self.logoutHandler()
+                self.dismissViewControllerAnimated(true, completion: {self.logoutHandler()})
             }
             .addDisposableTo(bag)
 
