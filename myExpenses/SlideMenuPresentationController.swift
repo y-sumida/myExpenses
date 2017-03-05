@@ -30,6 +30,12 @@ final class SlideMenuPresentationController: UIPresentationController {
         presentedViewController.transitionCoordinator()?.animateAlongsideTransition({ _ in }, completion: nil)
     }
 
+	override func dismissalTransitionDidEnd(completed: Bool) {
+		if completed {
+			shadowOverlay.removeFromSuperview()
+		}
+	}
+
     override func sizeForChildContentContainer(container: UIContentContainer, withParentContainerSize parentSize: CGSize) -> CGSize {
         return CGSize(width: parentSize.width - rightMargin, height: parentSize.height)
     }
