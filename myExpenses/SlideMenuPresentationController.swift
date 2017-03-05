@@ -27,10 +27,14 @@ final class SlideMenuPresentationController: UIPresentationController {
     }
 
     override func dismissalTransitionWillBegin() {
-        presentedViewController.transitionCoordinator()?.animateAlongsideTransition({ _ in }, completion: nil)
+        presentedViewController.transitionCoordinator()?.animateAlongsideTransition({ [unowned self] _ in
+            // 閉じる前に透明に
+            self.shadowOverlay.alpha = 0.0
+            }, completion: nil)
     }
 
 	override func dismissalTransitionDidEnd(completed: Bool) {
+            //  閉じた後の片付け
 		if completed {
 			shadowOverlay.removeFromSuperview()
 		}
