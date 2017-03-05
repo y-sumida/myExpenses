@@ -9,7 +9,7 @@
 import UIKit
 
 final class SlideMenuPresentationController: UIPresentationController {
-    let rightMargin: CGFloat = 52.0
+    private let rightMargin: CGFloat = 52.0
 
     override func presentationTransitionWillBegin() {
         presentedViewController.transitionCoordinator()?.animateAlongsideTransition({ _ in }, completion: nil)
