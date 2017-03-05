@@ -108,6 +108,8 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
             .subscribeNext { [weak self] in
                 guard let `self` = self else { return }
                 let vc:MenuViewController = UIStoryboard(name: "Menu", bundle: nil).instantiateViewControllerWithIdentifier("MenuViewController") as! MenuViewController
+                vc.modalPresentationStyle = .Custom
+                vc.transitioningDelegate = self
                 vc.logoutHandler = { [weak self] in
                     guard let `self` = self else { return }
                     self.navigationController?.popToRootViewControllerAnimated(false)
@@ -254,5 +256,17 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         self.navigationController!.presentViewController(vc, animated: true, completion: nil)
     }
 }
+extension ExpensesViewController: UIViewControllerTransitioningDelegate {
+    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
+        return SlideMenuPresentationController(presentedViewController: presented, presentingViewController: presenting)
+    }
 
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return SlideMenuAnimationController(isPresent: true)
+    }
+
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return SlideMenuAnimationController(isPresent: false)
+    }
+}
 

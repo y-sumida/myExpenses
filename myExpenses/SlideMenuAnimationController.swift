@@ -9,7 +9,11 @@
 import UIKit
 
 class SlideMenuAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
-    var isPresenting = false
+    private var isPresenting = false
+
+    init(isPresent: Bool) {
+        self.isPresenting = isPresent
+    }
 
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return 0.3
@@ -30,7 +34,8 @@ class SlideMenuAnimationController: NSObject, UIViewControllerAnimatedTransition
 
    func presentTransition(transitionContext: UIViewControllerContextTransitioning, toView: UIView, fromView: UIView) {
         guard let containerView: UIView = transitionContext.containerView() else { return }
-        containerView.insertSubview(toView, aboveSubview: fromView) // 遷移先（メニュー）の下に遷移元
+
+        containerView.addSubview(toView)
 
         // 遷移先viewの初期位置を画面の左側に移動
         toView.frame = CGRectOffset(toView.frame, -containerView.frame.size.width, 0)
@@ -44,7 +49,6 @@ class SlideMenuAnimationController: NSObject, UIViewControllerAnimatedTransition
 
     private func dismissTransition(transitionContext: UIViewControllerContextTransitioning, toView: UIView, fromView: UIView) {
         guard let containerView: UIView = transitionContext.containerView() else { return }
-        containerView.insertSubview(toView, belowSubview: fromView) // 遷移元（メニュー）の下に遷移先
 
         UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
             fromView.frame = CGRectOffset(fromView.frame, -containerView.frame.size.width, 0)
@@ -53,3 +57,4 @@ class SlideMenuAnimationController: NSObject, UIViewControllerAnimatedTransition
         }
     }
 }
+
