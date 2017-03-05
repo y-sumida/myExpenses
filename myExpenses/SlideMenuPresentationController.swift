@@ -7,15 +7,25 @@
 //
 
 import UIKit
+import RxSwift
 
 final class SlideMenuPresentationController: UIPresentationController {
     private let rightMargin: CGFloat = 52.0
     private let shadowOverlay = UIView()
+    private let bag: DisposeBag = DisposeBag()
 
     override func presentationTransitionWillBegin() {
 		guard let containerView = containerView else {
 			return
 		}
+
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer()
+        tapGesture.rx_event
+            .subscribeNext { [unowned self] _ in
+                self.presentedViewController.dismissViewControllerAnimated(true, completion: nil)
+            }
+            .addDisposableTo(bag)
+        shadowOverlay.gestureRecognizers = [tapGesture]
 
 		shadowOverlay.frame = containerView.bounds
 		shadowOverlay.backgroundColor = UIColor.blackColor()
