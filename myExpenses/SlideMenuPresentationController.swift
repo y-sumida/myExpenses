@@ -10,9 +10,20 @@ import UIKit
 
 final class SlideMenuPresentationController: UIPresentationController {
     private let rightMargin: CGFloat = 52.0
+    private let shadowOverlay = UIView()
 
     override func presentationTransitionWillBegin() {
-        presentedViewController.transitionCoordinator()?.animateAlongsideTransition({ _ in }, completion: nil)
+		guard let containerView = containerView else {
+			return
+		}
+
+		shadowOverlay.frame = containerView.bounds
+		shadowOverlay.backgroundColor = UIColor.blackColor()
+		shadowOverlay.alpha = 0.0
+		containerView.insertSubview(shadowOverlay, atIndex: 0)
+        presentedViewController.transitionCoordinator()?.animateAlongsideTransition({ [unowned self] _ in
+            self.shadowOverlay.alpha = 0.3
+            }, completion: nil)
     }
 
     override func dismissalTransitionWillBegin() {
