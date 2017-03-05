@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SlideMenuAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
+class SlideMenuAnimation: NSObject, UIViewControllerAnimatedTransitioning {
     private var isPresenting = false
 
     init(isPresent: Bool) {

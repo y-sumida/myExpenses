@@ -262,11 +262,11 @@ extension ExpensesViewController: UIViewControllerTransitioningDelegate {
     }
 
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return SlideMenuAnimationController(isPresent: true)
+        return SlideMenuAnimation(isPresent: true)
     }
 
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return SlideMenuAnimationController(isPresent: false)
+        return SlideMenuAnimation(isPresent: false)
     }
 }
 
