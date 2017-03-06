@@ -30,6 +30,8 @@ class LoginViewController: UIViewController, ShowDialog {
         // サジェスト無効化
         email.autocapitalizationType = .None
         email.autocorrectionType = .No
+        // キーボード指定
+        email.keyboardType = .EmailAddress
 
         // bind
         email.rx_text
