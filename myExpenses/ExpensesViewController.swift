@@ -44,8 +44,8 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         viewModel = ExpensesViewModel()
 
         viewModel.reloadTrigger
-            .asObservable()
-            .subscribeNext { [weak self] in
+            .asDriver(onErrorJustReturn: ())
+            .driveNext { [weak self] in
                 guard let `self` = self else { return }
                 self.table.reloadData()
                 self.refreshControll.endRefreshing()
@@ -80,7 +80,8 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
 
         // Pull Refresh
         self.refreshControll.rx_controlEvent(.ValueChanged)
-            .subscribeNext { [weak self] in
+            .asDriver()
+            .driveNext { [weak self] in
                 guard let `self` = self else { return }
                 self.viewModel.monthlyExpenses(self.period)
             }
@@ -96,16 +97,18 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         // UIBarButtonItemをラベルとして使う
         fareTotal.asLabel(color: UIColor.blackColor())
 
-        actionButton.rx_tap.asObservable()
-            .subscribeNext { [weak self] in
+        actionButton.rx_tap
+            .asDriver()
+            .driveNext { [weak self] in
                 guard let `self` = self else { return }
                 self.showUploadConfirmDialog()
             }
             .addDisposableTo(bag)
 
         // menu
-        menuButton.rx_tap.asObservable()
-            .subscribeNext { [weak self] in
+        menuButton.rx_tap
+            .asDriver()
+            .driveNext { [weak self] in
                 guard let `self` = self else { return }
                 let vc:MenuViewController = UIStoryboard(name: "Menu", bundle: nil).instantiateViewControllerWithIdentifier("MenuViewController") as! MenuViewController
                 vc.modalPresentationStyle = .Custom
