@@ -36,7 +36,12 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         table.registerNib(nib, forCellReuseIdentifier: "cell")
 
         // 長押し
-        let longPressRecognizer = UILongPressGestureRecognizer(target: self,action: #selector(longPressAction(_:)))
+        let longPressRecognizer = UILongPressGestureRecognizer()
+        longPressRecognizer.rx_event
+            .subscribeNext { [unowned self] _ in
+                self.longPressAction(longPressRecognizer)
+            }
+            .addDisposableTo(bag)
         longPressRecognizer.delegate = self
         table.addGestureRecognizer(longPressRecognizer)
 
