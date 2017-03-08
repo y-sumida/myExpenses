@@ -57,6 +57,7 @@
 		A97BEE071E5C7DE200CDBEC6 /* LogoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97BEE061E5C7DE200CDBEC6 /* LogoutModel.swift */; };
 		A97BEE091E5C808500CDBEC6 /* LogoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97BEE081E5C808500CDBEC6 /* LogoutViewModel.swift */; };
 		A9BB37001E65B69600BAEBB2 /* SlideMenuAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BB36FF1E65B69600BAEBB2 /* SlideMenuAnimation.swift */; };
+		A9C8FE581E704A630063D585 /* SlideMenuTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C8FE571E704A630063D585 /* SlideMenuTransition.swift */; };
 		A9E49D661E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */; };
 		A9E49D6B1E2BBA3B00FE3DA4 /* ShowDialog.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D6A1E2BBA3B00FE3DA4 /* ShowDialog.swift.swift */; };
 		A9E49D6D1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */; };
@@ -129,6 +130,7 @@
 		A97BEE061E5C7DE200CDBEC6 /* LogoutModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutModel.swift; sourceTree = "<group>"; };
 		A97BEE081E5C808500CDBEC6 /* LogoutViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutViewModel.swift; sourceTree = "<group>"; };
 		A9BB36FF1E65B69600BAEBB2 /* SlideMenuAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuAnimation.swift; sourceTree = "<group>"; };
+		A9C8FE571E704A630063D585 /* SlideMenuTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuTransition.swift; sourceTree = "<group>"; };
 		A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteExpenseModel.swift; sourceTree = "<group>"; };
 		A9E49D6A1E2BBA3B00FE3DA4 /* ShowDialog.swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowDialog.swift.swift; sourceTree = "<group>"; };
 		A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseEditViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				A97BEE001E59D4EC00CDBEC6 /* MenuViewController.swift */,
 				A9BB36FF1E65B69600BAEBB2 /* SlideMenuAnimation.swift */,
 				A97A0D271E6BCF450008BF9E /* SlideMenuPresentationController.swift */,
+				A9C8FE571E704A630063D585 /* SlideMenuTransition.swift */,
 			);
 			name = viewcontroller;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				A97BEE091E5C808500CDBEC6 /* LogoutViewModel.swift in Sources */,
 				A978240C1E3794B900B80942 /* PostExpenseModel.swift in Sources */,
 				A95593E61E2294BA00882E58 /* ExpenseCell.swift in Sources */,
+				A9C8FE581E704A630063D585 /* SlideMenuTransition.swift in Sources */,
 				A95593DC1E2123ED00882E58 /* ExpensesModel.swift in Sources */,
 				A95593931E177A8900882E58 /* RegisterViewController.swift in Sources */,
 				A955937F1E1768DF00882E58 /* LoginViewController.swift in Sources */,

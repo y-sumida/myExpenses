@@ -20,6 +20,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     private var viewModel: ExpensesViewModel!
     private var period: Period = Period() // デフォルト当月
     var refreshControll = UIRefreshControl()
+    var slideMenuTransition: SlideMenuTransition?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,8 +124,10 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
                     self.navigationController?.popToRootViewControllerAnimated(false)
                 }
                 self.presentViewController(vc, animated: true, completion: nil)
+                self.slideMenuTransition = SlideMenuTransition(vc: vc)
             }
             .addDisposableTo(bag)
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -275,6 +278,16 @@ extension ExpensesViewController: UIViewControllerTransitioningDelegate {
 
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return SlideMenuAnimation(isPresent: false)
+    }
+    func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return nil
+    }
+
+    func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        guard let transition = slideMenuTransition else {
+            return nil
+        }
+        return transition
     }
 }
 
