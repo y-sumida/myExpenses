@@ -23,11 +23,14 @@ class SlideMenuTransition: UIPercentDrivenInteractiveTransition {
             .subscribeNext { recognizer  in
                 switch recognizer.state {
                 case .Began:
-                    print("begin")
+                    let startPoint = recognizer.translationInView(self.vc.view)
+                    print("begin \(startPoint)")
                 case .Changed:
-                    print("change")
+                    let currentPoint = recognizer.translationInView(self.vc.view)
+                    print("change \(currentPoint)")
                 case .Ended:
-                    print("end")
+                    let endPoint = recognizer.translationInView(self.vc.view)
+                    print("end \(endPoint)")
                 case .Cancelled:
                     print("cancel")
                 default:
