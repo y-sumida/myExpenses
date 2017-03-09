@@ -20,8 +20,19 @@ class SlideMenuTransition: UIPercentDrivenInteractiveTransition {
 
         let panGesture = UIPanGestureRecognizer()
         panGesture.rx_event
-            .subscribeNext { _ in
-                print("pangesture")
+            .subscribeNext { recognizer  in
+                switch recognizer.state {
+                case .Began:
+                    print("begin")
+                case .Changed:
+                    print("change")
+                case .Ended:
+                    print("end")
+                case .Cancelled:
+                    print("cancel")
+                default:
+                    break
+                }
             }
             .addDisposableTo(bag)
 
