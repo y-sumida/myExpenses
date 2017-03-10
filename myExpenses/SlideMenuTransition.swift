@@ -18,10 +18,10 @@ class SlideMenuTransition: UIPercentDrivenInteractiveTransition {
     private let bag: DisposeBag = DisposeBag()
     private var vc: UIViewController!
 
-    init(vc: UIViewController) {
+    init(targetViewController: UIViewController) {
         super.init()
 
-        self.vc = vc
+        self.vc = targetViewController
 
         let panGesture = UIPanGestureRecognizer()
         panGesture.rx_event

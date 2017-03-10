@@ -124,7 +124,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
                     self.navigationController?.popToRootViewControllerAnimated(false)
                 }
                 self.presentViewController(vc, animated: true, completion: nil)
-                self.slideMenuTransition = SlideMenuTransition(vc: vc)
+                self.slideMenuTransition = SlideMenuTransition(targetViewController: vc)
             }
             .addDisposableTo(bag)
 
