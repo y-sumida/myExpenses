@@ -14,7 +14,7 @@ enum PanDirection {
     case Left
 }
 
-class SlideMenuTransition: UIPercentDrivenInteractiveTransition {
+final class SlideMenuTransition: UIPercentDrivenInteractiveTransition {
     private let bag: DisposeBag = DisposeBag()
     private var vc: UIViewController!
     var isInteractiveDissmalTransition = false
