@@ -287,7 +287,8 @@ extension ExpensesViewController: UIViewControllerTransitioningDelegate {
         guard let transition = slideMenuTransition else {
             return nil
         }
-        return transition
+
+        return transition.isInteractiveDissmalTransition ? transition : nil
     }
 }
 
