@@ -34,14 +34,25 @@ final class SlideMenuTransition: UIPercentDrivenInteractiveTransition {
                 case .Began:
                     let startPoint = recognizer.translationInView(self.vc.view)
                     print("begin \(startPoint)")
+                    // メニューを閉じる
+                    self.vc.dismissViewControllerAnimated(true, completion: nil)
                 case .Changed:
                     let currentPoint = recognizer.translationInView(self.vc.view)
                     print("change \(currentPoint)")
+                    let transition = recognizer.translationInView(self.vc.view)
+                    var progress = transition.x / self.vc.view.bounds.size.width
+                    progress = -min(1.0, max(-1.0, progress))
+                    print("change \(progress)")
+
+                    self.updateInteractiveTransition(progress)
                 case .Ended:
                     let endPoint = recognizer.translationInView(self.vc.view)
                     print("end \(endPoint)")
+                    super.finishInteractiveTransition()
                 case .Cancelled:
                     print("cancel")
+                    // TODO キャンセルが効かないのを調査
+                    super.cancelInteractiveTransition()
                 default:
                     break
                 }
