@@ -35,17 +35,11 @@ final class SlideMenuTransition: UIPercentDrivenInteractiveTransition {
 
                 switch recognizer.state {
                 case .Began:
-                    // メニューを閉じる
-                    self.vc.dismissViewControllerAnimated(true, completion: nil)
+                    self.swipeBegan(recognizer)
                 case .Changed:
-                    let transition = recognizer.translationInView(self.vc.view)
-                    var progress = transition.x / self.vc.view.bounds.size.width
-                    progress = -min(1.0, max(-1.0, progress))
-
-                    self.updateInteractiveTransition(progress)
+                    self.swipeChanged(recognizer)
                 case .Ended, .Cancelled:
-                    // 閾値超えたらfinish判定
-                    self.percentComplete > self.completeThreshold ? self.finishInteractiveTransition() : self.cancelInteractiveTransition()
+                    self.swipeEndedOrCancelled(recognizer)
                 default:
                     break
                 }
@@ -53,5 +47,23 @@ final class SlideMenuTransition: UIPercentDrivenInteractiveTransition {
             .addDisposableTo(bag)
 
         self.vc.view.addGestureRecognizer(panGesture)
+    }
+
+    private func swipeBegan(recognizer: UIPanGestureRecognizer) {
+        // メニューを閉じる
+        self.vc.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    private func swipeChanged(recognizer: UIPanGestureRecognizer) {
+        let transition = recognizer.translationInView(self.vc.view)
+        var progress = transition.x / self.vc.view.bounds.size.width
+        progress = -min(1.0, max(-1.0, progress))
+
+        self.updateInteractiveTransition(progress)
+    }
+
+    private func swipeEndedOrCancelled(recognizer: UIPanGestureRecognizer) {
+        // 閾値超えたらfinish判定
+        self.percentComplete > self.completeThreshold ? self.finishInteractiveTransition() : self.cancelInteractiveTransition()
     }
 }
