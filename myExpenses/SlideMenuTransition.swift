@@ -55,8 +55,8 @@ final class SlideMenuTransition: UIPercentDrivenInteractiveTransition {
     }
 
     private func swipeChanged(recognizer: UIPanGestureRecognizer) {
-        let transition = recognizer.translationInView(self.vc.view)
-        var progress = transition.x / self.vc.view.bounds.size.width
+        let transition: CGPoint = recognizer.translationInView(self.vc.view)
+        var progress: CGFloat = transition.x / self.vc.view.bounds.size.width
         progress = -min(1.0, max(-1.0, progress))
 
         self.updateInteractiveTransition(progress)
