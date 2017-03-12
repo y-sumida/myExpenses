@@ -27,7 +27,9 @@ final class SlideMenuTransition: UIPercentDrivenInteractiveTransition {
 
         let panGesture = UIPanGestureRecognizer()
         panGesture.rx_event
-            .subscribeNext { recognizer  in
+            .subscribeNext { [weak self] recognizer  in
+                guard let `self` = self else { return }
+
                 // ドラッグ中以外はこのトランジションを使わないように
                 self.isInteractiveDissmalTransition = recognizer.state == .Began || recognizer.state == .Changed
 
@@ -43,7 +45,7 @@ final class SlideMenuTransition: UIPercentDrivenInteractiveTransition {
                     self.updateInteractiveTransition(progress)
                 case .Ended, .Cancelled:
                     // 閾値超えたらfinish判定
-                    self.percentComplete > self.completeThreshold ? super.finishInteractiveTransition() : super.cancelInteractiveTransition()
+                    self.percentComplete > self.completeThreshold ? self.finishInteractiveTransition() : self.cancelInteractiveTransition()
                 default:
                     break
                 }
