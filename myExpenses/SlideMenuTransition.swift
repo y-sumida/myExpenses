@@ -45,14 +45,9 @@ final class SlideMenuTransition: UIPercentDrivenInteractiveTransition {
                     print("change \(progress)")
 
                     self.updateInteractiveTransition(progress)
-                case .Ended:
-                    let endPoint = recognizer.translationInView(self.vc.view)
-                    print("end \(endPoint)")
-                    super.finishInteractiveTransition()
-                case .Cancelled:
-                    print("cancel")
-                    // TODO キャンセルが効かないのを調査
-                    super.cancelInteractiveTransition()
+                case .Ended, .Cancelled:
+                    // 閾値超えたらfinish判定
+                    self.percentComplete > 0.2 ? super.finishInteractiveTransition() : super.cancelInteractiveTransition()
                 default:
                     break
                 }

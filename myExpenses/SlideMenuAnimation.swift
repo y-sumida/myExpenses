@@ -64,7 +64,11 @@ final class SlideMenuAnimation: NSObject, UIViewControllerAnimatedTransitioning 
                 fromView.frame = CGRectOffset(fromView.frame, -containerView.frame.size.width, 0)
             },
             completion:{ (finished) -> Void in
-                transitionContext.completeTransition(true)
+                if transitionContext.transitionWasCancelled() {
+                    transitionContext.completeTransition(false)
+                } else {
+                    transitionContext.completeTransition(true)
+                }
             }
         )
     }
