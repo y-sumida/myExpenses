@@ -40,21 +40,33 @@ final class SlideMenuAnimation: NSObject, UIViewControllerAnimatedTransitioning 
         // 遷移先viewの初期位置を画面の左側に移動
         toView.frame = CGRectOffset(toView.frame, -containerView.frame.size.width, 0)
 
-        UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0.05, options: .CurveEaseInOut, animations: { () -> Void in
-            toView.frame = containerView.frame
-        }) { (finished) -> Void in
-            transitionContext.completeTransition(true)
-        }
+        UIView.animateWithDuration(
+            transitionDuration(transitionContext),
+            delay: 0.05,
+            options: .CurveEaseInOut,
+            animations: { () -> Void in
+                toView.frame = containerView.frame
+            },
+            completion:{ (finished) -> Void in
+                transitionContext.completeTransition(true)
+            }
+        )
     }
 
     private func dismissTransition(transitionContext: UIViewControllerContextTransitioning, toView: UIView, fromView: UIView) {
         guard let containerView: UIView = transitionContext.containerView() else { return }
 
-        UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
-            fromView.frame = CGRectOffset(fromView.frame, -containerView.frame.size.width, 0)
-        }) { (finished) -> Void in
-            transitionContext.completeTransition(true)
-        }
+        UIView.animateWithDuration(
+            transitionDuration(transitionContext),
+            delay: 0,
+            options: .CurveEaseInOut,
+            animations: { () -> Void in
+                fromView.frame = CGRectOffset(fromView.frame, -containerView.frame.size.width, 0)
+            },
+            completion:{ (finished) -> Void in
+                transitionContext.completeTransition(true)
+            }
+        )
     }
 }
 
