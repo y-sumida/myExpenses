@@ -17,6 +17,7 @@ enum PanDirection {
 final class SlideMenuTransition: UIPercentDrivenInteractiveTransition {
     private let bag: DisposeBag = DisposeBag()
     private var vc: UIViewController!
+    private let completeThreshold: CGFloat = 0.3
     var isInteractiveDissmalTransition = false
 
     init(targetViewController: UIViewController) {
@@ -47,7 +48,7 @@ final class SlideMenuTransition: UIPercentDrivenInteractiveTransition {
                     self.updateInteractiveTransition(progress)
                 case .Ended, .Cancelled:
                     // 閾値超えたらfinish判定
-                    self.percentComplete > 0.2 ? super.finishInteractiveTransition() : super.cancelInteractiveTransition()
+                    self.percentComplete > self.completeThreshold ? super.finishInteractiveTransition() : super.cancelInteractiveTransition()
                 default:
                     break
                 }
