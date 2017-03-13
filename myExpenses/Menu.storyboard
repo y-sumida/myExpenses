@@ -18,13 +18,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="tg0-6r-M4u">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="548" height="600"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZEb-HW-Hrt">
+                                <rect key="frame" x="548" y="0.0" width="52" height="600"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="52" id="QIR-TQ-vla"/>
+                                </constraints>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="tg0-6r-M4u" secondAttribute="trailing" id="PdM-Sx-q0X"/>
+                            <constraint firstItem="ZEb-HW-Hrt" firstAttribute="top" secondItem="Jff-dq-DnL" secondAttribute="bottom" id="6pn-fM-wnS"/>
+                            <constraint firstAttribute="trailing" secondItem="ZEb-HW-Hrt" secondAttribute="trailing" id="KCb-AC-rfa"/>
+                            <constraint firstItem="PYT-QV-Ygy" firstAttribute="top" secondItem="ZEb-HW-Hrt" secondAttribute="bottom" id="N0Z-5D-ZL6"/>
+                            <constraint firstAttribute="trailing" secondItem="tg0-6r-M4u" secondAttribute="trailing" constant="52" id="PdM-Sx-q0X"/>
+                            <constraint firstItem="ZEb-HW-Hrt" firstAttribute="leading" secondItem="tg0-6r-M4u" secondAttribute="trailing" id="WQI-E5-igJ"/>
                             <constraint firstItem="tg0-6r-M4u" firstAttribute="leading" secondItem="IDP-mp-u1r" secondAttribute="leading" id="cbp-tB-aAD"/>
                             <constraint firstItem="PYT-QV-Ygy" firstAttribute="top" secondItem="tg0-6r-M4u" secondAttribute="bottom" id="mKU-Ic-dgf"/>
                             <constraint firstItem="tg0-6r-M4u" firstAttribute="top" secondItem="Jff-dq-DnL" secondAttribute="bottom" id="s1O-G4-LFe"/>

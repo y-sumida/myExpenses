@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 
 final class SlideMenuPresentationController: UIPresentationController {
-    private let rightMargin: CGFloat = 52.0
+    private let rightMargin: CGFloat = 0.0
     private let shadowOverlay = UIView()
     private let bag: DisposeBag = DisposeBag()
 
