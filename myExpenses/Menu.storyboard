@@ -22,7 +22,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZEb-HW-Hrt">
-                                <rect key="frame" x="548" y="0.0" width="52" height="600"/>
+                                <rect key="frame" x="548" y="20" width="52" height="580"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="52" id="QIR-TQ-vla"/>
@@ -35,6 +35,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ZEb-HW-Hrt" firstAttribute="top" secondItem="Jff-dq-DnL" secondAttribute="bottom" id="6pn-fM-wnS"/>
+                            <constraint firstItem="tg0-6r-M4u" firstAttribute="top" secondItem="IDP-mp-u1r" secondAttribute="top" id="I6V-ph-1QS"/>
                             <constraint firstAttribute="trailing" secondItem="ZEb-HW-Hrt" secondAttribute="trailing" id="KCb-AC-rfa"/>
                             <constraint firstItem="PYT-QV-Ygy" firstAttribute="top" secondItem="ZEb-HW-Hrt" secondAttribute="bottom" id="N0Z-5D-ZL6"/>
                             <constraint firstAttribute="trailing" secondItem="tg0-6r-M4u" secondAttribute="trailing" constant="52" id="PdM-Sx-q0X"/>
@@ -43,10 +44,15 @@
                             <constraint firstItem="PYT-QV-Ygy" firstAttribute="top" secondItem="tg0-6r-M4u" secondAttribute="bottom" id="mKU-Ic-dgf"/>
                             <constraint firstItem="tg0-6r-M4u" firstAttribute="top" secondItem="Jff-dq-DnL" secondAttribute="bottom" id="s1O-G4-LFe"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="s1O-G4-LFe"/>
+                            </mask>
+                        </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="cjt-to-F6Y"/>
-                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="table" destination="tg0-6r-M4u" id="wnA-nz-C1e"/>
                     </connections>
