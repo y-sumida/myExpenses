@@ -11,14 +11,14 @@ import RxSwift
 
 final class SlideMenuTransition: UIPercentDrivenInteractiveTransition {
     private let bag: DisposeBag = DisposeBag()
-    private var vc: UIViewController!
+    private var targetViewController: UIViewController!
     private let completeThreshold: CGFloat = 0.3
     var isInteractiveDissmalTransition = false
 
     init(targetViewController: UIViewController) {
         super.init()
 
-        self.vc = targetViewController
+        self.targetViewController = targetViewController
 
         let panGesture = UIPanGestureRecognizer()
         panGesture.rx_event
@@ -41,17 +41,17 @@ final class SlideMenuTransition: UIPercentDrivenInteractiveTransition {
             }
             .addDisposableTo(bag)
 
-        self.vc.view.addGestureRecognizer(panGesture)
+        self.targetViewController.view.addGestureRecognizer(panGesture)
     }
 
     private func swipeBegan(recognizer: UIPanGestureRecognizer) {
         // メニューを閉じる
-        self.vc.dismissViewControllerAnimated(true, completion: nil)
+        self.targetViewController.dismissViewControllerAnimated(true, completion: nil)
     }
 
     private func swipeChanged(recognizer: UIPanGestureRecognizer) {
-        let transition: CGPoint = recognizer.translationInView(self.vc.view)
-        var progress: CGFloat = transition.x / self.vc.view.bounds.size.width
+        let transition: CGPoint = recognizer.translationInView(self.targetViewController.view)
+        var progress: CGFloat = transition.x / self.targetViewController.view.bounds.size.width
         progress = -min(1.0, max(-1.0, progress))
 
         self.updateInteractiveTransition(progress)
