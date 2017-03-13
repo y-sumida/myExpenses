@@ -70,4 +70,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             viewModel.logoutTrigger.onNext(())
         }
     }
+    @IBAction func tapMarginArea(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }
