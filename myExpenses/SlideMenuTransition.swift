@@ -9,11 +9,6 @@
 import UIKit
 import RxSwift
 
-enum PanDirection {
-    case Right
-    case Left
-}
-
 final class SlideMenuTransition: UIPercentDrivenInteractiveTransition {
     private let bag: DisposeBag = DisposeBag()
     private var vc: UIViewController!
