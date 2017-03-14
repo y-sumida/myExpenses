@@ -56,17 +56,20 @@ final class SlideMenuAnimation: NSObject, UIViewControllerAnimatedTransitioning 
     private func dismissTransition(transitionContext: UIViewControllerContextTransitioning, toView: UIView, fromView: UIView) {
         guard let containerView: UIView = transitionContext.containerView() else { return }
 
+        let toViewOriginFrame: CGRect = toView.frame
+
         UIView.animateWithDuration(
             transitionDuration(transitionContext),
             delay: 0,
             options: .CurveEaseInOut,
             animations: { () -> Void in
                 fromView.frame = CGRectOffset(fromView.frame, -containerView.frame.size.width, 0)
-                // 引っ張るときに下の画面を少し小さくして動きをつける
-                toView.transform = CGAffineTransformMakeScale(0.95, 0.95)
+                // 引っ張るときに下の画面をずらして動くをつける
+                // TODO 定数化
+                toView.frame = CGRectOffset(toView.frame, -10, -10)
             },
             completion:{ (finished) -> Void in
-                toView.transform = CGAffineTransformIdentity
+                toView.frame = toViewOriginFrame
                 if transitionContext.transitionWasCancelled() {
                     transitionContext.completeTransition(false)
                 } else {
