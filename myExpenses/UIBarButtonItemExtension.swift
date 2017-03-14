@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 extension UIBarButtonItem {
-    func asLabel(color color: UIColor) {
-        self.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.blackColor()], forState: .Normal)
-        self.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.blackColor()], forState: .Disabled)
-        self.enabled = false
+    func asLabel(_ color: UIColor) {
+        self.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black], for: UIControlState())
+        self.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black], for: .disabled)
+        self.isEnabled = false
     }
 }

@@ -16,9 +16,9 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     @IBOutlet weak var actionButton: UIBarButtonItem!
     @IBOutlet weak var menuButton: UIBarButtonItem!
 
-    private let bag: DisposeBag = DisposeBag()
-    private var viewModel: ExpensesViewModel!
-    private var period: Period = Period() // デフォルト当月
+    fileprivate let bag: DisposeBag = DisposeBag()
+    fileprivate var viewModel: ExpensesViewModel!
+    fileprivate var period: Period = Period() // デフォルト当月
     var refreshControll = UIRefreshControl()
     var slideMenuTransition: SlideMenuTransition?
 
@@ -34,12 +34,12 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         table.delegate = self
         table.dataSource = self
         let nib = UINib(nibName: "ExpenseCell", bundle: nil)
-        table.registerNib(nib, forCellReuseIdentifier: "cell")
+        table.register(nib, forCellReuseIdentifier: "cell")
 
         // 長押し
         let longPressRecognizer = UILongPressGestureRecognizer()
-        longPressRecognizer.rx_event
-            .subscribeNext { [unowned self] _ in
+        longPressRecognizer.rx.event
+            .bindNext { [unowned self] _ in
                 self.longPressAction(longPressRecognizer)
             }
             .addDisposableTo(bag)
@@ -51,15 +51,15 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
 
         viewModel.reloadTrigger
             .asDriver(onErrorJustReturn: ())
-            .driveNext { [weak self] in
+            .drive(onNext: { [weak self]text in
                 guard let `self` = self else { return }
                 self.table.reloadData()
                 self.refreshControll.endRefreshing()
-            }
+            })
             .addDisposableTo(bag)
 
         viewModel.fareTotal.asObservable()
-            .subscribeNext { [weak self] in
+            .bindNext { [weak self] in
                 guard let `self` = self else { return }
                 self.fareTotal.title = $0
             }
@@ -67,13 +67,13 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
 
         viewModel.result.asObservable()
             .skip(1) //初期値読み飛ばし
-            .subscribeNext { [weak self] error in
+            .bindNext { [weak self] error in
                 guard let `self` = self else { return }
                 let result = error as! APIResult
                 // セッション切れの場合、ログイン画面へ戻す
                 if result.code == APIResultCode.SessionError {
                     self.showCompleteDialog("セッションエラー") { _ in
-                        self.navigationController?.popToRootViewControllerAnimated(false)
+                        self.navigationController?.popToRootViewController(animated: false)
                     }
                 }
                 else if result.code != APIResultCode.Success {
@@ -85,12 +85,12 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
             .addDisposableTo(bag)
 
         // Pull Refresh
-        self.refreshControll.rx_controlEvent(.ValueChanged)
+        self.refreshControll.rx.controlEvent(.valueChanged)
             .asDriver()
-            .driveNext { [weak self] in
+            .drive(onNext: { [weak self]text in
                 guard let `self` = self else { return }
                 self.viewModel.monthlyExpenses(self.period)
-            }
+            })
             .addDisposableTo(bag)
         table.addSubview(refreshControll)
 
@@ -101,31 +101,31 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         periodButton.title = period.description
 
         // UIBarButtonItemをラベルとして使う
-        fareTotal.asLabel(color: UIColor.blackColor())
+        fareTotal.asLabel(UIColor.black)
 
-        actionButton.rx_tap
+        actionButton.rx.tap
             .asDriver()
-            .driveNext { [weak self] in
+            .drive(onNext: { [weak self]text in
                 guard let `self` = self else { return }
                 self.showUploadConfirmDialog()
-            }
+            })
             .addDisposableTo(bag)
 
         // menu
-        menuButton.rx_tap
+        menuButton.rx.tap
             .asDriver()
-            .driveNext { [weak self] in
+            .drive(onNext: { [weak self]text in
                 guard let `self` = self else { return }
-                let vc:MenuViewController = UIStoryboard(name: "Menu", bundle: nil).instantiateViewControllerWithIdentifier("MenuViewController") as! MenuViewController
-                vc.modalPresentationStyle = .Custom
+                let vc:MenuViewController = UIStoryboard(name: "Menu", bundle: nil).instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+                vc.modalPresentationStyle = .custom
                 vc.transitioningDelegate = self
                 vc.logoutHandler = { [weak self] in
                     guard let `self` = self else { return }
-                    self.navigationController?.popToRootViewControllerAnimated(false)
+                    self.navigationController?.popToRootViewController(animated: false)
                 }
-                self.presentViewController(vc, animated: true, completion: nil)
+                self.present(vc, animated: true, completion: nil)
                 self.slideMenuTransition = SlideMenuTransition(targetViewController: vc)
-            }
+            })
             .addDisposableTo(bag)
 
     }
@@ -134,61 +134,61 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         super.didReceiveMemoryWarning()
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("count:" + viewModel.expenses.count.description)
         return viewModel.expenses.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: ExpenseCell = tableView.dequeueReusableCellWithIdentifier("cell") as! ExpenseCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: ExpenseCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ExpenseCell
         cell.viewModel = ExpenseCellViewModel(model: viewModel.expenses[indexPath.row])
 
         return cell
     }
 
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
 
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.Delete {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
             showDeleteConfirmDialog(indexPath)
         }
     }
 
-    func longPressAction(recognizer: UILongPressGestureRecognizer) {
-        let point = recognizer.locationInView(table)
+    func longPressAction(_ recognizer: UILongPressGestureRecognizer) {
+        let point = recognizer.location(in: table)
 
-        if let index = table.indexPathForRowAtPoint(point) {
-            if recognizer.state == UIGestureRecognizerState.Began  {
+        if let index = table.indexPathForRow(at: point) {
+            if recognizer.state == UIGestureRecognizerState.began  {
                 // TODO 各メニューの実装
                 print(index)
-                let alert: UIAlertController = UIAlertController(title: "編集メニュー", message: "選択してください", preferredStyle:  UIAlertControllerStyle.ActionSheet)
-                let editAction: UIAlertAction = UIAlertAction(title: "編集", style: UIAlertActionStyle.Default, handler:{
+                let alert: UIAlertController = UIAlertController(title: "編集メニュー", message: "選択してください", preferredStyle:  UIAlertControllerStyle.actionSheet)
+                let editAction: UIAlertAction = UIAlertAction(title: "編集", style: UIAlertActionStyle.default, handler:{
                     (action: UIAlertAction!) -> Void in
                     print("edit")
-                    let vc:ExpenseEditViewController = UIStoryboard(name: "ExpenseEdit", bundle: nil).instantiateViewControllerWithIdentifier("ExpenseEditViewController") as! ExpenseEditViewController
+                    let vc:ExpenseEditViewController = UIStoryboard(name: "ExpenseEdit", bundle: nil).instantiateViewController(withIdentifier: "ExpenseEditViewController") as! ExpenseEditViewController
                     vc.viewModel = ExpenseEditViewModel(expense: self.viewModel.expenses[index.row])
-                    vc.modalPresentationStyle = .Custom
-                    vc.modalTransitionStyle = .CoverVertical
-                    self.navigationController!.presentViewController(vc, animated: true, completion: nil)
+                    vc.modalPresentationStyle = .custom
+                    vc.modalTransitionStyle = .coverVertical
+                    self.navigationController!.present(vc, animated: true, completion: nil)
                 })
-                let copyAction: UIAlertAction = UIAlertAction(title: "複製", style: UIAlertActionStyle.Default, handler:{
+                let copyAction: UIAlertAction = UIAlertAction(title: "複製", style: UIAlertActionStyle.default, handler:{
                     (action: UIAlertAction!) -> Void in
                     print("copy")
-                    let vc:ExpenseEditViewController = UIStoryboard(name: "ExpenseEdit", bundle: nil).instantiateViewControllerWithIdentifier("ExpenseEditViewController") as! ExpenseEditViewController
+                    let vc:ExpenseEditViewController = UIStoryboard(name: "ExpenseEdit", bundle: nil).instantiateViewController(withIdentifier: "ExpenseEditViewController") as! ExpenseEditViewController
                     vc.viewModel = ExpenseEditViewModel(expense: self.viewModel.expenses[index.row], isCopy: true)
                     self.navigationController!.pushViewController(vc, animated: true)
                 })
-                let bookmarkAction: UIAlertAction = UIAlertAction(title: "お気に入りに追加", style: UIAlertActionStyle.Default, handler:{
+                let bookmarkAction: UIAlertAction = UIAlertAction(title: "お気に入りに追加", style: UIAlertActionStyle.default, handler:{
                     (action: UIAlertAction!) -> Void in
                     print("bookmark")
                 })
-                let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:{
+                let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
                     (action: UIAlertAction!) -> Void in
                     print("cancelAction")
                 })
-                let deleteAction: UIAlertAction = UIAlertAction(title: "削除", style: UIAlertActionStyle.Destructive, handler:{
+                let deleteAction: UIAlertAction = UIAlertAction(title: "削除", style: UIAlertActionStyle.destructive, handler:{
                     (action: UIAlertAction!) -> Void in
                     self.showDeleteConfirmDialog(index)
                 })
@@ -198,12 +198,12 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
                 alert.addAction(bookmarkAction)
                 alert.addAction(deleteAction)
                 alert.addAction(cancelAction)
-                presentViewController(alert, animated: true, completion: nil)
+                present(alert, animated: true, completion: nil)
             }
         }
     }
 
-    private func showDeleteConfirmDialog(indexPath: NSIndexPath) {
+    fileprivate func showDeleteConfirmDialog(_ indexPath: IndexPath) {
         let defaultHandler: (UIAlertAction) -> Void = {
             (action: UIAlertAction!) -> Void in
             self.viewModel.deleteAtIndex(indexPath.row)
@@ -215,7 +215,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         self.showConfirmDialog("削除して良いですか", defaultHandler: defaultHandler, cancelHandler: cancelHandler)
     }
 
-    private func showUploadConfirmDialog() {
+    fileprivate func showUploadConfirmDialog() {
         let defaultHandler: (UIAlertAction) -> Void = {
             (action: UIAlertAction!) -> Void in
             // TODO APIコール
@@ -224,70 +224,71 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         self.showConfirmDialog("精算伝票を作成します。\nよろしいですか？", defaultHandler: defaultHandler, cancelHandler: nil)
     }
 
-    @IBAction func tapEditButton(sender: AnyObject) {
+    @IBAction func tapEditButton(_ sender: AnyObject) {
         // TODO 各メニューの処理を実装する
-        let alert: UIAlertController = UIAlertController(title: "追加メニュー", message: "選択してください", preferredStyle:  UIAlertControllerStyle.ActionSheet)
-        let addAction: UIAlertAction = UIAlertAction(title: "新規追加", style: UIAlertActionStyle.Default, handler:{
+        let alert: UIAlertController = UIAlertController(title: "追加メニュー", message: "選択してください", preferredStyle:  UIAlertControllerStyle.actionSheet)
+        let addAction: UIAlertAction = UIAlertAction(title: "新規追加", style: UIAlertActionStyle.default, handler:{
             (action: UIAlertAction!) -> Void in
             print("add")
-            let vc:ExpenseEditViewController = UIStoryboard(name: "ExpenseEdit", bundle: nil).instantiateViewControllerWithIdentifier("ExpenseEditViewController") as! ExpenseEditViewController
-            self.navigationController?.modalPresentationStyle = .Custom
-            vc.modalTransitionStyle = .CoverVertical
-            self.navigationController!.presentViewController(vc, animated: true, completion: nil)
+            let vc:ExpenseEditViewController = UIStoryboard(name: "ExpenseEdit", bundle: nil).instantiateViewController(withIdentifier: "ExpenseEditViewController") as! ExpenseEditViewController
+            self.navigationController?.modalPresentationStyle = .custom
+            vc.modalTransitionStyle = .coverVertical
+            self.navigationController!.present(vc, animated: true, completion: nil)
         })
-        let bookmarkAction: UIAlertAction = UIAlertAction(title: "お気に入りから追加", style: UIAlertActionStyle.Default, handler:{
+        let bookmarkAction: UIAlertAction = UIAlertAction(title: "お気に入りから追加", style: UIAlertActionStyle.default, handler:{
             (action: UIAlertAction!) -> Void in
             print("bookmark")
         })
-        let searchAction: UIAlertAction = UIAlertAction(title: "検索", style: UIAlertActionStyle.Default, handler:{
+        let searchAction: UIAlertAction = UIAlertAction(title: "検索", style: UIAlertActionStyle.default, handler:{
             (action: UIAlertAction!) -> Void in
             print("search")
-            let vc:SearchViewController = UIStoryboard(name: "Search", bundle: nil).instantiateViewControllerWithIdentifier("SearchViewController") as! SearchViewController
-            vc.modalPresentationStyle = .Custom
-            vc.modalTransitionStyle = .CoverVertical
-            self.navigationController!.presentViewController(vc, animated: true, completion: nil)
+            let vc:SearchViewController = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+            vc.modalPresentationStyle = .custom
+            vc.modalTransitionStyle = .coverVertical
+            self.navigationController!.present(vc, animated: true, completion: nil)
         })
-        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:nil)
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:nil)
 
         alert.addAction(addAction)
         alert.addAction(bookmarkAction)
         alert.addAction(searchAction)
         alert.addAction(cancelAction)
 
-        self.navigationController!.presentViewController(alert, animated: true, completion: nil)
+        self.navigationController!.present(alert, animated: true, completion: nil)
     }
 
-    @IBAction func tapPeriod(sender: AnyObject) {
-        let vc:PeriodsViewController = UIStoryboard(name: "Periods", bundle: nil).instantiateViewControllerWithIdentifier("PeriodsViewController") as! PeriodsViewController
+    @IBAction func tapPeriod(_ sender: AnyObject) {
+        let vc:PeriodsViewController = UIStoryboard(name: "Periods", bundle: nil).instantiateViewController(withIdentifier: "PeriodsViewController") as! PeriodsViewController
 
-        vc.modalPresentationStyle = .Custom
-        vc.modalTransitionStyle = .CrossDissolve
+        vc.modalPresentationStyle = .custom
+        vc.modalTransitionStyle = .crossDissolve
         vc.handler = { period in
             self.period = period
             self.periodButton.title = period.description
             self.viewModel.monthlyExpenses(period)
         }
 
-        self.navigationController!.presentViewController(vc, animated: true, completion: nil)
+        self.navigationController!.present(vc, animated: true, completion: nil)
     }
 }
 extension ExpensesViewController: UIViewControllerTransitioningDelegate {
-    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
-        return SlideMenuPresentationController(presentedViewController: presented, presentingViewController: presenting)
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        return SlideMenuPresentationController(presentedViewController: presented, presenting: presenting)
     }
 
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return SlideMenuAnimation(isPresent: true)
     }
 
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return SlideMenuAnimation(isPresent: false)
     }
-    func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+
+    func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return nil
     }
 
-    func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         guard let transition = slideMenuTransition else {
             return nil
         }

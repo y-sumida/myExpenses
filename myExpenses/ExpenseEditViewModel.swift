@@ -10,12 +10,12 @@ import Foundation
 import RxSwift
 
 final class ExpenseEditViewModel {
-    private let bag: DisposeBag = DisposeBag()
-    private var expense: ExpenseModel!
+    fileprivate let bag: DisposeBag = DisposeBag()
+    fileprivate var expense: ExpenseModel!
 
     var id: String = ""
-    var result: Variable<ErrorType?> = Variable(nil)
-    var date: Variable<NSDate> = Variable(NSDate())
+    var result: Variable<Error?> = Variable(nil)
+    var date: Variable<Date> = Variable(Date())
     var dateAsString: Variable<String> = Variable("")
     var destination: Variable<String> = Variable("")
     var fare: Variable<String> = Variable("")
@@ -38,7 +38,7 @@ final class ExpenseEditViewModel {
             self.id = expense.id
         }
 
-        if let date:NSDate = expense.date {
+        if let date:Date = expense.date as Date? {
             self.date.value = date
         }
         self.dateAsString.value = expense.dateAsString
@@ -63,7 +63,7 @@ final class ExpenseEditViewModel {
                     guard let `self` = self else { return }
                     self.result.value = model.result
                 },
-                onError: { [weak self] (error: ErrorType) in
+                onError: { [weak self] (error: Error) in
                     guard let `self` = self else { return }
                     // APIエラー
                     self.result.value = error

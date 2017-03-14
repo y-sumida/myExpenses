@@ -28,21 +28,21 @@ struct LogoutModel: ResponseProtocol {
         result = APIResult(code: APIResultCode.create(self.resultCode), message: self.resultMessage)
     }
 
-    static func call() -> Observable<(LogoutModel, NSHTTPURLResponse)> {
+    static func call() -> Observable<(LogoutModel, HTTPURLResponse)> {
         // sessionId破棄
-        let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        sharedInstance.removeObjectForKey("sessionId")
+        let sharedInstance: UserDefaults = UserDefaults.standard
+        sharedInstance.removeObject(forKey: "sessionId")
 
-        let session: NSURLSession = NSURLSession.sharedSession()
+        let session: URLSession = URLSession.shared
         return session.rx_responseObject(LogoutRequest())
     }
 }
 
 struct LogoutRequest: RequestProtocol {
-    private var sessionId: String {
+    fileprivate var sessionId: String {
         get {
-            let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-            if let sessionId: String = sharedInstance.stringForKey("sessionId") {
+            let sharedInstance: UserDefaults = UserDefaults.standard
+            if let sessionId: String = sharedInstance.string(forKey: "sessionId") {
                 return sessionId
             }
             else {

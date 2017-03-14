@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-struct APIResult: ErrorType {
+struct APIResult: Error {
     var code: APIResultCode
     var message: String
     var sessionId: String
@@ -26,7 +26,7 @@ enum APIResultCode: String {
     case JSONError = "E002"
     case UnknownError = "E999"
 
-    static func create(code: String?) -> APIResultCode {
+    static func create(_ code: String?) -> APIResultCode {
         return APIResultCode(rawValue: code ?? "") ?? .UnknownError
     }
 }
@@ -50,8 +50,8 @@ struct LoginModel: ResponseProtocol {
 
         self.sessionId = sessionId as! String
         // ログイン成功時にセッションIDを保存
-        let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        sharedInstance.setObject(self.sessionId, forKey: "sessionId")
+        let sharedInstance: UserDefaults = UserDefaults.standard
+        sharedInstance.set(self.sessionId, forKey: "sessionId")
         sharedInstance.synchronize()
 
         self.isSuccess = success as! Bool
@@ -59,13 +59,13 @@ struct LoginModel: ResponseProtocol {
         result = APIResult(code: APIResultCode.create(self.resultCode), message: self.resultMessage, sessionId: self.sessionId)
     }
 
-    static func call(email: String, password: String) -> Observable<(LoginModel, NSHTTPURLResponse)> {
+    static func call(_ email: String, password: String) -> Observable<(LoginModel, HTTPURLResponse)> {
         // メールアドレス保存
-        let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        sharedInstance.setObject(email, forKey: "email")
+        let sharedInstance: UserDefaults = UserDefaults.standard
+        sharedInstance.set(email, forKey: "email")
         sharedInstance.synchronize()
 
-        let session: NSURLSession = NSURLSession.sharedSession()
+        let session: URLSession = URLSession.shared
         return session.rx_responseObject(LoginRequest(email: email, password: password))
     }
 }

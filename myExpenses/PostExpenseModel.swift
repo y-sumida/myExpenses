@@ -26,26 +26,26 @@ class PostExpenseModel: ResponseProtocol {
         
         self.sessionId = sessionId as! String
         // セッションID更新
-        let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        sharedInstance.setObject(self.sessionId, forKey: "sessionId")
+        let sharedInstance: UserDefaults = UserDefaults.standard
+        sharedInstance.set(self.sessionId, forKey: "sessionId")
         sharedInstance.synchronize()
         
         result = APIResult(code: APIResultCode.create(self.resultCode), message: self.resultMessage, sessionId: self.sessionId)
     }
     
-    static func call(expense: ExpenseModel) -> Observable<(PostExpenseModel, NSHTTPURLResponse)> {
+    static func call(_ expense: ExpenseModel) -> Observable<(PostExpenseModel, HTTPURLResponse)> {
         
-        let session: NSURLSession = NSURLSession.sharedSession()
+        let session: URLSession = URLSession.shared
         return session.rx_responseObject(PostExpenseRequest(expense: expense))
     }
 }
 
 struct PostExpenseRequest: RequestProtocol {
     var expense: ExpenseModel!
-    private var sessionId: String {
+    fileprivate var sessionId: String {
         get {
-            let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-            if let sessionId: String = sharedInstance.stringForKey("sessionId") {
+            let sharedInstance: UserDefaults = UserDefaults.standard
+            if let sessionId: String = sharedInstance.string(forKey: "sessionId") {
                 return sessionId
             }
             else {

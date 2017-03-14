@@ -10,18 +10,18 @@ import Foundation
 import RxSwift
 
 final class LoginViewModel {
-    private let bag: DisposeBag = DisposeBag()
+    fileprivate let bag: DisposeBag = DisposeBag()
 
     var email: Variable<String> = Variable("")
     var password: Variable<String> = Variable("")
     var loginTrigger: PublishSubject<Void> = PublishSubject()
-    var result: Variable<ErrorType?> = Variable(nil)
+    var result: Variable<Error?> = Variable(nil)
 
     init() {
         configureTrigger()
     }
 
-    private func configureTrigger() {
+    fileprivate func configureTrigger() {
         loginTrigger
             .flatMap {
                 LoginModel.call(self.email.value, password: self.password.value)
@@ -31,7 +31,7 @@ final class LoginViewModel {
                 onNext: { (model, response) in
                     self.result.value = model.result!
                 },
-                onError: { (error: ErrorType) in
+                onError: { (error: Error) in
                     // APIエラー
                     self.result.value = error
                     self.configureTrigger() //エラーのあともstreamが流れるように

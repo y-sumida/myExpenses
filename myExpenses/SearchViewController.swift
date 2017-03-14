@@ -15,8 +15,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var table: UITableView!
 
-    private let bag: DisposeBag = DisposeBag()
-    private var viewModel: ExpensesViewModel = ExpensesViewModel()
+    fileprivate let bag: DisposeBag = DisposeBag()
+    fileprivate var viewModel: ExpensesViewModel = ExpensesViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,37 +26,37 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         table.delegate = self
         table.dataSource = self
         let nib = UINib(nibName: "ExpenseCell", bundle: nil)
-        table.registerNib(nib, forCellReuseIdentifier: "cell")
+        table.register(nib, forCellReuseIdentifier: "cell")
 
-        self.searchBar.rx_searchButtonClicked.asDriver()
-            .driveNext { [weak self] in
+        self.searchBar.rx.searchButtonClicked.asDriver()
+            .drive(onNext: { [weak self] in
                 guard let `self` = self else { return }
                 self.viewModel.searchExpenses(self.searchBar.text!)
-            }
+            })
             .addDisposableTo(bag)
 
-        self.searchBar.rx_cancelButtonClicked.asDriver()
-            .driveNext { [weak self] in
+        self.searchBar.rx.cancelButtonClicked.asDriver()
+            .drive(onNext: { [weak self] in
                 guard let `self` = self else { return }
                 self.searchBar.resignFirstResponder()
-                self.dismissViewControllerAnimated(true, completion: nil)
-            }
+                self.dismiss(animated: true, completion: nil)
+            })
             .addDisposableTo(bag)
 
-        self.searchBar.rx_text.asDriver()
-            .driveNext { text in
-               print(text)
-            }
+        self.searchBar.rx.text.asDriver()
+            .drive(onNext: { text in
+               print(text ?? "")
+            })
             .addDisposableTo(bag)
 
         viewModel.reloadTrigger.asDriver(onErrorJustReturn: ())
-            .driveNext { [weak self] in
+            .drive(onNext: { [weak self] in
                 guard let `self` = self else { return }
                 self.table.reloadData()
                 if self.viewModel.expenses.isNotEmpty {
                     self.searchBar.resignFirstResponder()
                 }
-            }
+            })
             .addDisposableTo(bag)
     }
 
@@ -64,19 +64,19 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.didReceiveMemoryWarning()
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.expenses.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: ExpenseCell = tableView.dequeueReusableCellWithIdentifier("cell") as! ExpenseCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: ExpenseCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ExpenseCell
         cell.viewModel = ExpenseCellViewModel(model: viewModel.expenses[indexPath.row])
 
         return cell
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // TODO 選択した内容を遷移元に連携
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }

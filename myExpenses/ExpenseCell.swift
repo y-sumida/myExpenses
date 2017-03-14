@@ -26,24 +26,24 @@ class ExpenseCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        self.selectionStyle = UITableViewCellSelectionStyle.None
+        self.selectionStyle = UITableViewCellSelectionStyle.none
     }
 
-    private func configure() {
+    fileprivate func configure() {
         let bag: DisposeBag = DisposeBag()
 
         viewModel.date.asObservable()
-            .bindTo(date.rx_text)
+            .bindTo(date.rx.text)
             .addDisposableTo(bag)
 
         viewModel.destination.asObservable()
-            .bindTo(destination.rx_text)
+            .bindTo(destination.rx.text)
             .addDisposableTo(bag)
 
         viewModel.fare.asObservable()
-            .bindTo(fare.rx_text)
+            .bindTo(fare.rx.text)
             .addDisposableTo(bag)
     }
 }

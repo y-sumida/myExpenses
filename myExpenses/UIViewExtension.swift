@@ -11,7 +11,7 @@ import UIKit
 
 extension UIView {
     func searchFirstResponder() -> UIResponder? {
-        if self.isFirstResponder() {
+        if self.isFirstResponder {
             return self
         }
 
