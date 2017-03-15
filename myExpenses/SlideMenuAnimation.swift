@@ -64,9 +64,12 @@ final class SlideMenuAnimation: NSObject, UIViewControllerAnimatedTransitioning 
             options: .CurveEaseInOut,
             animations: { () -> Void in
                 fromView.frame = CGRectOffset(fromView.frame, -containerView.frame.size.width, 0)
-                // 引っ張るときに下の画面をずらして動くをつける
-                // TODO 定数化
-                toView.frame = CGRectOffset(toView.frame, -10, -10)
+
+                if transitionContext.isInteractive() {
+                    // 引っ張るときに下の画面をずらして動くをつける
+                    // TODO 定数化
+                    toView.frame = CGRectOffset(toView.frame, -10, -10)
+                }
             },
             completion:{ (finished) -> Void in
                 toView.frame = toViewOriginFrame
