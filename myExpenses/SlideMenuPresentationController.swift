@@ -7,11 +7,9 @@
 //
 
 import UIKit
-import RxSwift
 
 final class SlideMenuPresentationController: UIPresentationController {
     private let shadowOverlay = UIView()
-    private let bag: DisposeBag = DisposeBag()
 
     override func presentationTransitionWillBegin() {
 		guard let containerView = containerView else {
