@@ -10,6 +10,7 @@ import UIKit
 
 final class SlideMenuAnimation: NSObject, UIViewControllerAnimatedTransitioning {
     private var isPresenting = false
+    private let offset: CGFloat = -10
 
     init(isPresent: Bool) {
         self.isPresenting = isPresent
@@ -62,13 +63,12 @@ final class SlideMenuAnimation: NSObject, UIViewControllerAnimatedTransitioning 
             transitionDuration(transitionContext),
             delay: 0,
             options: .CurveEaseInOut,
-            animations: { () -> Void in
+            animations: { [unowned self] () -> Void in
                 fromView.frame = CGRectOffset(fromView.frame, -containerView.frame.size.width, 0)
 
                 if transitionContext.isInteractive() {
                     // 引っ張るときに下の画面をずらして動くをつける
-                    // TODO 定数化
-                    toView.frame = CGRectOffset(toView.frame, -10, -10)
+                    toView.frame = CGRectOffset(toView.frame, self.offset, self.offset)
                 }
             },
             completion:{ (finished) -> Void in
