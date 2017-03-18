@@ -69,11 +69,7 @@ final class SlideMenuAnimation: NSObject, UIViewControllerAnimatedTransitioning 
             },
             completion:{ (finished) -> Void in
                 toView.transform = CGAffineTransformIdentity
-                if transitionContext.transitionWasCancelled() {
-                    transitionContext.completeTransition(false)
-                } else {
-                    transitionContext.completeTransition(true)
-                }
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
             }
         )
     }
