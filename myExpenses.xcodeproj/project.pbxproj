@@ -60,6 +60,15 @@
 		A9C8FE581E704A630063D585 /* SlideMenuTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C8FE571E704A630063D585 /* SlideMenuTransition.swift */; };
 		A9C8FE601E7D70760063D585 /* myExpensesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C8FE5F1E7D70760063D585 /* myExpensesTests.swift */; };
 		A9C8FE671E7D708F0063D585 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A933ED171E40CE25009865B0 /* StringExtension.swift */; };
+		A9C8FE681E7E3FB50063D585 /* ExpensesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95593DB1E2123ED00882E58 /* ExpensesModel.swift */; };
+		A9C8FE6A1E7E3FE70063D585 /* PeriodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C8FE691E7E3FE70063D585 /* PeriodTests.swift */; };
+		A9C8FE6C1E7E42290063D585 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95593C21E17939A00882E58 /* RxBlocking.framework */; };
+		A9C8FE6D1E7E42290063D585 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95593C31E17939A00882E58 /* RxCocoa.framework */; };
+		A9C8FE6E1E7E42290063D585 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95593C41E17939A00882E58 /* RxSwift.framework */; };
+		A9C8FE6F1E7E42600063D585 /* ResponseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97BEDF51E588E7100CDBEC6 /* ResponseProtocol.swift */; };
+		A9C8FE701E7E42660063D585 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95593D51E19023500882E58 /* LoginModel.swift */; };
+		A9C8FE711E7E426C0063D585 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97BEDF31E5734CA00CDBEC6 /* RequestProtocol.swift */; };
+		A9C8FE721E7E428A0063D585 /* NSURLSessionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95593D71E1A5E6D00882E58 /* NSURLSessionExtension.swift */; };
 		A9E49D661E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */; };
 		A9E49D6B1E2BBA3B00FE3DA4 /* ShowDialog.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D6A1E2BBA3B00FE3DA4 /* ShowDialog.swift.swift */; };
 		A9E49D6D1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */; };
@@ -146,6 +155,7 @@
 		A9C8FE5D1E7D70760063D585 /* myExpensesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = myExpensesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9C8FE5F1E7D70760063D585 /* myExpensesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myExpensesTests.swift; sourceTree = "<group>"; };
 		A9C8FE611E7D70760063D585 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9C8FE691E7E3FE70063D585 /* PeriodTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodTests.swift; sourceTree = "<group>"; };
 		A9E49D651E2BAF3C00FE3DA4 /* DeleteExpenseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteExpenseModel.swift; sourceTree = "<group>"; };
 		A9E49D6A1E2BBA3B00FE3DA4 /* ShowDialog.swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowDialog.swift.swift; sourceTree = "<group>"; };
 		A9E49D6C1E2FA7CD00FE3DA4 /* ExpenseEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseEditViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +177,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9C8FE6C1E7E42290063D585 /* RxBlocking.framework in Frameworks */,
+				A9C8FE6D1E7E42290063D585 /* RxCocoa.framework in Frameworks */,
+				A9C8FE6E1E7E42290063D585 /* RxSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				A9C8FE5F1E7D70760063D585 /* myExpensesTests.swift */,
+				A9C8FE691E7E3FE70063D585 /* PeriodTests.swift */,
 				A9C8FE611E7D70760063D585 /* Info.plist */,
 			);
 			path = myExpensesTests;
@@ -345,6 +359,7 @@
 				A9C8FE591E7D70760063D585 /* Sources */,
 				A9C8FE5A1E7D70760063D585 /* Frameworks */,
 				A9C8FE5B1E7D70760063D585 /* Resources */,
+				A9C8FE6B1E7E413A0063D585 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -437,6 +452,20 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
+		A9C8FE6B1E7E413A0063D585 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -488,8 +517,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9C8FE681E7E3FB50063D585 /* ExpensesModel.swift in Sources */,
+				A9C8FE701E7E42660063D585 /* LoginModel.swift in Sources */,
+				A9C8FE6F1E7E42600063D585 /* ResponseProtocol.swift in Sources */,
+				A9C8FE721E7E428A0063D585 /* NSURLSessionExtension.swift in Sources */,
 				A9C8FE671E7D708F0063D585 /* StringExtension.swift in Sources */,
+				A9C8FE6A1E7E3FE70063D585 /* PeriodTests.swift in Sources */,
 				A9C8FE601E7D70760063D585 /* myExpensesTests.swift in Sources */,
+				A9C8FE711E7E426C0063D585 /* RequestProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,6 +667,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = myExpensesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sample.myExpensesTests;
@@ -644,6 +683,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = myExpensesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sample.myExpensesTests;

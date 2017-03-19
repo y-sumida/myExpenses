@@ -203,8 +203,8 @@ struct Period {
     }
 
     // 過去半年分
-    static func pastHalfYear() -> [Period] {
-        let current: Period = Period(date: NSDate())
+    static func pastHalfYear(date: NSDate = NSDate()) -> [Period] {
+        let current: Period = Period(date: date)
         var halfYears: [Period] = [current]
 
         for i in 1...5 {
