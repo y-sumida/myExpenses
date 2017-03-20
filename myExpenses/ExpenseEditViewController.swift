@@ -121,7 +121,8 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
 
         cancelButton.rx_tap.asDriver()
             .driveNext {
-                self.navigationController?.popViewControllerAnimated(true)
+                //self.navigationController?.popViewControllerAnimated(true)
+                self.dismissViewControllerAnimated(true, completion: nil)
             }
             .addDisposableTo(bag)
 
@@ -138,7 +139,7 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
                 }
                 else if result.code == APIResultCode.Success {
                     self.showCompleteDialog("送信完了") { _ in
-                        self.navigationController?.popViewControllerAnimated(true)
+                        self.dismissViewControllerAnimated(true, completion: nil)
                     }
                 }
                 else {

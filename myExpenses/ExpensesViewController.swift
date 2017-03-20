@@ -24,6 +24,12 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // ナビゲーションバー表示
+        if let navi = navigationController {
+            navi.setNavigationBarHidden(false, animated: true)
+            navigationItem.title = "交通費"
+            navigationItem.hidesBackButton = true
+        }
 
         table.delegate = self
         table.dataSource = self
@@ -128,16 +134,6 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         super.didReceiveMemoryWarning()
     }
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        // ナビゲーションバー表示
-        if let navi = navigationController {
-            navi.setNavigationBarHidden(false, animated: true)
-            navigationItem.title = "交通費"
-            navigationItem.hidesBackButton = true
-        }
-    }
-
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("count:" + viewModel.expenses.count.description)
         return viewModel.expenses.count
@@ -173,7 +169,9 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
                     print("edit")
                     let vc:ExpenseEditViewController = UIStoryboard(name: "ExpenseEdit", bundle: nil).instantiateViewControllerWithIdentifier("ExpenseEditViewController") as! ExpenseEditViewController
                     vc.viewModel = ExpenseEditViewModel(expense: self.viewModel.expenses[index.row])
-                    self.navigationController!.pushViewController(vc, animated: true)
+                    vc.modalPresentationStyle = .Custom
+                    vc.modalTransitionStyle = .CoverVertical
+                    self.navigationController!.presentViewController(vc, animated: true, completion: nil)
                 })
                 let copyAction: UIAlertAction = UIAlertAction(title: "複製", style: UIAlertActionStyle.Default, handler:{
                     (action: UIAlertAction!) -> Void in
@@ -233,7 +231,9 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
             (action: UIAlertAction!) -> Void in
             print("add")
             let vc:ExpenseEditViewController = UIStoryboard(name: "ExpenseEdit", bundle: nil).instantiateViewControllerWithIdentifier("ExpenseEditViewController") as! ExpenseEditViewController
-            self.navigationController!.pushViewController(vc, animated: true)
+            self.navigationController?.modalPresentationStyle = .Custom
+            vc.modalTransitionStyle = .CoverVertical
+            self.navigationController!.presentViewController(vc, animated: true, completion: nil)
         })
         let bookmarkAction: UIAlertAction = UIAlertAction(title: "お気に入りから追加", style: UIAlertActionStyle.Default, handler:{
             (action: UIAlertAction!) -> Void in
