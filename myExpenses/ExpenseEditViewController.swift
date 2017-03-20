@@ -68,6 +68,7 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         // ナビゲーションバー非表示
+        // TODO presentViewController で遷移してくるとnil
         if let navi = navigationController {
             navi.setNavigationBarHidden(true, animated: true)
         }
@@ -134,6 +135,7 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
                 // セッション切れの場合、ログイン画面へ戻す
                 if result.code == APIResultCode.SessionError {
                     self.showCompleteDialog("セッションエラー") { _ in
+                        // TODO これだと戻れなくなった
                         self.navigationController?.popToRootViewControllerAnimated(false)
                     }
                 }
