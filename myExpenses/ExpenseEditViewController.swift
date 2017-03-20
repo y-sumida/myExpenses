@@ -119,6 +119,12 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
             }
             .addDisposableTo(bag)
 
+        cancelButton.rx_tap.asDriver()
+            .driveNext {
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+            .addDisposableTo(bag)
+
         viewModel.result.asObservable()
             .skip(1) //初期値読み飛ばし
             .subscribeNext { [weak self] error in
