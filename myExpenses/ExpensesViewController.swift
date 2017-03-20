@@ -24,12 +24,6 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // ナビゲーションバー表示
-        if let navi = navigationController {
-            navi.setNavigationBarHidden(false, animated: true)
-            navigationItem.title = "交通費"
-            navigationItem.hidesBackButton = true
-        }
 
         table.delegate = self
         table.dataSource = self
@@ -132,6 +126,16 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        // ナビゲーションバー表示
+        if let navi = navigationController {
+            navi.setNavigationBarHidden(false, animated: true)
+            navigationItem.title = "交通費"
+            navigationItem.hidesBackButton = true
+        }
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

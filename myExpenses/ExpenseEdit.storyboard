@@ -35,24 +35,42 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Jvu-x0-bsS">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="44" width="600" height="492"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="78I-IR-atP">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="cancel" id="wtj-7U-Qyh"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Fza-Fg-kdg"/>
+                                    <barButtonItem systemItem="done" id="fhT-Lo-2H7"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Jvu-x0-bsS" firstAttribute="leading" secondItem="gYK-WA-WX1" secondAttribute="leading" id="Ioj-gA-qjN"/>
                             <constraint firstAttribute="trailing" secondItem="Jvu-x0-bsS" secondAttribute="trailing" id="JKk-Ia-1pN"/>
+                            <constraint firstItem="78I-IR-atP" firstAttribute="top" secondItem="FHk-bK-Tao" secondAttribute="bottom" id="MAr-cm-QQr"/>
                             <constraint firstItem="Jvu-x0-bsS" firstAttribute="top" secondItem="FHk-bK-Tao" secondAttribute="bottom" id="MZ6-Dq-27g"/>
+                            <constraint firstItem="78I-IR-atP" firstAttribute="leading" secondItem="gYK-WA-WX1" secondAttribute="leading" id="s2o-l2-VZx"/>
                             <constraint firstItem="doN-m6-Ei7" firstAttribute="top" secondItem="Jvu-x0-bsS" secondAttribute="bottom" id="uno-xK-xL0"/>
+                            <constraint firstItem="Jvu-x0-bsS" firstAttribute="top" secondItem="78I-IR-atP" secondAttribute="bottom" id="ve6-e7-eGT"/>
+                            <constraint firstAttribute="trailing" secondItem="78I-IR-atP" secondAttribute="trailing" id="zhH-OW-oi8"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="MZ6-Dq-27g"/>
+                            </mask>
+                        </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="Nqw-Nv-8qU">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="Zz8-FF-IcA"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="doneButton" destination="Zz8-FF-IcA" id="G2a-31-cbp"/>
+                        <outlet property="cancelButton" destination="wtj-7U-Qyh" id="Prd-aN-4Hy"/>
+                        <outlet property="doneButton" destination="fhT-Lo-2H7" id="SDo-1a-vic"/>
                         <outlet property="table" destination="Jvu-x0-bsS" id="C5B-3K-wiM"/>
                     </connections>
                 </viewController>

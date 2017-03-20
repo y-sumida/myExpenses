@@ -57,6 +57,7 @@ struct ExpenseEditSwitch: ExpenseEditRow {
 class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableViewDataSource, ShowDialog {
     @IBOutlet weak private var table: UITableView!
     @IBOutlet weak var doneButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
 
     private var isDatePickerOpen: Bool = false
     private let bag: DisposeBag = DisposeBag()
@@ -66,11 +67,9 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // ナビゲーションバー表示
+        // ナビゲーションバー非表示
         if let navi = navigationController {
-            navi.setNavigationBarHidden(false, animated: true)
-            navigationItem.title = "外出先編集"
-            navigationItem.hidesBackButton = false
+            navi.setNavigationBarHidden(true, animated: true)
         }
 
         rowsInSection = [
