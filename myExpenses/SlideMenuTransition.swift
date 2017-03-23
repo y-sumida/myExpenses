@@ -21,20 +21,20 @@ final class SlideMenuTransition: UIPercentDrivenInteractiveTransition {
         self.targetViewController = targetViewController
 
         let panGesture = UIPanGestureRecognizer()
-        panGesture.rx_event
-            .subscribeNext { [weak self] recognizer  in
+        panGesture.rx.event
+            .bindNext { [weak self] recognizer  in
                 guard let `self` = self else { return }
 
                 // ドラッグ中以外はこのトランジションを使わないように
-                self.isInteractiveDissmalTransition = recognizer.state == .Began || recognizer.state == .Changed
+                self.isInteractiveDissmalTransition = recognizer.state == .began || recognizer.state == .changed
 
                 switch recognizer.state {
-                case .Began:
-                    self.swipeBegan(recognizer)
-                case .Changed:
-                    self.swipeChanged(recognizer)
-                case .Ended, .Cancelled:
-                    self.swipeEndedOrCancelled(recognizer)
+                case .began:
+                    self.swipeBegan(recognizer: recognizer)
+                case .changed:
+                    self.swipeChanged(recognizer: recognizer)
+                case .ended, .cancelled:
+                    self.swipeEndedOrCancelled(recognizer: recognizer)
                 default:
                     break
                 }
@@ -46,19 +46,19 @@ final class SlideMenuTransition: UIPercentDrivenInteractiveTransition {
 
     private func swipeBegan(recognizer: UIPanGestureRecognizer) {
         // メニューを閉じる
-        self.targetViewController.dismissViewControllerAnimated(true, completion: nil)
+        self.targetViewController.dismiss(animated: true, completion: nil)
     }
 
     private func swipeChanged(recognizer: UIPanGestureRecognizer) {
-        let transition: CGPoint = recognizer.translationInView(self.targetViewController.view)
+        let transition: CGPoint = recognizer.translation(in: self.targetViewController.view)
         var progress: CGFloat = transition.x / self.targetViewController.view.bounds.size.width
         progress = -min(1.0, max(-1.0, progress))
 
-        self.updateInteractiveTransition(progress)
+        self.update(progress)
     }
 
     private func swipeEndedOrCancelled(recognizer: UIPanGestureRecognizer) {
         // 閾値超えたらfinish判定
-        self.percentComplete > self.completeThreshold ? self.finishInteractiveTransition() : self.cancelInteractiveTransition()
+        self.percentComplete > self.completeThreshold ? self.finish() : self.cancel()
     }
 }

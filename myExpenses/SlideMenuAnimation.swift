@@ -16,35 +16,35 @@ final class SlideMenuAnimation: NSObject, UIViewControllerAnimatedTransitioning 
         self.isPresenting = isPresent
     }
 
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.3
     }
 
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)
-        let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        let fromVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)
+        let toVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)
 
         if isPresenting {
             // 遷移
-            presentTransition(transitionContext, toView: toVC!.view, fromView: fromVC!.view)
+            presentTransition(transitionContext: transitionContext, toView: toVC!.view, fromView: fromVC!.view)
         } else {
             // 戻る
-            dismissTransition(transitionContext, toView: toVC!.view, fromView: fromVC!.view)
+            dismissTransition(transitionContext: transitionContext, toView: toVC!.view, fromView: fromVC!.view)
         }
     }
 
    func presentTransition(transitionContext: UIViewControllerContextTransitioning, toView: UIView, fromView: UIView) {
-        guard let containerView: UIView = transitionContext.containerView() else { return }
+        let containerView: UIView = transitionContext.containerView
 
         containerView.addSubview(toView)
 
         // 遷移先viewの初期位置を画面の左側に移動
-        toView.frame = CGRectOffset(toView.frame, -containerView.frame.size.width, 0)
+        toView.frame = toView.frame.offsetBy(dx: -containerView.frame.size.width, dy: 0)
 
-        UIView.animateWithDuration(
-            transitionDuration(transitionContext),
+    UIView.animate(
+            withDuration: transitionDuration(using: transitionContext),
             delay: 0.05,
-            options: .CurveEaseInOut,
+            options: .curveEaseInOut,
             animations: { () -> Void in
                 toView.frame = containerView.frame
             },
@@ -55,21 +55,21 @@ final class SlideMenuAnimation: NSObject, UIViewControllerAnimatedTransitioning 
     }
 
     private func dismissTransition(transitionContext: UIViewControllerContextTransitioning, toView: UIView, fromView: UIView) {
-        guard let containerView: UIView = transitionContext.containerView() else { return }
+        let containerView: UIView = transitionContext.containerView
 
-        toView.transform = CGAffineTransformMakeScale(0.95, 0.95)
+        toView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
 
-        UIView.animateWithDuration(
-            transitionDuration(transitionContext),
+        UIView.animate(
+            withDuration: transitionDuration(using: transitionContext),
             delay: 0,
-            options: .CurveEaseInOut,
-            animations: {
-                fromView.frame = CGRectOffset(fromView.frame, -containerView.frame.size.width, 0)
-                toView.transform = CGAffineTransformIdentity
+            options: .curveEaseInOut,
+            animations: { () -> Void in
+                fromView.frame = fromView.frame.offsetBy(dx: -containerView.frame.size.width, dy: 0)
+                toView.transform = CGAffineTransform.identity
             },
             completion:{ (finished) -> Void in
-                toView.transform = CGAffineTransformIdentity
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                toView.transform = CGAffineTransform.identity
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
         )
     }

@@ -12,12 +12,12 @@ import RxSwift
 class MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var table: UITableView!
 
-    private let bag: DisposeBag = DisposeBag()
-    private let viewModel: LogoutViewModel = LogoutViewModel()
+    fileprivate let bag: DisposeBag = DisposeBag()
+    fileprivate let viewModel: LogoutViewModel = LogoutViewModel()
 
-    private var email: String {
-        let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        guard let mail: String = sharedInstance.stringForKey("email") else { return "" }
+    fileprivate var email: String {
+        let sharedInstance: UserDefaults = UserDefaults.standard
+        guard let mail: String = sharedInstance.string(forKey: "email") else { return "" }
 
         return mail
     }
@@ -29,14 +29,14 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         table.delegate = self
         table.dataSource = self
-        table.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
 
         // ログアウト処理
         viewModel.result.asObservable()
             .skip(1) //初期値読み飛ばし
-            .subscribeNext {[weak self] _ in
+            .bindNext {[weak self] _ in
                 guard let `self` = self else { return }
-                self.dismissViewControllerAnimated(true, completion: {self.logoutHandler()})
+                self.dismiss(animated: true, completion: {self.logoutHandler()})
             }
             .addDisposableTo(bag)
     }
@@ -45,16 +45,16 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.didReceiveMemoryWarning()
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath)
         if indexPath.section == 0 {
             cell.textLabel?.text = self.email
         }
@@ -65,12 +65,12 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             viewModel.logoutTrigger.onNext(())
         }
     }
-    @IBAction func tapMarginArea(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func tapMarginArea(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
 }

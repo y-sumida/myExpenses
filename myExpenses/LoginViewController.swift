@@ -15,52 +15,57 @@ class LoginViewController: UIViewController, ShowDialog {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var loginButton: UIButton!
 
-    private let bag: DisposeBag = DisposeBag()
-    private let viewModel: LoginViewModel = LoginViewModel()
+    fileprivate let bag: DisposeBag = DisposeBag()
+    fileprivate let viewModel: LoginViewModel = LoginViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        if let _ = sharedInstance.stringForKey("sessionId") {
+        let sharedInstance: UserDefaults = UserDefaults.standard
+        if let _ = sharedInstance.string(forKey: "sessionId") {
             // セッションIDが保存してあったらログイン画面をスキップ
             // TODO ログインのviewDidLoadでよい？AppDelegateにおいたほうがいい？
-            self.showExpensesView(animated: false)
+            self.showExpensesView(false)
         }
 
         // サジェスト無効化
-        email.autocapitalizationType = .None
-        email.autocorrectionType = .No
+        email.autocapitalizationType = .none
+        email.autocorrectionType = .no
         // キーボード指定
-        email.keyboardType = .EmailAddress
+        email.keyboardType = .emailAddress
 
         // bind
-        email.rx_text
-            .bindTo(viewModel.email)
+        email.rx.text
+            .bindNext { string in
+                self.viewModel.email.value = string!
+            }
             .addDisposableTo(bag)
-        password.rx_text
-            .bindTo(viewModel.password)
+        password.rx.text
+            .bindNext { string in
+                self.viewModel.password.value = string!
+            }
             .addDisposableTo(bag)
 
         Observable
             .combineLatest(
-                email.rx_text.asObservable(),
-            password.rx_text.asObservable()) { c in c }
-            .subscribeNext { (email, password) in
-                self.loginButton.enabled = email.isNotEmpty && password.isNotEmpty
+                email.rx.text.asObservable(),
+            password.rx.text.asObservable()) { c in c }
+            .bindNext { (email, password) in
+                self.loginButton.isEnabled = (email?.isNotEmpty)! && (password?.isNotEmpty)!
             }
             .addDisposableTo(bag)
 
-        loginButton.rx_tap.subscribeNext {
-            self.viewModel.loginTrigger.onNext(())
+        loginButton.rx.tap
+            .bindNext {
+                self.viewModel.loginTrigger.onNext(())
             }
             .addDisposableTo(bag)
         viewModel.result.asObservable()
             .skip(1) //初期値読み飛ばし
-            .subscribeNext {error in
+            .bindNext {error in
                 let result = error as! APIResult
 
                 if result.code == APIResultCode.Success {
-                    self.showExpensesView(animated: true)
+                    self.showExpensesView(true)
                 }
                 else {
                     self.showErrorDialog(result)
@@ -69,7 +74,7 @@ class LoginViewController: UIViewController, ShowDialog {
             .addDisposableTo(bag)
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
        super.viewWillAppear(animated)
         // ナビゲーションバー非表示
         if let navi = navigationController {
@@ -79,20 +84,20 @@ class LoginViewController: UIViewController, ShowDialog {
         // TODO Rxでボタンdisableにする方法
         email.text = ""
         password.text = ""
-        loginButton.enabled = false
+        loginButton.isEnabled = false
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
-    @IBAction func tapRegisterButton(sender: AnyObject) {
-        let vc:RegisterViewController = UIStoryboard(name: "Register", bundle: nil).instantiateViewControllerWithIdentifier("RegisterViewController") as! RegisterViewController
+    @IBAction func tapRegisterButton(_ sender: AnyObject) {
+        let vc:RegisterViewController = UIStoryboard(name: "Register", bundle: nil).instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
-    private func showExpensesView(animated animated: Bool) {
-        let vc:ExpensesViewController = UIStoryboard(name: "Expenses", bundle: nil).instantiateViewControllerWithIdentifier("ExpensesViewController") as! ExpensesViewController
+    fileprivate func showExpensesView(_ animated: Bool) {
+        let vc:ExpensesViewController = UIStoryboard(name: "Expenses", bundle: nil).instantiateViewController(withIdentifier: "ExpensesViewController") as! ExpensesViewController
         self.navigationController?.pushViewController(vc, animated: animated)
     }
 }

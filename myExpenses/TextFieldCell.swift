@@ -18,13 +18,13 @@ class TextFieldCell: UITableViewCell, UITextFieldDelegate {
             textField.placeholder = placeholder
         }
     }
-    var keyboardType: UIKeyboardType = .Default {
+    var keyboardType: UIKeyboardType = .default {
         didSet {
             textField.keyboardType = keyboardType
         }
     }
 
-    private var bag: DisposeBag!
+    fileprivate var bag: DisposeBag!
     var bindValue: Variable<String>! {
         didSet {
             bag = DisposeBag()
@@ -33,10 +33,13 @@ class TextFieldCell: UITableViewCell, UITextFieldDelegate {
                     // 料金の初期値0の場合にプレースホルダー表示する。別クラスにしたほうがいいかも。
                     $0 != "0"
                 }
-                .bindTo(self.textField.rx_text)
+                .bindTo(self.textField.rx.text)
                 .addDisposableTo(bag)
-            self.textField.rx_text
-                .bindTo(self.bindValue)
+            self.textField.rx.text
+                .bindNext { string in
+                    self.bindValue.value = string!
+                    
+                }
                 .addDisposableTo(bag)
         }
         
@@ -46,20 +49,20 @@ class TextFieldCell: UITableViewCell, UITextFieldDelegate {
         super.awakeFromNib()
 
         textField.delegate = self
-        textField.borderStyle = .None
+        textField.borderStyle = .none
         textField.placeholder = placeholder
         textField.keyboardType = keyboardType
-        textField.autocapitalizationType = .None
-        textField.autocorrectionType = .No
+        textField.autocapitalizationType = .none
+        textField.autocorrectionType = .no
 
         // Doneボタン
-        let toolbar = UIToolbar(frame: CGRectMake(0, 0, self.frame.size.width, 40.0))
-        let flexible = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let done = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(self.closeKeyboard))
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: 40.0))
+        let flexible = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let done = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.closeKeyboard))
         toolbar.items = [flexible, done]
         textField.inputAccessoryView = toolbar
 
-        self.selectionStyle = .None
+        self.selectionStyle = .none
 
     }
 
@@ -67,11 +70,11 @@ class TextFieldCell: UITableViewCell, UITextFieldDelegate {
         placeholder = ""
         title.text = ""
         textField.text = ""
-        keyboardType = .Default
-        textField.userInteractionEnabled = true
+        keyboardType = .default
+        textField.isUserInteractionEnabled = true
     }
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         textField.resignFirstResponder()
         return true
     }

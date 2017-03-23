@@ -27,26 +27,26 @@ struct DeleteExpenseModel: ResponseProtocol {
 
         self.sessionId = sessionId as! String
         // セッションID更新
-        let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        sharedInstance.setObject(self.sessionId, forKey: "sessionId")
+        let sharedInstance: UserDefaults = UserDefaults.standard
+        sharedInstance.set(self.sessionId, forKey: "sessionId")
         sharedInstance.synchronize()
 
         result = APIResult(code: APIResultCode.create(self.resultCode), message: self.resultMessage, sessionId: self.sessionId)
     }
 
-    static func call(expenseId: String) -> Observable<(DeleteExpenseModel, NSHTTPURLResponse)> {
+    static func call(_ expenseId: String) -> Observable<(DeleteExpenseModel, HTTPURLResponse)> {
 
-        let session: NSURLSession = NSURLSession.sharedSession()
+        let session: URLSession = URLSession.shared
         return session.rx_responseObject(DeleteExpenseRequest(expenseId: expenseId))
     }
 }
 
 struct DeleteExpenseRequest: RequestProtocol {
-    private var expenseId: String = ""
-    private var sessionId: String {
+    fileprivate var expenseId: String = ""
+    fileprivate var sessionId: String {
         get {
-            let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-            if let sessionId: String = sharedInstance.stringForKey("sessionId") {
+            let sharedInstance: UserDefaults = UserDefaults.standard
+            if let sessionId: String = sharedInstance.string(forKey: "sessionId") {
                 return sessionId
             }
             else {

@@ -28,8 +28,8 @@ class ExpensesModel: ResponseProtocol {
         if let sessionId = data["sessionId"] {
             self.sessionId = sessionId as! String
             // セッションID更新
-            let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-            sharedInstance.setObject(self.sessionId, forKey: "sessionId")
+            let sharedInstance: UserDefaults = UserDefaults.standard
+            sharedInstance.set(self.sessionId, forKey: "sessionId")
             sharedInstance.synchronize()
         }
 
@@ -37,7 +37,7 @@ class ExpensesModel: ResponseProtocol {
             let arr = expenses as! Array<[String : AnyObject]>
 
             arr.forEach {
-                if let expense: ExpenseModel = ExpenseModel(data: $0) {
+                if let expense: ExpenseModel = ExpenseModel(data: $0 as NSDictionary) {
                     self.expenses.append(expense)
                 }
             }
@@ -46,28 +46,28 @@ class ExpensesModel: ResponseProtocol {
         result = APIResult(code: APIResultCode.create(self.resultCode), message: self.resultMessage)
     }
 
-    static func call(period: Period) -> Observable<(ExpensesModel, NSHTTPURLResponse)> {
+    static func call(_ period: Period) -> Observable<(ExpensesModel, HTTPURLResponse)> {
 
-        let session: NSURLSession = NSURLSession.sharedSession()
+        let session: URLSession = URLSession.shared
         return session.rx_responseObject(ExpensesRequest(period: period))
     }
 
-    static func call(keyword: String) -> Observable<(ExpensesModel, NSHTTPURLResponse)> {
+    static func call(_ keyword: String) -> Observable<(ExpensesModel, HTTPURLResponse)> {
         // 検索キーワード保存
-        let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        if var searchWords: [String] = sharedInstance.arrayForKey("searchWords") as? [String] {
-            searchWords.insert(keyword, atIndex: 0)
+        let sharedInstance: UserDefaults = UserDefaults.standard
+        if var searchWords: [String] = sharedInstance.array(forKey: "searchWords") as? [String] {
+            searchWords.insert(keyword, at: 0)
             if searchWords.count > 10 {
                 searchWords.removeLast()
             }
-            sharedInstance.setObject(searchWords, forKey: "searchWords")
+            sharedInstance.set(searchWords, forKey: "searchWords")
         }
         else {
-            sharedInstance.setObject([keyword], forKey: "searchWords")
+            sharedInstance.set([keyword], forKey: "searchWords")
         }
         sharedInstance.synchronize()
 
-        let session: NSURLSession = NSURLSession.sharedSession()
+        let session: URLSession = URLSession.shared
         return session.rx_responseObject(SearchRequest(keyword: keyword))
     }
 }
@@ -78,7 +78,7 @@ class ExpenseModel {
     var resultMessage: String = ""
     var sessionId: String = ""
     var id: String = ""
-    var date: NSDate?
+    var date: Date?
     var dateAsString: String = ""
     var name: String = ""
     var useJR: Bool = false
@@ -109,11 +109,11 @@ class ExpenseModel {
 
         self.id = id as! String
 
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyyMMdd"
-        if let date: NSDate = formatter.dateFromString(date as! String) {
+        if let date: Date = formatter.date(from: date as! String) {
             self.date = date
-            self.dateAsString = formatter.stringFromDate(date)
+            self.dateAsString = formatter.string(from: date)
         }
         else {
             return nil
@@ -142,10 +142,10 @@ struct ExpensesRequest: RequestProtocol {
     var path: String {
         return "expenses.php?sessionId=\(sessionId)&period=\(period.description)"
     }
-    private var sessionId: String {
+    fileprivate var sessionId: String {
         get {
-            let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-            if let sessionId: String = sharedInstance.stringForKey("sessionId") {
+            let sharedInstance: UserDefaults = UserDefaults.standard
+            if let sessionId: String = sharedInstance.string(forKey: "sessionId") {
                 return sessionId
             }
             else {
@@ -153,7 +153,7 @@ struct ExpensesRequest: RequestProtocol {
             }
         }
     }
-    private let period: Period!
+    fileprivate let period: Period!
 
     init(period: Period) {
         self.period = period
@@ -161,10 +161,10 @@ struct ExpensesRequest: RequestProtocol {
 }
 
 class SearchRequest: RequestProtocol {
-    private var sessionId: String {
+    fileprivate var sessionId: String {
         get {
-            let sharedInstance: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-            if let sessionId: String = sharedInstance.stringForKey("sessionId") {
+            let sharedInstance: UserDefaults = UserDefaults.standard
+            if let sessionId: String = sharedInstance.string(forKey: "sessionId") {
                 return sessionId
             }
             else {
@@ -172,7 +172,7 @@ class SearchRequest: RequestProtocol {
             }
         }
     }
-    private let keyword: String
+    fileprivate let keyword: String
 
     // RequestProtocol
     typealias Response = ExpensesModel
@@ -187,29 +187,29 @@ class SearchRequest: RequestProtocol {
 }
 
 struct Period {
-    let date:NSDate!
+    let date:Date!
     let description: String
 
-    init(date: NSDate = NSDate()) {
-        let formatter = NSDateFormatter()
+    init(date: Date = Date()) {
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyyMM"
-        formatter.locale = NSLocale(localeIdentifier: "ja_JP")
-        description = formatter.stringFromDate(date)
+        formatter.locale = Locale(identifier: "ja_JP")
+        description = formatter.string(from: date)
         print(description)
 
         // 指定した月の月初日を保持
-        self.date = formatter.dateFromString("\(description)")
+        self.date = formatter.date(from: "\(description)")
         print(self.date)
     }
 
     // 過去半年分
     static func pastHalfYear(date: NSDate = NSDate()) -> [Period] {
-        let current: Period = Period(date: date)
+        let current: Period = Period(date: date as Date)
         var halfYears: [Period] = [current]
 
         for i in 1...5 {
             // Periodのdateパラメータは月初日なので1時間引くことで前日にする
-            let pastDate: NSDate = NSDate(timeInterval: -60*60, sinceDate: halfYears[i - 1].date)
+            let pastDate: Date = Date(timeInterval: -60*60, since: halfYears[i - 1].date)
             halfYears.append(Period(date: pastDate))
         }
 

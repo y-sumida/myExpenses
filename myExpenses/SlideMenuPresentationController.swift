@@ -17,40 +17,36 @@ final class SlideMenuPresentationController: UIPresentationController {
 		}
 
 		shadowOverlay.frame = containerView.bounds
-		shadowOverlay.backgroundColor = UIColor.blackColor()
+		shadowOverlay.backgroundColor = UIColor.black
 		shadowOverlay.alpha = 0.0
-		containerView.insertSubview(shadowOverlay, atIndex: 0)
-        presentedViewController.transitionCoordinator()?.animateAlongsideTransition({ [unowned self] _ in
+		containerView.insertSubview(shadowOverlay, at: 0)
+        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { [unowned self] _ in
             self.shadowOverlay.alpha = 0.3
             }, completion: nil)
     }
 
     override func dismissalTransitionWillBegin() {
-        presentedViewController.transitionCoordinator()?.animateAlongsideTransition({ [unowned self] _ in
+        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { [unowned self] _ in
             // 閉じる前に透明に
             self.shadowOverlay.alpha = 0.0
             }, completion: nil)
     }
 
-	override func dismissalTransitionDidEnd(completed: Bool) {
+	override func dismissalTransitionDidEnd(_ completed: Bool) {
             //  閉じた後の片付け
 		if completed {
 			shadowOverlay.removeFromSuperview()
 		}
 	}
 
-    override func sizeForChildContentContainer(container: UIContentContainer, withParentContainerSize parentSize: CGSize) -> CGSize {
-        return CGSize(width: parentSize.width, height: parentSize.height)
-    }
-
     override func containerViewWillLayoutSubviews() {
-        var frame = CGRectZero
+        var frame = CGRect.zero
         let parentBounds = containerView!.bounds
-        let childSize = sizeForChildContentContainer(presentedViewController, withParentContainerSize: parentBounds.size)
+        let childSize = CGSize(width: parentBounds.width, height: parentBounds.height)
         frame.size = childSize
         frame.origin.x = 0.0
         frame.origin.y = 0.0
 
-        presentedView()!.frame = frame
+        presentedView!.frame = frame
     }
 }

@@ -10,10 +10,10 @@ import Foundation
 import RxSwift
 
 final class LogoutViewModel {
-    private let bag: DisposeBag = DisposeBag()
+    fileprivate let bag: DisposeBag = DisposeBag()
 
     var logoutTrigger: PublishSubject<Void> = PublishSubject()
-    var result: Variable<ErrorType?> = Variable(nil)
+    var result: Variable<Error?> = Variable(nil)
 
     init() {
         logoutTrigger
@@ -26,7 +26,7 @@ final class LogoutViewModel {
                     guard let `self` = self else { return }
                     self.result.value = model.result!
                 },
-                onError: { [weak self] (error: ErrorType) in
+                onError: { [weak self] (error: Error) in
                     guard let `self` = self else { return }
                     // APIエラー
                     self.result.value = error

@@ -10,18 +10,18 @@ import Foundation
 import RxSwift
 
 final class ExpensesViewModel {
-    private let bag: DisposeBag = DisposeBag()
+    fileprivate let bag: DisposeBag = DisposeBag()
 
     var period: Variable<String> = Variable("")
     var reloadTrigger: PublishSubject<Void> = PublishSubject()
-    var result: Variable<ErrorType?> = Variable(nil)
+    var result: Variable<Error?> = Variable(nil)
     var fareTotal: Variable<String> = Variable("")
 
-    private(set) var expenses: [ExpenseModel] = []
+    fileprivate(set) var expenses: [ExpenseModel] = []
 
     init() {}
 
-    func monthlyExpenses(period: Period) {
+    func monthlyExpenses(_ period: Period) {
         ExpensesModel.call(period)
             .observeOn(MainScheduler.instance)//これ以降メインスレッドで実行
             .subscribe(
@@ -33,7 +33,7 @@ final class ExpensesViewModel {
 
                     self.reloadTrigger.onNext(())
                 },
-                onError: { [weak self] (error: ErrorType) in
+                onError: { [weak self] (error: Error) in
                     guard let `self` = self else { return }
                     // APIエラー
                     self.result.value = error
@@ -42,7 +42,7 @@ final class ExpensesViewModel {
             .addDisposableTo(bag)
     }
 
-    func deleteAtIndex(index: Int) {
+    func deleteAtIndex(_ index: Int) {
         let expenseId: String = expenses[index].id
 
         DeleteExpenseModel.call(expenseId)
@@ -51,12 +51,12 @@ final class ExpensesViewModel {
                 onNext: { [weak self] (model, response) in
                     guard let `self` = self else { return }
                     self.result.value = model.result!
-                    self.expenses.removeAtIndex(index)
+                    self.expenses.remove(at: index)
                     self.calcFareTotal()
 
                     self.reloadTrigger.onNext(())
                 },
-                onError: { [weak self] (error: ErrorType) in
+                onError: { [weak self] (error: Error) in
                     guard let `self` = self else { return }
                     // APIエラー
                     self.result.value = error
@@ -65,7 +65,7 @@ final class ExpensesViewModel {
             .addDisposableTo(bag)
     }
 
-    func searchExpenses(keyword: String) {
+    func searchExpenses(_ keyword: String) {
         ExpensesModel.call(keyword)
             .observeOn(MainScheduler.instance)
             .subscribe(
@@ -76,7 +76,7 @@ final class ExpensesViewModel {
 
                     self.reloadTrigger.onNext(())
                 },
-                onError: { [weak self] (error: ErrorType) in
+                onError: { [weak self] (error: Error) in
                     guard let `self` = self else { return }
                     // APIエラー
                     self.result.value = error
@@ -85,7 +85,7 @@ final class ExpensesViewModel {
             .addDisposableTo(bag)
     }
 
-    private func calcFareTotal() {
+    fileprivate func calcFareTotal() {
         fareTotal.value = expenses.reduce(0) {
             $0 + $1.fare
             }.commaSeparated

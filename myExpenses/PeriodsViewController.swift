@@ -10,9 +10,9 @@ import UIKit
 
 class PeriodsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var table: UITableView!
-    private var periods: [Period]!
+    fileprivate var periods: [Period]!
 
-    var handler: ((period: Period) -> Void) = {_ in }
+    var handler: ((_ period: Period) -> Void) = {_ in }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +20,7 @@ class PeriodsViewController: UIViewController, UITableViewDelegate, UITableViewD
         table.delegate = self
         table.dataSource = self
 
-        table.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
 
         periods = Period.pastHalfYear()
     }
@@ -29,24 +29,24 @@ class PeriodsViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.didReceiveMemoryWarning()
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return periods.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // TODO 表示書式調整
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel!.text = periods[indexPath.row].description
 
         return cell
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.handler(period: periods[indexPath.row])
-        self.dismissViewControllerAnimated(true, completion: nil)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.handler(periods[indexPath.row])
+        self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func tapButton(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func tapButton(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
 }

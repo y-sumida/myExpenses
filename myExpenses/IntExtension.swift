@@ -9,10 +9,10 @@ import Foundation
 
 extension Int {
     var commaSeparated: String {
-        let formatter: NSNumberFormatter = NSNumberFormatter()
-        formatter.numberStyle = .DecimalStyle
+        let formatter: NumberFormatter = NumberFormatter()
+        formatter.numberStyle = .decimal
         formatter.decimalSeparator = ","
         formatter.groupingSize = 3
-        return formatter.stringFromNumber(self)!
+        return formatter.string(from: self as NSNumber)!
     }
 }

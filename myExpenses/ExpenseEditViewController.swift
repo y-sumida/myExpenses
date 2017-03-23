@@ -10,20 +10,20 @@ import UIKit
 import RxSwift
 
 enum ExpenseEditSections: Int {
-    case Date = 0
-    case Destination
-    case Transport
-    case Interval
-    case Fare
-    case Memo
+    case date = 0
+    case destination
+    case transport
+    case interval
+    case fare
+    case memo
 }
 
 enum ExpenseEditType: Int {
-    case Text = 0
-    case Date
-    case Number
-    case Switch
-    case DatePicker
+    case text = 0
+    case date
+    case number
+    case `switch`
+    case datePicker
 }
 
 protocol ExpenseEditRow {
@@ -41,7 +41,7 @@ struct ExpenseEditText: ExpenseEditRow {
 }
 
 struct ExpenseEditDate: ExpenseEditRow {
-    typealias Element = NSDate
+    typealias Element = Date
     var placeholder: String
     var type: ExpenseEditType
     var bindValue: Variable<Element>
@@ -55,12 +55,12 @@ struct ExpenseEditSwitch: ExpenseEditRow {
 }
 
 class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableViewDataSource, ShowDialog {
-    @IBOutlet weak private var table: UITableView!
+    @IBOutlet weak fileprivate var table: UITableView!
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
 
-    private var isDatePickerOpen: Bool = false
-    private let bag: DisposeBag = DisposeBag()
+    fileprivate var isDatePickerOpen: Bool = false
+    fileprivate let bag: DisposeBag = DisposeBag()
 
     var viewModel: ExpenseEditViewModel = ExpenseEditViewModel()
     var rowsInSection:[Array<Any>]!
@@ -75,29 +75,29 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
 
         rowsInSection = [
             [
-                ExpenseEditText(placeholder: "日付", type: .Date, bindValue: viewModel.dateAsString),
-                ExpenseEditDate(placeholder: "", type: .DatePicker, bindValue: viewModel.date)
+                ExpenseEditText(placeholder: "日付", type: .date, bindValue: viewModel.dateAsString),
+                ExpenseEditDate(placeholder: "", type: .datePicker, bindValue: viewModel.date)
             ],
             [
-                ExpenseEditText(placeholder: "外出先", type: .Text, bindValue: viewModel.destination),
+                ExpenseEditText(placeholder: "外出先", type: .text, bindValue: viewModel.destination),
             ],
             [
-                ExpenseEditSwitch(placeholder: "JR", type: .Switch, bindValue: viewModel.useJR),
-                ExpenseEditSwitch(placeholder: "私鉄", type: .Switch, bindValue: viewModel.usePrivate),
-                ExpenseEditSwitch(placeholder: "地下鉄", type: .Switch, bindValue: viewModel.useSubway),
-                ExpenseEditSwitch(placeholder: "バス", type: .Switch, bindValue: viewModel.useBus),
-                ExpenseEditSwitch(placeholder: "高速", type: .Switch, bindValue: viewModel.useHighway),
-                ExpenseEditText(placeholder: "その他", type: .Text, bindValue: viewModel.useOther),
+                ExpenseEditSwitch(placeholder: "JR", type: .switch, bindValue: viewModel.useJR),
+                ExpenseEditSwitch(placeholder: "私鉄", type: .switch, bindValue: viewModel.usePrivate),
+                ExpenseEditSwitch(placeholder: "地下鉄", type: .switch, bindValue: viewModel.useSubway),
+                ExpenseEditSwitch(placeholder: "バス", type: .switch, bindValue: viewModel.useBus),
+                ExpenseEditSwitch(placeholder: "高速", type: .switch, bindValue: viewModel.useHighway),
+                ExpenseEditText(placeholder: "その他", type: .text, bindValue: viewModel.useOther),
             ],
             [
-                ExpenseEditText(placeholder: "from", type: .Text, bindValue: viewModel.from),
-                ExpenseEditText(placeholder: "to", type: .Text, bindValue: viewModel.to),
+                ExpenseEditText(placeholder: "from", type: .text, bindValue: viewModel.from),
+                ExpenseEditText(placeholder: "to", type: .text, bindValue: viewModel.to),
             ],
             [
-                ExpenseEditText(placeholder: "料金", type: .Number, bindValue: viewModel.fare),
+                ExpenseEditText(placeholder: "料金", type: .number, bindValue: viewModel.fare),
             ],
             [
-                ExpenseEditText(placeholder: "備考", type: .Text, bindValue: viewModel.memo)
+                ExpenseEditText(placeholder: "備考", type: .text, bindValue: viewModel.memo)
             ]
         ]
 
@@ -106,42 +106,43 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
         table.estimatedRowHeight = 100
 
         let transportCell = UINib(nibName: "TransportSelectCell", bundle: nil)
-        table.registerNib(transportCell, forCellReuseIdentifier: "TransportSelectCell")
+        table.register(transportCell, forCellReuseIdentifier: "TransportSelectCell")
         let textFieldCell = UINib(nibName: "TextFieldCell", bundle: nil)
-        table.registerNib(textFieldCell, forCellReuseIdentifier: "TextFieldCell")
+        table.register(textFieldCell, forCellReuseIdentifier: "TextFieldCell")
         let datePicerCell = UINib(nibName: "DatePickerCell", bundle: nil)
-        table.registerNib(datePicerCell, forCellReuseIdentifier: "DatePickerCell")
+        table.register(datePicerCell, forCellReuseIdentifier: "DatePickerCell")
 
         // TODO 未入力時にDoneボタンdisable
-        doneButton.rx_tap.asObservable()
-            .subscribeNext { [weak self] in
+        doneButton.rx.tap.asObservable()
+            .bindNext { [weak self] in
                 guard let `self` = self else { return }
                 self.viewModel.upsertExpense()
             }
             .addDisposableTo(bag)
 
-        cancelButton.rx_tap.asDriver()
-            .driveNext {
+        cancelButton.rx.tap.asDriver()
+            .drive(onNext: { [weak self] in
+                guard let `self` = self else { return }
                 //self.navigationController?.popViewControllerAnimated(true)
-                self.dismissViewControllerAnimated(true, completion: nil)
-            }
+                self.dismiss(animated: true, completion: nil)
+            })
             .addDisposableTo(bag)
 
         viewModel.result.asObservable()
             .skip(1) //初期値読み飛ばし
-            .subscribeNext { [weak self] error in
+            .bindNext { [weak self] error in
                 guard let `self` = self else { return }
                 let result = error as! APIResult
                 // セッション切れの場合、ログイン画面へ戻す
                 if result.code == APIResultCode.SessionError {
                     self.showCompleteDialog("セッションエラー") { _ in
                         // TODO これだと戻れなくなった
-                        self.navigationController?.popToRootViewControllerAnimated(false)
+                        self.navigationController?.popToRootViewController(animated: false)
                     }
                 }
                 else if result.code == APIResultCode.Success {
                     self.showCompleteDialog("送信完了") { _ in
-                        self.dismissViewControllerAnimated(true, completion: nil)
+                        self.navigationController?.popViewController(animated: true)
                     }
                 }
                 else {
@@ -150,14 +151,14 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
             }
             .addDisposableTo(bag)
 
-        NSNotificationCenter.defaultCenter().rx_notification(UIKeyboardWillShowNotification, object: nil)
-            .subscribeNext { [ unowned self] notification in
+        NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillShow, object: nil)
+            .bindNext { [ unowned self] notification in
                 self.keyboardWillShow(notification)
             }
             .addDisposableTo(bag)
 
-        NSNotificationCenter.defaultCenter().rx_notification(UIKeyboardWillHideNotification, object: nil)
-            .subscribeNext { [ unowned self] notification in
+        NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillHide, object: nil)
+            .bindNext { [ unowned self] notification in
                 self.keyboardWillHide(notification)
             }
             .addDisposableTo(bag)
@@ -167,50 +168,50 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
         super.didReceiveMemoryWarning()
     }
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return rowsInSection.count
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if ExpenseEditSections(rawValue: section) == .Date && !isDatePickerOpen {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if ExpenseEditSections(rawValue: section) == .date && !isDatePickerOpen {
                 return 1
         }
         return rowsInSection[section].count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = rowsInSection[indexPath.section][indexPath.row]
 
         // TODO 変数名を適切なものに
         if let text = row as? ExpenseEditText {
-            let cell: TextFieldCell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell") as! TextFieldCell
+            let cell: TextFieldCell = tableView.dequeueReusableCell(withIdentifier: "TextFieldCell") as! TextFieldCell
             cell.title.text = text.placeholder
             cell.bindValue = text.bindValue
-            if text.type == .Number {
-                cell.keyboardType = .NumberPad
+            if text.type == .number {
+                cell.keyboardType = .numberPad
             }
-            else if text.type == .Date {
-                cell.textField.userInteractionEnabled = false
+            else if text.type == .date {
+                cell.textField.isUserInteractionEnabled = false
             }
             return cell
         }
 
         if let sw = row as? ExpenseEditSwitch {
-            let cell: TransportSelectCell = tableView.dequeueReusableCellWithIdentifier("TransportSelectCell") as! TransportSelectCell
+            let cell: TransportSelectCell = tableView.dequeueReusableCell(withIdentifier: "TransportSelectCell") as! TransportSelectCell
             cell.transportName.text = sw.placeholder
             cell.bindValue = sw.bindValue
             return cell
         }
 
         if let date = row as? ExpenseEditDate {
-            let cell: DatePickerCell = tableView.dequeueReusableCellWithIdentifier("DatePickerCell") as! DatePickerCell
+            let cell: DatePickerCell = tableView.dequeueReusableCell(withIdentifier: "DatePickerCell") as! DatePickerCell
             cell.bindValue = date.bindValue
-            cell.handler = { (date: NSDate) in
+            cell.handler = { (date: Date) in
                 self.isDatePickerOpen = false
 
-                let dateFormatter = NSDateFormatter()
+                let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat  = "yyyyMMdd";
-                self.viewModel.dateAsString.value = dateFormatter.stringFromDate(date)
+                self.viewModel.dateAsString.value = dateFormatter.string(from: date)
                 self.table.reloadData()
             }
             return cell
@@ -219,9 +220,9 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
         return UITableViewCell()
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
-        case ExpenseEditSections.Date.rawValue:
+        case ExpenseEditSections.date.rawValue:
             if indexPath.row == 0 {
                 isDatePickerOpen = !isDatePickerOpen
                 tableView.reloadData()
@@ -232,19 +233,19 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
     }
 
     // TODO protocolかextensionに切り出したい
-    func keyboardWillShow(notification: NSNotification) {
+    func keyboardWillShow(_ notification: Notification) {
         if let userInfo = notification.userInfo,
             let firstResponder: UIResponder = self.view.searchFirstResponder(),
             let textField: UITextField = firstResponder as? UITextField,
-            let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue, animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey]?.doubleValue {
+            let keyboardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue, let animationDuration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue {
 
-            table.contentInset = UIEdgeInsetsZero
-            table.scrollIndicatorInsets = UIEdgeInsetsZero
+            table.contentInset = UIEdgeInsets.zero
+            table.scrollIndicatorInsets = UIEdgeInsets.zero
 
-            let convertedKeyboardFrame: CGRect = table.convertRect(keyboardFrame, fromView: nil)
-            let convertedTextFieldFrame: CGRect = textField.convertRect(textField.frame, toView: table)
+            let convertedKeyboardFrame: CGRect = table.convert(keyboardFrame, from: nil)
+            let convertedTextFieldFrame: CGRect = textField.convert(textField.frame, to: table)
 
-            let offsetY: CGFloat = CGRectGetMaxY(convertedTextFieldFrame) - CGRectGetMinY(convertedKeyboardFrame)
+            let offsetY: CGFloat = convertedTextFieldFrame.maxY - convertedKeyboardFrame.minY
             if offsetY > 0 {
                 UIView.beginAnimations("ResizeForKeyboard", context: nil)
                 UIView.setAnimationDuration(animationDuration)
@@ -252,25 +253,25 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
                 let contentInsets = UIEdgeInsetsMake(0, 0, offsetY, 0)
                 table.contentInset = contentInsets
                 table.scrollIndicatorInsets = contentInsets
-                table.contentOffset = CGPointMake(0, table.contentOffset.y + offsetY)
+                table.contentOffset = CGPoint(x: 0, y: table.contentOffset.y + offsetY)
 
                 UIView.commitAnimations()
             }
         }
     }
 
-    func keyboardWillHide(notification: NSNotification) {
-        table.contentInset = UIEdgeInsetsZero
-        table.scrollIndicatorInsets = UIEdgeInsetsZero
+    func keyboardWillHide(_ notification: Notification) {
+        table.contentInset = UIEdgeInsets.zero
+        table.scrollIndicatorInsets = UIEdgeInsets.zero
     }
 
-    private func showTextEditView(bindValue:Variable<String>, title: String, keyboard: UIKeyboardType = .Default) {
-        let vc:TextEditViewController = UIStoryboard(name: "ExpenseEdit", bundle: nil).instantiateViewControllerWithIdentifier("TextEditViewController") as! TextEditViewController
+    fileprivate func showTextEditView(_ bindValue:Variable<String>, title: String, keyboard: UIKeyboardType = .default) {
+        let vc:TextEditViewController = UIStoryboard(name: "ExpenseEdit", bundle: nil).instantiateViewController(withIdentifier: "TextEditViewController") as! TextEditViewController
         vc.bindValue = bindValue
         vc.inputItem = title
         vc.keyboard = keyboard
-        vc.modalPresentationStyle = .OverCurrentContext
-        vc.modalTransitionStyle = .CoverVertical
-        presentViewController(vc, animated: true, completion: nil)
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .coverVertical
+        present(vc, animated: true, completion: nil)
     }
 }

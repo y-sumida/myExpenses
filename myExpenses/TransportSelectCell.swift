@@ -9,18 +9,19 @@
 import UIKit
 import RxSwift
 
+
 class TransportSelectCell: UITableViewCell {
     @IBOutlet weak var transportName: UILabel!
     @IBOutlet weak var transportSwitch: UISwitch!
 
-    private var bag: DisposeBag!
+    fileprivate var bag: DisposeBag!
     var bindValue: Variable<Bool>! {
         didSet {
             bag = DisposeBag()
             bindValue.asObservable()
-                .bindTo(self.transportSwitch.rx_value)
+                .bindTo(self.transportSwitch.rx.value)
                 .addDisposableTo(bag)
-            self.transportSwitch.rx_value
+            self.transportSwitch.rx.value
                 .bindTo(self.bindValue)
                 .addDisposableTo(bag)
         }
@@ -30,8 +31,8 @@ class TransportSelectCell: UITableViewCell {
         super.awakeFromNib()
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        self.selectionStyle = UITableViewCellSelectionStyle.None
+        self.selectionStyle = UITableViewCellSelectionStyle.none
     }
 }

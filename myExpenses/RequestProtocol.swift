@@ -20,7 +20,7 @@ protocol RequestProtocol {
     var path: String { get }
     var method: HTTPMethod { get }
     var body: NSMutableDictionary? { get }
-    func responseToObject(data: NSData) -> Response?
+    func responseToObject(_ data: Data) -> Response?
 }
 
 extension RequestProtocol {
@@ -37,20 +37,20 @@ extension RequestProtocol {
     }
 
     var request: NSMutableURLRequest {
-        let url:NSURL = NSURL(string: baseURL + path)!
-        let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = self.method.rawValue
+        let url:URL = URL(string: baseURL + path)!
+        let request: NSMutableURLRequest = NSMutableURLRequest(url: url)
+        request.httpMethod = self.method.rawValue
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
         if let `body`: NSMutableDictionary = body {
-            request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions.init(rawValue: 2))
+            request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: JSONSerialization.WritingOptions.init(rawValue: 2))
         }
         return request
     }
 
-    func responseToObject(data: NSData) -> Response? {
+    func responseToObject(_ data: Data) -> Response? {
         do {
-            let object = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as! NSDictionary
+            let object = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! NSDictionary
             return Response(data: object)
         } catch {
             return Response(data: [:])

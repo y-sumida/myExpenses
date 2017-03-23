@@ -15,10 +15,10 @@ class TextEditViewController: UIViewController {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var titleLabel: UILabel!
 
-    private let bag: DisposeBag = DisposeBag()
+    fileprivate let bag: DisposeBag = DisposeBag()
 
     var inputItem: String = ""
-    var keyboard: UIKeyboardType = .Default
+    var keyboard: UIKeyboardType = .default
     var bindValue: Variable<String>!
 
     // TODO どうやってもとの編集画面に入力内容を連携するか検討
@@ -28,32 +28,35 @@ class TextEditViewController: UIViewController {
         titleLabel.text = inputItem
         textField.keyboardType = keyboard
 
-        textField.rx_text.asObservable()
-            .subscribeNext { text in
-                self.doneButton.enabled = text.isNotEmpty
+        textField.rx.text.asObservable()
+            .bindNext { text in
+                self.doneButton.isEnabled = (text?.isNotEmpty)!
             }
             .addDisposableTo(bag)
 
-        closeButton.rx_tap.asObservable()
-            .subscribeNext {
+        closeButton.rx.tap.asObservable()
+            .bindNext {
                 self.textField.endEditing(true)
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             }
             .addDisposableTo(bag)
 
-        doneButton.rx_tap.asObservable()
-            .subscribeNext {
+        doneButton.rx.tap.asObservable()
+            .bindNext {
                 self.textField.endEditing(true)
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             }
             .addDisposableTo(bag)
 
         if let value: Variable<String> = bindValue {
             value.asObservable()
-                .bindTo(self.textField.rx_text)
+                .bindTo(self.textField.rx.text)
                 .addDisposableTo(bag)
-            self.textField.rx_text
-                .bindTo(value)
+            self.textField.rx.text
+                .bindNext { string in
+                    value.value = string!
+                    
+                }
                 .addDisposableTo(bag)
         }
     }
