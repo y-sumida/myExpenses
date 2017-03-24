@@ -137,12 +137,12 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
                 if result.code == APIResultCode.SessionError {
                     self.showCompleteDialog("セッションエラー") { _ in
                         // TODO これだと戻れなくなった
-                        self.navigationController?.popToRootViewController(animated: false)
+                        _ = self.navigationController?.popToRootViewController(animated: false)
                     }
                 }
                 else if result.code == APIResultCode.Success {
                     self.showCompleteDialog("送信完了") { _ in
-                        self.navigationController?.popViewController(animated: true)
+                        _ = self.navigationController?.popViewController(animated: true)
                     }
                 }
                 else {
