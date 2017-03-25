@@ -21,10 +21,10 @@ class PeriodTests: XCTestCase {
     }
 
     func test日付のみ() {
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyyMMdd"
         let period: Period?
-        if let date: NSDate = formatter.dateFromString("20170319") {
+        if let date: Date = formatter.date(from: "20170319") {
             period = Period(date: date)
         }
         else {
@@ -35,10 +35,10 @@ class PeriodTests: XCTestCase {
     }
 
     func test日付時分秒() {
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyyMMdd hh:mm:ss"
         let period: Period?
-        if let date: NSDate = formatter.dateFromString("20170419 10:15:30") {
+        if let date: Date = formatter.date(from: "20170419 10:15:30") {
             period = Period(date: date)
         }
         else {
@@ -49,10 +49,10 @@ class PeriodTests: XCTestCase {
     }
 
     func test日付上限() {
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyyMMdd HH:mm:ss"
         let period: Period?
-        if let date: NSDate = formatter.dateFromString("20170519 23:59:59") {
+        if let date: Date = formatter.date(from: "20170519 23:59:59") {
             period = Period(date: date)
         }
         else {
@@ -63,10 +63,10 @@ class PeriodTests: XCTestCase {
     }
 
     func test過去半年() {
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyyMMdd HH:mm:ss"
         let periods: [Period]?
-        if let date: NSDate = formatter.dateFromString("20170519 23:59:59") {
+        if let date: Date = formatter.date(from: "20170519 23:59:59") {
             periods = Period.pastHalfYear(date)
         }
         else {
