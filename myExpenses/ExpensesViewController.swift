@@ -73,7 +73,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
                 // セッション切れの場合、ログイン画面へ戻す
                 if result.code == APIResultCode.SessionError {
                     self.showCompleteDialog("セッションエラー") { _ in
-                        self.navigationController?.popToRootViewController(animated: false)
+                        _ = self.navigationController?.popToRootViewController(animated: false)
                     }
                 }
                 else if result.code != APIResultCode.Success {
@@ -121,7 +121,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
                 vc.transitioningDelegate = self
                 vc.logoutHandler = { [weak self] in
                     guard let `self` = self else { return }
-                    self.navigationController?.popToRootViewController(animated: false)
+                    _ = self.navigationController?.popToRootViewController(animated: false)
                 }
                 self.present(vc, animated: true, completion: nil)
                 self.slideMenuTransition = SlideMenuTransition(targetViewController: vc)
