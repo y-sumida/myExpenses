@@ -83,6 +83,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pJG-oz-gho"/>
+                    <connections>
+                        <outlet property="email" destination="MPl-xs-tSr" id="Bix-9k-FGf"/>
+                        <outlet property="password" destination="F12-f8-S5G" id="G24-KB-F79"/>
+                        <outlet property="passwordCheck" destination="f4C-ko-O2X" id="rLb-p5-TW3"/>
+                        <outlet property="registerButton" destination="cNv-be-Ipn" id="BuW-s0-Hld"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SFw-dx-YpZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
