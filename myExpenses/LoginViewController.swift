@@ -35,12 +35,12 @@ class LoginViewController: UIViewController, ShowDialog {
 
         // bind
         email.rx.text
-            .bindNext { string in
+            .bindNext { [unowned self] string in
                 self.viewModel.email.value = string!
             }
             .addDisposableTo(bag)
         password.rx.text
-            .bindNext { string in
+            .bindNext { [unowned self] string in
                 self.viewModel.password.value = string!
             }
             .addDisposableTo(bag)
@@ -49,19 +49,19 @@ class LoginViewController: UIViewController, ShowDialog {
             .combineLatest(
                 email.rx.text.asObservable(),
             password.rx.text.asObservable()) { c in c }
-            .bindNext { (email, password) in
+            .bindNext { [unowned self] (email, password) in
                 self.loginButton.isEnabled = (email?.isNotEmpty)! && (password?.isNotEmpty)!
             }
             .addDisposableTo(bag)
 
         loginButton.rx.tap
-            .bindNext {
+            .bindNext { [unowned self] _ in
                 self.viewModel.loginTrigger.onNext(())
             }
             .addDisposableTo(bag)
         viewModel.result.asObservable()
             .skip(1) //初期値読み飛ばし
-            .bindNext {error in
+            .bindNext { [unowned self] error in
                 let result = error as! APIResult
 
                 if result.code == APIResultCode.Success {
