@@ -59,6 +59,7 @@ class LoginViewController: UIViewController, ShowDialog {
                 self.viewModel.loginTrigger.onNext(())
             }
             .addDisposableTo(bag)
+
         viewModel.result.asObservable()
             .skip(1) //初期値読み飛ばし
             .bindNext { [unowned self] error in
@@ -81,10 +82,10 @@ class LoginViewController: UIViewController, ShowDialog {
             navi.setNavigationBarHidden(true, animated: true)
         }
         // フォームクリア
-        // TODO Rxでボタンdisableにする方法
-        email.text = ""
-        password.text = ""
-        loginButton.isEnabled = false
+        email.rx.text.asObserver()
+            .onNext("")
+        password.rx.text.asObserver()
+            .onNext("")
     }
 
     override func didReceiveMemoryWarning() {
