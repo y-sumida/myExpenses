@@ -86,6 +86,8 @@ class LoginViewController: UIViewController, ShowDialog {
             .onNext("")
         password.rx.text.asObserver()
             .onNext("")
+        // フォーカスをメールアドレスに
+        email.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
