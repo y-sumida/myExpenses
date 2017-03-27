@@ -10,8 +10,8 @@ import Foundation
 import RxSwift
 
 final class ExpenseEditViewModel {
-    fileprivate let bag: DisposeBag = DisposeBag()
-    fileprivate var expense: ExpenseModel!
+    private let bag: DisposeBag = DisposeBag()
+    private var expense: ExpenseModel!
 
     var id: String = ""
     var result: Variable<Error?> = Variable(nil)

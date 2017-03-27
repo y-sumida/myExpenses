@@ -21,7 +21,7 @@ final class LoginViewModel {
         configureTrigger()
     }
 
-    fileprivate func configureTrigger() {
+    private func configureTrigger() {
         loginTrigger
             .flatMap {
                 LoginModel.call(self.email.value, password: self.password.value)

@@ -10,14 +10,14 @@ import Foundation
 import RxSwift
 
 final class ExpensesViewModel {
-    fileprivate let bag: DisposeBag = DisposeBag()
+    private let bag: DisposeBag = DisposeBag()
 
     var period: Variable<String> = Variable("")
     var reloadTrigger: PublishSubject<Void> = PublishSubject()
     var result: Variable<Error?> = Variable(nil)
     var fareTotal: Variable<String> = Variable("")
 
-    fileprivate(set) var expenses: [ExpenseModel] = []
+    private(set) var expenses: [ExpenseModel] = []
 
     init() {}
 
@@ -85,7 +85,7 @@ final class ExpensesViewModel {
             .addDisposableTo(bag)
     }
 
-    fileprivate func calcFareTotal() {
+    private func calcFareTotal() {
         fareTotal.value = expenses.reduce(0) {
             $0 + $1.fare
             }.commaSeparated
