@@ -67,11 +67,6 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // ナビゲーションバー非表示
-        // TODO presentViewController で遷移してくるとnil
-        if let navi = navigationController {
-            navi.setNavigationBarHidden(true, animated: true)
-        }
 
         rowsInSection = [
             [
@@ -142,7 +137,7 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
                 }
                 else if result.code == APIResultCode.Success {
                     self.showCompleteDialog("送信完了") { _ in
-                        _ = self.navigationController?.popViewController(animated: true)
+                        self.dismiss(animated: true, completion: nil)
                     }
                 }
                 else {
