@@ -65,6 +65,8 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
     var viewModel: ExpenseEditViewModel = ExpenseEditViewModel()
     var rowsInSection:[Array<Any>]!
 
+    var parentNavigation: UINavigationController!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -131,8 +133,9 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
                 // セッション切れの場合、ログイン画面へ戻す
                 if result.code == APIResultCode.SessionError {
                     self.showCompleteDialog("セッションエラー") { _ in
-                        // TODO これだと戻れなくなった
-                        _ = self.navigationController?.popToRootViewController(animated: false)
+                        self.dismiss(animated: true) {
+                            _ = self.parentNavigation?.popToRootViewController(animated: false)
+                        }
                     }
                 }
                 else if result.code == APIResultCode.Success {

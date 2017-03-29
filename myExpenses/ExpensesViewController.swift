@@ -169,6 +169,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
                     print("edit")
                     let vc:ExpenseEditViewController = UIStoryboard(name: "ExpenseEdit", bundle: nil).instantiateViewController(withIdentifier: "ExpenseEditViewController") as! ExpenseEditViewController
                     vc.viewModel = ExpenseEditViewModel(expense: self.viewModel.expenses[index.row])
+                    vc.parentNavigation = self.navigationController
                     vc.modalPresentationStyle = .custom
                     vc.modalTransitionStyle = .coverVertical
                     self.navigationController!.present(vc, animated: true, completion: nil)
