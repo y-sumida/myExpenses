@@ -60,6 +60,7 @@ extension URLSession {
         if let body: Data = request.httpBody {
             do {
                 let object = try JSONSerialization.jsonObject(with: body, options: .mutableContainers) as! NSDictionary
+
                 print("body \(object)")
             } catch {
                 print("body empty")

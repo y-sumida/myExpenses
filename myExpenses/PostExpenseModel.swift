@@ -58,7 +58,7 @@ struct PostExpenseRequest: RequestProtocol {
     typealias Response = PostExpenseModel
     var method: HTTPMethod = .Post
     var path: String = "upsert.php"
-    var body: NSMutableDictionary {
+    var body: NSMutableDictionary? {
         let body = NSMutableDictionary()
         body.setValue(sessionId, forKey: "sessionId")
         body.setValue(expense.dateAsString, forKey: "date")

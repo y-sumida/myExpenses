@@ -59,7 +59,7 @@ struct DeleteExpenseRequest: RequestProtocol {
     typealias Response = DeleteExpenseModel
     var method: HTTPMethod = .Post
     var path: String = "delete.php"
-    var body: NSMutableDictionary {
+    var body: NSMutableDictionary? {
         let body = NSMutableDictionary()
         body.setValue(expenseId, forKey: "id");
         body.setValue(sessionId, forKey: "sessionId");

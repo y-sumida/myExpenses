@@ -78,7 +78,7 @@ struct LoginRequest: RequestProtocol {
     typealias Response = LoginModel
     var method: HTTPMethod = .Post
     var path: String = "login.php"
-    var body: NSMutableDictionary {
+    var body: NSMutableDictionary? {
         let body = NSMutableDictionary()
         body.setValue(email, forKey: "email");
         body.setValue(password, forKey: "password");

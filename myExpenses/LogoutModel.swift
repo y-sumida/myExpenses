@@ -55,7 +55,7 @@ struct LogoutRequest: RequestProtocol {
     typealias Response = LogoutModel
     var method: HTTPMethod = .Post
     var path: String = "logout.php"
-    var body: NSMutableDictionary {
+    var body: NSMutableDictionary? {
         let body = NSMutableDictionary()
         body.setValue(sessionId, forKey: "sessionId");
         return body
