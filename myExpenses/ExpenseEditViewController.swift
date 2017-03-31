@@ -55,12 +55,12 @@ struct ExpenseEditSwitch: ExpenseEditRow {
 }
 
 class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableViewDataSource, ShowDialog {
-    @IBOutlet weak fileprivate var table: UITableView!
+    @IBOutlet weak private var table: UITableView!
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
 
-    fileprivate var isDatePickerOpen: Bool = false
-    fileprivate let bag: DisposeBag = DisposeBag()
+    private var isDatePickerOpen: Bool = false
+    private let bag: DisposeBag = DisposeBag()
 
     var viewModel: ExpenseEditViewModel = ExpenseEditViewModel()
     var rowsInSection:[Array<Any>]!
@@ -263,7 +263,7 @@ class ExpenseEditViewController: UIViewController, UITableViewDelegate,UITableVi
         table.scrollIndicatorInsets = UIEdgeInsets.zero
     }
 
-    fileprivate func showTextEditView(_ bindValue:Variable<String>, title: String, keyboard: UIKeyboardType = .default) {
+    private func showTextEditView(_ bindValue:Variable<String>, title: String, keyboard: UIKeyboardType = .default) {
         let vc:TextEditViewController = UIStoryboard(name: "ExpenseEdit", bundle: nil).instantiateViewController(withIdentifier: "TextEditViewController") as! TextEditViewController
         vc.bindValue = bindValue
         vc.inputItem = title

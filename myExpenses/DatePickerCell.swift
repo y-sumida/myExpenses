@@ -14,7 +14,7 @@ class DatePickerCell: UITableViewCell {
 
     var handler: ((_ date: Date) -> Void) = {_ in }
 
-    fileprivate var bag: DisposeBag!
+    private var bag: DisposeBag!
     var bindValue: Variable<Date>! {
         didSet {
             bag = DisposeBag()

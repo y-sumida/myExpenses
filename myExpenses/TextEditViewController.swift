@@ -15,7 +15,7 @@ class TextEditViewController: UIViewController {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var titleLabel: UILabel!
 
-    fileprivate let bag: DisposeBag = DisposeBag()
+    private let bag: DisposeBag = DisposeBag()
 
     var inputItem: String = ""
     var keyboard: UIKeyboardType = .default

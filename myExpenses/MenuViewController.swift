@@ -12,10 +12,10 @@ import RxSwift
 class MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var table: UITableView!
 
-    fileprivate let bag: DisposeBag = DisposeBag()
-    fileprivate let viewModel: LogoutViewModel = LogoutViewModel()
+    private let bag: DisposeBag = DisposeBag()
+    private let viewModel: LogoutViewModel = LogoutViewModel()
 
-    fileprivate var email: String {
+    private var email: String {
         let sharedInstance: UserDefaults = UserDefaults.standard
         guard let mail: String = sharedInstance.string(forKey: "email") else { return "" }
 

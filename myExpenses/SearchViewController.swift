@@ -15,8 +15,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var table: UITableView!
 
-    fileprivate let bag: DisposeBag = DisposeBag()
-    fileprivate var viewModel: ExpensesViewModel = ExpensesViewModel()
+    private let bag: DisposeBag = DisposeBag()
+    private var viewModel: ExpensesViewModel = ExpensesViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()

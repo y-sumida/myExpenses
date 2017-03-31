@@ -15,8 +15,8 @@ class LoginViewController: UIViewController, ShowDialog {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var loginButton: UIButton!
 
-    fileprivate let bag: DisposeBag = DisposeBag()
-    fileprivate let viewModel: LoginViewModel = LoginViewModel()
+    private let bag: DisposeBag = DisposeBag()
+    private let viewModel: LoginViewModel = LoginViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,7 +99,7 @@ class LoginViewController: UIViewController, ShowDialog {
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
-    fileprivate func showExpensesView(_ animated: Bool) {
+    private func showExpensesView(_ animated: Bool) {
         let vc:ExpensesViewController = UIStoryboard(name: "Expenses", bundle: nil).instantiateViewController(withIdentifier: "ExpensesViewController") as! ExpensesViewController
         self.navigationController?.pushViewController(vc, animated: animated)
     }

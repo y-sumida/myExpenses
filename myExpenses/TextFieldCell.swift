@@ -24,7 +24,7 @@ class TextFieldCell: UITableViewCell, UITextFieldDelegate {
         }
     }
 
-    fileprivate var bag: DisposeBag!
+    private var bag: DisposeBag!
     var bindValue: Variable<String>! {
         didSet {
             bag = DisposeBag()

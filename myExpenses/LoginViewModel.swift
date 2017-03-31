@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 final class LoginViewModel {
-    fileprivate let bag: DisposeBag = DisposeBag()
+    private let bag: DisposeBag = DisposeBag()
 
     var email: Variable<String> = Variable("")
     var password: Variable<String> = Variable("")

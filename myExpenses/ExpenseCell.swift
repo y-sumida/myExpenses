@@ -31,7 +31,7 @@ class ExpenseCell: UITableViewCell {
         self.selectionStyle = UITableViewCellSelectionStyle.none
     }
 
-    fileprivate func configure() {
+    private func configure() {
         let bag: DisposeBag = DisposeBag()
 
         viewModel.date.asObservable()

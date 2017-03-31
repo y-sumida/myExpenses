@@ -14,7 +14,7 @@ class TransportSelectCell: UITableViewCell {
     @IBOutlet weak var transportName: UILabel!
     @IBOutlet weak var transportSwitch: UISwitch!
 
-    fileprivate var bag: DisposeBag!
+    private var bag: DisposeBag!
     var bindValue: Variable<Bool>! {
         didSet {
             bag = DisposeBag()

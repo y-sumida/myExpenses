@@ -16,9 +16,9 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
     @IBOutlet weak var actionButton: UIBarButtonItem!
     @IBOutlet weak var menuButton: UIBarButtonItem!
 
-    fileprivate let bag: DisposeBag = DisposeBag()
-    fileprivate var viewModel: ExpensesViewModel!
-    fileprivate var period: Period = Period() // デフォルト当月
+    private let bag: DisposeBag = DisposeBag()
+    private var viewModel: ExpensesViewModel!
+    private var period: Period = Period() // デフォルト当月
     var refreshControll = UIRefreshControl()
     var slideMenuTransition: SlideMenuTransition?
 
@@ -204,7 +204,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         }
     }
 
-    fileprivate func showDeleteConfirmDialog(_ indexPath: IndexPath) {
+    private func showDeleteConfirmDialog(_ indexPath: IndexPath) {
         let defaultHandler: (UIAlertAction) -> Void = {
             (action: UIAlertAction!) -> Void in
             self.viewModel.deleteAtIndex(indexPath.row)
@@ -216,7 +216,7 @@ class ExpensesViewController: UIViewController, UITableViewDelegate,UITableViewD
         self.showConfirmDialog("削除して良いですか", defaultHandler: defaultHandler, cancelHandler: cancelHandler)
     }
 
-    fileprivate func showUploadConfirmDialog() {
+    private func showUploadConfirmDialog() {
         let defaultHandler: (UIAlertAction) -> Void = {
             (action: UIAlertAction!) -> Void in
             // TODO APIコール

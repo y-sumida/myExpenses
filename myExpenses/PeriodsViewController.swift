@@ -10,7 +10,7 @@ import UIKit
 
 class PeriodsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var table: UITableView!
-    fileprivate var periods: [Period]!
+    private var periods: [Period]!
 
     var handler: ((_ period: Period) -> Void) = {_ in }
 

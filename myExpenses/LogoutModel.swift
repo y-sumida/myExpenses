@@ -39,7 +39,7 @@ struct LogoutModel: ResponseProtocol {
 }
 
 struct LogoutRequest: RequestProtocol {
-    fileprivate var sessionId: String {
+    private var sessionId: String {
         get {
             let sharedInstance: UserDefaults = UserDefaults.standard
             if let sessionId: String = sharedInstance.string(forKey: "sessionId") {

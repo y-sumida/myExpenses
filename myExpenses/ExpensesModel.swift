@@ -142,7 +142,7 @@ struct ExpensesRequest: RequestProtocol {
     var path: String {
         return "expenses.php?sessionId=\(sessionId)&period=\(period.description)"
     }
-    fileprivate var sessionId: String {
+    private var sessionId: String {
         get {
             let sharedInstance: UserDefaults = UserDefaults.standard
             if let sessionId: String = sharedInstance.string(forKey: "sessionId") {
@@ -153,7 +153,7 @@ struct ExpensesRequest: RequestProtocol {
             }
         }
     }
-    fileprivate let period: Period!
+    private let period: Period!
 
     init(period: Period) {
         self.period = period
@@ -161,7 +161,7 @@ struct ExpensesRequest: RequestProtocol {
 }
 
 class SearchRequest: RequestProtocol {
-    fileprivate var sessionId: String {
+    private var sessionId: String {
         get {
             let sharedInstance: UserDefaults = UserDefaults.standard
             if let sessionId: String = sharedInstance.string(forKey: "sessionId") {
@@ -172,7 +172,7 @@ class SearchRequest: RequestProtocol {
             }
         }
     }
-    fileprivate let keyword: String
+    private let keyword: String
 
     // RequestProtocol
     typealias Response = ExpensesModel

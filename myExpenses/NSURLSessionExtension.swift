@@ -53,7 +53,7 @@ extension URLSession {
         }
     }
 
-    fileprivate func showRequestLog(_ request: NSMutableURLRequest) {
+    private func showRequestLog(_ request: NSMutableURLRequest) {
         print("REQUEST--------------------")
         print("url \((request.url?.absoluteString)!)")
         print("method \(request.httpMethod)")
@@ -72,7 +72,7 @@ extension URLSession {
         print("---------------------------")
     }
 
-    fileprivate func showResponseLog(_ response: HTTPURLResponse, data: Data) {
+    private func showResponseLog(_ response: HTTPURLResponse, data: Data) {
         print("RESPONSE--------------------")
         print("url \((response.url?.absoluteString))")
         print("status \(response.statusCode)")
